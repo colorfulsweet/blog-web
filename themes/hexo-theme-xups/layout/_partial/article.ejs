@@ -1,0 +1,35 @@
+<!-- 文章 -->
+<article class="post article">
+    <header class="text-center">
+        <h3 class="post-title"><span><%= post.title %></span></h3>
+    </header>
+    <p class="post-meta text-center">
+        <%- post.author || 'Jelon' %> 发表于
+        <%- partial('post/date', { date_format: 'YYYY-MM-DD' }) %>
+    </p>
+    <div class="post-content">
+        <%- post.content %>
+    </div>
+    <p class="post-meta">
+        <span class="post-cat">分类：
+            <%-
+            list_categories(post.categories, {
+                show_count: false,
+                class: 'cat',
+                style: 'none',
+                separator: '|'
+            })
+            %>
+        </span>
+        <span class="post-tags">
+            标签：
+            <%- partial('post/tag') %>
+        </span>
+    </p>
+</article>
+<!-- 分享按钮 -->
+<%- partial('post/share') %>
+
+<%- partial('post/nav', { post: post }) %>
+<!-- 文章评论 -->
+<%- partial('post/comment') %>

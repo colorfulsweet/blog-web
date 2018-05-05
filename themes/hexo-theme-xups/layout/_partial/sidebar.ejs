@@ -1,0 +1,31 @@
+<!-- 侧栏部分 -->
+<aside class="sidebar">
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <%- partial('_widget/categorys') %>
+    </section>
+
+    <% if (theme.tagcloud) { %>
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <%- partial('_widget/tags') %>
+    </section>
+    <% } %>
+
+    <% if (theme.weibo_show.enable) { %>
+    <!-- 我的微博 -->
+    <section class="widget">
+        <h3 class="widget-hd"><strong>我的微博</strong></h3>
+        <%- partial('_widget/weibo') %>
+    </section>
+    <% } %>
+
+    <% if (theme.friends.enable && theme.friends['list']) { %>
+    <!-- 友情链接 -->
+    <section class="widget">
+        <h3 class="widget-hd"><strong>友情链接</strong></h3>
+        <%- partial('_widget/friend_links') %>
+    </section>
+    <% } %>
+</aside>
+<!-- / 侧栏部分 -->
