@@ -38,7 +38,16 @@
         </div>
         <div class="post-thumbnail" data-img="<%- post.photos[0] %>">
             <a href="<%= post.permalink %>" title="<%= post.title %>">
-                <% if (post.thumbnail) { %>
+                <% 
+                var numSum = 0
+                let dateNum = parseInt(date(post.date, 'YYYYMMDDHHmmss'))
+                let mutipart = 10
+                while(dateNum % mutipart != dateNum) {
+                    numSum += Math.floor(dateNum % mutipart / (mutipart/10))
+                    mutipart *= 10
+                }
+                if (post.thumbnail) { 
+                %>
                     <!--
                     <%- image_tag(post.thumbnail, { class: "thumbnail" }) %>
                     -->
@@ -46,9 +55,9 @@
                 <% } else if (post.photos.length) { %>
                     <img class="thumbnail" src="<%- url_for('img/loading2.gif') %>" data-echo="<%= url_for(post.photos[0]) %>" alt="<%= post.title %>" >
                 <% } else if (theme.CDN) { %>
-                    <img class="thumbnail" src="<%- url_for('img/loading2.gif') %>" data-echo="<%- url_for(theme.CDN + 'thumbnail/' + date(post.date, 'YYYY-MM-DD').charAt(date(post.date, 'YYYY-MM-DD').length - 1)  + '.jpg') %>" alt="默认配图" >
+                    <img class="thumbnail" src="<%- url_for('img/loading2.gif') %>" data-echo="<%- url_for(theme.CDN + 'thumbnail/' + numSum%10  + '.jpg') %>" alt="默认配图" >
                 <% } else  { %>
-                    <img class="thumbnail" src="<%- url_for('img/loading2.gif') %>" data-echo="<%- url_for('img/thumbnail/' + date(post.date, 'YYYY-MM-DD').charAt(date(post.date, 'YYYY-MM-DD').length - 1)  + '.jpg') %>" alt="默认配图" >
+                    <img class="thumbnail" src="<%- url_for('img/loading2.gif') %>" data-echo="<%- url_for('img/thumbnail/' + numSum%10  + '.jpg') %>" alt="默认配图" >
                 <% } %>
             </a>
         </div>
