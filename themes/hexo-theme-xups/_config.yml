@@ -19,11 +19,15 @@ menu:
   about:
     name: 关于
     link: /about/
-    icon: icon-about
+    icon: icon-user-tie
   comment:
     name: 留言
     link: /comment/
-    icon: icon-comment
+    icon: icon-bubbles2
+  rss:
+    name: RSS
+    link: /atom.xml
+    icon: icon-rss
 
 #----------------------------
 # 副导航
@@ -38,8 +42,23 @@ subnav:
 # RSS
 #----------------------------
 rss: /atom.xml
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
 
 #----------------------------
+# 搜索
+#----------------------------
+search:
+  path: search.xml
+  field: all
+
+  #----------------------------
 # Favicon
 #----------------------------
 favicon: /favicon.ico
