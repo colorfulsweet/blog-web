@@ -85,10 +85,10 @@ weibo_show:
 #----------------------------
 comment:
   enable: true
-  owner: jangdelong
-  repo: blog_comments
-  client_id: b08ed25e52c57993e69c
-  client_secret: 1cb9545488f0380904b87350e7c5a270ae03bab7
+  owner: sookie2010
+  repo: sookie_blog
+  client_id: 90e8f648da2a669f7975
+  client_secret: 7d2b602616387748ef0df10f7a8a626bdfd1034c
 
 #----------------------------
 # 是否开启云标签
@@ -135,7 +135,7 @@ head_links:
 #----------------------------
 SEO:
   keywords: 前端, Web, Java
-  description: Jelon个人前端小站
+  description: 个人前端小站
 
 #----------------------------
 # 百度分析
