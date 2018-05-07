@@ -86,7 +86,7 @@ weibo_show:
 comment:
   enable: true
   owner: sookie2010
-  repo: sookie_blog
+  repo: blog_comments
   client_id: 90e8f648da2a669f7975
   client_secret: 7d2b602616387748ef0df10f7a8a626bdfd1034c
 
