@@ -1,5 +1,5 @@
 ---
-title: Git(2) - 基础操作
+title: Git(2)-基础操作
 date: 2018-4-18 09:20:13
 tags: 
 	- git
