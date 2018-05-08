@@ -1,8 +1,6 @@
-if (!window['String']['prototype']['trim']) {
-  window['String']['prototype']['trim'] = function () {
-    return this.replace(/^\s+|\s+$/g, '');
-  };
-}
+window.String.prototype.trim = window.String.prototype.trim || function () {
+  return this.replace(/^\s+|\s+$/g, '');
+};
 var JELON = window.JELON || {};
 ;(function (JL) {
   var constants = {

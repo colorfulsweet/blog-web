@@ -7,7 +7,7 @@ server:
   header: true
 
 # Site
-title: 日月追影俯河山
+title: Silence
 subtitle: 世上有条唯一的路，除了你无人能走
 description:
 keywords:
@@ -17,8 +17,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://www.colorfulsweet.site
-#url: http://localhost:6603
+# url: https://www.colorfulsweet.site
+url: http://localhost:6603
 root: /
 permalink: :title/
 permalink_defaults:

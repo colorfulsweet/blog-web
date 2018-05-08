@@ -20,10 +20,10 @@ menu:
     name: 关于
     link: /about/
     icon: icon-user-tie
-  comment:
-    name: 留言
-    link: /comment/
-    icon: icon-bubbles2
+  # comment:
+  #   name: 留言
+  #   link: /comment/
+  #   icon: icon-bubbles2
   rss:
     name: RSS
     link: /atom.xml
