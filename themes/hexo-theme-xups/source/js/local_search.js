@@ -1,5 +1,6 @@
 (function(){
 var articleDatas = null;
+var resultDiv = null;
 new Vue({
 	el: "#search-box",
 	data: {
@@ -27,12 +28,18 @@ new Vue({
 					url: item.getElementsByTagName("url")[0].innerHTML,
 				}
 			})
+			resultDiv = document.getElementById("search-result-box")
 		});
 	},
 	watch: {
 		queryText: function(newVal, oldVal) {
 			this.searchResult.length = 0;
-			if(!newVal || !newVal.trim() || !articleDatas) return
+			if(newVal && newVal.trim() && articleDatas) {
+				resultDiv.style.display = "block"
+			} else {
+				resultDiv.style.display = "none"
+				return
+			}
 			var keywords = newVal.trim().toLowerCase().split(/[\s\-]+/);
 			var _this = this;
 			articleDatas.forEach(function(article){
@@ -76,7 +83,6 @@ new Vue({
 							end = content.length;
 						}
 						var matchContent = content.substring(start, end); 
-						debugger
 						// 高亮关键字
 						keywords.forEach(function(keyword){
 							var keywordReg = new RegExp(keyword, "gi");

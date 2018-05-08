@@ -22,7 +22,7 @@
             <div class="icon"><span class="icon-search"></span></div>
             <div class="input-box"><input type="text" id="search-input" v-model="queryText" placeholder="站内搜索"/></div>
             <!-- 搜索结果区 -->
-            <div id="search-result-box" v-show="queryText">
+            <div id="search-result-box" >
                 <ul class="search-result-list" v-if="searchResult.length">
                     <li v-for="(article,index) in searchResult" :key="index">
                         <a :href='article.url' class='search-result-title' target='_blank'>{{article.title}}</a>

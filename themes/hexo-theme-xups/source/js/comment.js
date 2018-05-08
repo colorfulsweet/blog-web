@@ -709,6 +709,18 @@ var JELON = window.JELON || {};
       $('JELON__previewBox').innerHTML = '';
     }
   };
+  var createSuccessCb = function(callback){
+    return function (res) {
+      if (typeof res === 'string') {
+        if (window.JSON) {
+          res = JSON.parse(res);
+        } else {
+          res = eval('(' + res + ')');
+        }
+      }
+      callback && callback(res);
+    }
+  }
   JL.Requests = {
     getIssueNumberByLabel: function (label, callback) {
       ajax({
@@ -718,19 +730,8 @@ var JELON = window.JELON || {};
           labels: [ label ],
           rnd: Math.random()
         },
-        success: function (res) {
-          if (typeof res === 'string') {
-            if (window.JSON) {
-              res = JSON.parse(res);
-            } else {
-              res = eval('(' + res + ')');
-            }
-          }
-          callback && callback(res);
-        },
-        fail: function (err) {
-          callback && callback(err);
-        }
+        success: createSuccessCb(callback),
+        fail: callback
       });
     },
     createIssue: function (data, callback) {
@@ -738,19 +739,8 @@ var JELON = window.JELON || {};
         url: constants.API_HOST + '/repos/' + JL.options.owner + '/' + JL.options.repo + '/issues',
         method: 'POST',
         data: data,
-        success: function (res) {
-          if (typeof res === 'string') {
-            if (window.JSON) {
-              res = JSON.parse(res);
-            } else {
-              res = eval('(' + res + ')');
-            }
-          }
-          callback && callback(res);
-        },
-        fail: function (err) {
-          callback && callback(err);
-        }
+        success: createSuccessCb(callback),
+        fail: callback
       });
     },
     getCommentListByIssueNumber: function (number, data, callback) {
@@ -758,19 +748,8 @@ var JELON = window.JELON || {};
         url: constants.API_HOST + '/repos/' + JL.options.owner + '/' + JL.options.repo + '/issues/' + number + '/comments',
         method: 'GET',
         data: data,
-        success: function (res) {
-          if (typeof res === 'string') {
-            if (window.JSON) {
-              res = JSON.parse(res);
-            } else {
-              res = eval('(' + res + ')');
-            }
-          }
-          callback && callback(res);
-        },
-        fail: function (err) {
-          callback && callback(err);
-        }
+        success: createSuccessCb(callback),
+        fail: callback
       });
     },
     getReactionsByCommentId: function (id, data, callback) {
@@ -781,19 +760,8 @@ var JELON = window.JELON || {};
         url: constants.API_HOST + '/repos/' + JL.options.owner + '/' + JL.options.repo + '/issues/comments/' + id + '/reactions',
         method: 'GET',
         data: data,
-        success: function (res) {
-          if (typeof res === 'string') {
-            if (window.JSON) {
-              res = JSON.parse(res);
-            } else {
-              res = eval('(' + res + ')');
-            }
-          }
-          callback && callback(res);
-        },
-        fail: function (err) {
-          callback && callback(err);
-        }
+        success: createSuccessCb(callback),
+        fail: callback
       });
     },
     editIssue: function (number, data, callback) {
@@ -801,19 +769,8 @@ var JELON = window.JELON || {};
         url: constants.API_HOST + '/repos/' +  JL.options.owner + '/' + JL.options.owner + '/issues/' + number,
         method: 'POST',
         data: data,
-        success: function (res) {
-          if (typeof res === 'string') {
-            if (window.JSON) {
-              res = JSON.parse(res);
-            } else {
-              res = eval('(' + res + ')');
-            }
-          }
-          callback && callback(res);
-        },
-        fail: function (err) {
-          callback && callback(err);
-        }
+        success: createSuccessCb(callback),
+        fail: callback
       });
     },
     markdown: function (data, callback) {
@@ -821,12 +778,8 @@ var JELON = window.JELON || {};
         url: constants.API_HOST + '/markdown',
         method: 'POST',
         data: data,
-        success: function (res) {
-          callback && callback(res);
-        },
-        fail: function (err) {
-          callback && callback(err);
-        }
+        success: callback,
+        fail: callback
       });
     },
     getAccessToken: function (data, callback) {
@@ -838,19 +791,8 @@ var JELON = window.JELON || {};
           'Accept': 'application/json'
         },
         data: data,
-        success: function (res) {
-          if (typeof res === 'string') {
-            if (window.JSON) {
-              res = JSON.parse(res);
-            } else {
-              res = eval('(' + res + ')');
-            }
-          }
-          callback && callback(res);
-        },
-        fail: function (err) {
-          callback && callback(err);
-        }
+        success: createSuccessCb(callback),
+        fail: callback
       });
     },
     getUserInfo: function (data, callback) {
@@ -858,19 +800,8 @@ var JELON = window.JELON || {};
         url: constants.API_HOST + '/user',
         method: 'GET',
         data: data,
-        success: function (res) {
-          if (typeof res === 'string') {
-            if (window.JSON) {
-              res = JSON.parse(res);
-            } else {
-              res = eval('(' + res + ')');
-            }
-          }
-          callback && callback(res);
-        },
-        fail: function (err) {
-          callback && callback(err);
-        }
+        success: createSuccessCb(callback),
+        fail: callback
       });
     },
     createComment: function (number, data, callback) {
@@ -878,19 +809,8 @@ var JELON = window.JELON || {};
         url: constants.API_HOST + '/repos/' + JL.options.owner + '/' + JL.options.repo + '/issues/' + number + '/comments',
         method: 'POST',
         data: data,
-        success: function (res) {
-          if (typeof res === 'string') {
-            if (window.JSON) {
-              res = JSON.parse(res);
-            } else {
-              res = eval('(' + res + ')');
-            }
-          }
-          callback && callback(res);
-        },
-        fail: function (err) {
-          callback && callback(err);
-        }
+        success: createSuccessCb(callback),
+        fail: callback
       });
     },
     createReaction: function (commentId, data, callback) {
@@ -898,19 +818,8 @@ var JELON = window.JELON || {};
         url: constants.API_HOST + '/repos/' + JL.options.owner + '/' + JL.options.repo + '/issues/comments/' + commentId + '/reactions',
         method: 'POST',
         data: data,
-        success: function (res) {
-          if (typeof res === 'string') {
-            if (window.JSON) {
-              res = JSON.parse(res);
-            } else {
-              res = eval('(' + res + ')');
-            }
-          }
-          callback && callback(res);
-        },
-        fail: function (err) {
-          callback && callback(err);
-        }
+        success: createSuccessCb(callback),
+        fail: callback
       });
     }
   };
