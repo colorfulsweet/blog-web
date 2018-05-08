@@ -23,9 +23,14 @@
             <div class="input-box"><input type="text" id="search-input" v-model="queryText" placeholder="站内搜索"/></div>
             <!-- 搜索结果区 -->
             <div id="search-result-box" v-show="queryText">
-                 <div v-html="searchResult"></div>
-                 <!-- 无匹配时显示 -->
-                 <p class="no-result" v-if="!searchResult">没有搜索到任何结果</p>
+                <ul class="search-result-list" v-if="searchResult.length">
+                    <li v-for="(article,index) in searchResult" :key="index">
+                        <a :href='article.url' class='search-result-title' target='_blank'>{{article.title}}</a>
+                        <p class="search-result" v-html="article.matchContent"></p>
+                    </li>
+                </ul>
+                <!-- 无匹配时显示 -->
+                <p class="search-result" v-else>没有搜索到任何结果</p>
             </div>
         </div>
         <div class="profile clearfix">
