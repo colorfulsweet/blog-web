@@ -52,13 +52,6 @@ feed:
   content_limit_delim: ' '
 
 #----------------------------
-# 搜索
-#----------------------------
-search:
-  path: search.xml
-  field: all
-
-  #----------------------------
 # Favicon
 #----------------------------
 favicon: /favicon.ico
