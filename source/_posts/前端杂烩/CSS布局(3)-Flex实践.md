@@ -2,10 +2,10 @@
 title: CSS布局(3)-Flex实践
 date: 2018-5-16 22:38:32
 tags: 
-	- 前端
-	- css
+  - 前端
+  - css
 categories: 
-	- 前端杂烩
+  - 前端杂烩
 ---
 
 
@@ -43,16 +43,16 @@ DOM结构
 css样式
 ```css
 .layout {
-	height : 200px;
-	display: flex;
+  height : 200px;
+  display: flex;
 }
 .layout > .layout_aside {
-	background-color: pink;
-	width : 100px;
+  background-color: pink;
+  width : 100px;
 }
 .layout > .layout_main {
-	background-color: #ccc;
-	flex-grow: 1;
+  background-color: #ccc;
+  flex-grow: 1;
 }
 ```
 无论结构是什么样子 , 只要让main区域自动放大 , 侧边栏的宽度固定即可
@@ -64,11 +64,11 @@ css样式
 DOM结构
 ```xml
 <div id="main">
-	<div class="top">我是顶部条</div>
-	<div class="down">
-		<div class="left">我是侧边栏</div>
-		<div class="content">我是主面板</div>
-	</div>
+  <div class="top">我是顶部条</div>
+  <div class="down">
+    <div class="left">我是侧边栏</div>
+    <div class="content">我是主面板</div>
+  </div>
 </div>
 ```
 main是最外层的flex容器 , 其中包含top和down两个项目
@@ -77,28 +77,28 @@ down本身也是一个flex容器 , 其中包含left和content两个项目
 CSS样式
 ```css
 * {
-	margin: 0;
-	padding : 0;
+  margin: 0;
+  padding : 0;
 }
 #main {
-	height : 100%;
-	display: flex;
-	flex-direction: column;
+  height : 100%;
+  display: flex;
+  flex-direction: column;
 }
 #main > .top{
-	height : 50px;
-	background-color: blue;
+  height : 50px;
+  background-color: blue;
 }
 #main > .down {
-	display: flex;
-	flex-grow: 1;
+  display: flex;
+  flex-grow: 1;
 }
 #main > .down > .left{
-	width : 200px;
-	background-color: yellow;
+  width : 200px;
+  background-color: yellow;
 }
 #main > .down > .content {
-	flex-grow: 1;
-	background-color: pink;
+  flex-grow: 1;
+  background-color: pink;
 }
 ```

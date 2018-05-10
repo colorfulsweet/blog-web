@@ -2,10 +2,10 @@
 title: SASS-语法(1)
 date: 2018-5-12 22:38:32
 tags: 
-	- 前端
-	- sass
+  - 前端
+  - sass
 categories: 
-	- 前端杂烩
+  - 前端杂烩
 ---
 
 ### 变量
@@ -19,17 +19,17 @@ $变量名 : 变量值;
 例如
 ```scss
 .box {
-	$color:red;
-	a{
-		color:$color;
-	}
+  $color:red;
+  a{
+    color:$color;
+  }
 }
 ```
 如果该变量的值需要嵌入到字符串当中 , 需要加`#{ }`
 ```scss
 $side : left;
 .box {
-	border-#{$side}-radius:5px;
+  border-#{$side}-radius:5px;
 }
 ```
 #### 默认变量
@@ -56,15 +56,15 @@ $a_padding : 6px;
 #### 选择器嵌套
 ```scss
 div {
-	h1 {
-		color :red;
-	}
+  h1 {
+    color :red;
+  }
 }
 ```
 编译后的结果为
 ```
 div h1 {
-	color : red;
+  color : red;
 }
 ```
 前面如果加上 `>`可以作为父子选择器
@@ -73,8 +73,8 @@ div h1 {
 比如
 ```scss
 a {
-	&:hover{color:red;}
-	&:visited{color:gray;}
+  &:hover{color:red;}
+  &:visited{color:gray;}
 }
 ```
 #### 属性嵌套
@@ -82,10 +82,10 @@ a {
 比如border
 ```scss
 p {
-	border : {
-		color:red;
-		width:2px;
-	}
+  border : {
+    color:red;
+    width:2px;
+  }
 }
 ```
 **注意** : border的后面必须要加上冒号
@@ -102,22 +102,22 @@ Mixin有点像C语言的宏定义 , 是可以重用的代码块
 ```scss
 //使用@mixin命令,定义一个代码块
 @mixin left {
-	float : left;
-	margin-left : 10px;
+  float : left;
+  margin-left : 10px;
 }
 //使用@include调用这个mixin
 .box {
-	@include left;
+  @include left;
 }
 ```
 mixin的强大之处 , 在于可以去指定参数和缺省值
 ```scss
 @mixin left($value:10px) {
-	float : left;
-	margin-left : $value;
+  float : left;
+  margin-left : $value;
 }
 .box {
-	@include left(20px);
+  @include left(20px);
 }
 ```
 如果引入的时候不传参数 , 则使用缺省值
@@ -130,10 +130,10 @@ mixin的强大之处 , 在于可以去指定参数和缺省值
 }
 
 #navbar li {
-	@include rounded(top,left);
+  @include rounded(top,left);
 }
 #footer {
-	@include rounded(top,left,5px);
+  @include rounded(top,left,5px);
 }
 ```
 
@@ -189,20 +189,20 @@ $base_color : chocolate;
 SASS允许一个选择器 , 继承另一个选择器
 ```scss
 .class1 {
-	border : 1px solid #ddd;
+  border : 1px solid #ddd;
 }
 .class2 {
-	@extend .class1;
-	font-size : 120%;
+  @extend .class1;
+  font-size : 120%;
 }
 ```
 在编译过后 , 会生成
 ```css
 .class1, .class2 {
-	border : 1px solid #ddd;
+  border : 1px solid #ddd;
 }
 .class2 {
-	font-size:120%;
+  font-size:120%;
 }
 ```
 相比于mixin会生成很多重复的代码 , 这种方式能够对代码进行复用 , 有利于提高css解析的效率
@@ -249,10 +249,10 @@ each循环 , 类似于迭代器
 使用`@function`可以自定义一个函数
 ```scss
 @function double($n) {
-	@return $n * 2;
+  @return $n * 2;
 }
 #sidebar {
-	width : double(5px);
+  width : double(5px);
 }
 ```
 

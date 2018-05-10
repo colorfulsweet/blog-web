@@ -2,9 +2,9 @@
 title: Maven(4)-补充
 date: 2018-5-9 20:29:31
 tags: 
-	- maven
+  - maven
 categories: 
-	- Java
+  - Java
 ---
 
 maven默认使用的JDK版本是1.5 , 我们可以在配置文件中`<profiles>`标签里加入如下内容 , 将默认JDK改为1.8
@@ -35,15 +35,15 @@ maven默认使用的JDK版本是1.5 , 我们可以在配置文件中`<profiles>`
 那么我们可以将C排除
 ```xml
 <dependency>
-	<groupId>B-group</groupId>
-	<artifactId>B</artifactId>
-	<version>1.0</version>
-	<exclusions>
-		<exclusion>
-			<groupId>C-group</groupId>
-			<artifactId>C</artifactId>
-		</exclusion>
-	</exclusions>
+  <groupId>B-group</groupId>
+  <artifactId>B</artifactId>
+  <version>1.0</version>
+  <exclusions>
+    <exclusion>
+      <groupId>C-group</groupId>
+      <artifactId>C</artifactId>
+    </exclusion>
+  </exclusions>
 </dependency>
 ```
 这样就可以把对C的依赖排除
@@ -66,7 +66,7 @@ maven在处理这种冲突的时候 , 有以下的原则
 比如
 ```xml
 <properties>
-	<spring-version>4.3.11.RELEASE</spring-version>
+  <spring-version>4.3.11.RELEASE</spring-version>
 </properties>
 ...
 <dependencies>

@@ -2,9 +2,9 @@
 title: Maven(5)-jetty-plugin
 date: 2018-5-9 20:32:31
 tags: 
-	- maven
+  - maven
 categories: 
-	- Java
+  - Java
 ---
 
 与tomcat类似 , jetty也是一个servlet容器 , 为例如jsp和servlet提供运行环境
@@ -21,17 +21,17 @@ categories:
 <build>
 ...
 <plugins>
-	<plugin>
-		<groupId>org.eclipse.jetty</groupId>
-		<artifactId>jetty-maven-plugin</artifactId>
-		<version>9.4.7.RC0</version>
-		<configuration>
-			<jettyXml>jetty.xml</jettyXml>
-			<webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>
-			<scanIntervalSeconds>3</scanIntervalSeconds>
-			<contextPath>/</contextPath>
-		</configuration>
-	</plugin>
+  <plugin>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-maven-plugin</artifactId>
+    <version>9.4.7.RC0</version>
+    <configuration>
+      <jettyXml>jetty.xml</jettyXml>
+      <webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>
+      <scanIntervalSeconds>3</scanIntervalSeconds>
+      <contextPath>/</contextPath>
+    </configuration>
+  </plugin>
 </plugins>
 ...
 </build>

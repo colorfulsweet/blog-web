@@ -2,9 +2,9 @@
 title: Maven(1)-初见
 date: 2018-5-9 20:18:14
 tags: 
-	- maven
+  - maven
 categories: 
-	- Java
+  - Java
 ---
 
 我们在工作中可能会在IDE当中有很多项目
@@ -59,29 +59,29 @@ categories:
 这里尝试引入几个jar包
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>maven_demo</groupId>
-	<artifactId>hello_maven</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>maven_demo</groupId>
+  <artifactId>hello_maven</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
 
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.2</version>
-		</dependency>
-		<dependency>
-			<groupId>mongo</groupId>
-			<artifactId>mongo-java-driver</artifactId>
-			<version>3.2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>mongo</groupId>
-			<artifactId>morphia</artifactId>
-			<version>1.2.3</version>
-		</dependency>
-	</dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.2</version>
+    </dependency>
+    <dependency>
+      <groupId>mongo</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>3.2.2</version>
+    </dependency>
+    <dependency>
+      <groupId>mongo</groupId>
+      <artifactId>morphia</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+  </dependencies>
 </project>
 ```
 

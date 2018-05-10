@@ -2,10 +2,10 @@
 title: SASS-初见
 date: 2018-5-11 22:38:32
 tags: 
-	- 前端
-	- sass
+  - 前端
+  - sass
 categories: 
-	- 前端杂烩
+  - 前端杂烩
 ---
 
 
@@ -41,7 +41,7 @@ body {
 }
 ```
 最终编译出来的css都是
-```
+```css
 body {
   font: 100% Helvetica, sans-serif;
   color: #333;
@@ -88,29 +88,29 @@ $ npm install node-sass sass-loader --save-dev
 var webpack = require("webpack");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
-	entry: {
-		entry : './src/entry.js'
-	},
-	output: {
-		path: __dirname+"/dist",
-		filename: 'js/[name].bundle.js'
-	},
-	module: {
-		loaders: [
-		{ test: /\.css$/, loaders: ["style-loader","css-loader"]},
-		{ test: /\.scss$/, loaders : ExtractTextPlugin.extract({fallback:"style-loader",use:["css-loader","postcss-loader","sass-loader?outputStyle=compact"]})}
-	]
-	},
-	plugins : [
-	//压缩打包之后的js
-		new webpack.optimize.UglifyJsPlugin({
-		    compress: {
-		        warnings: false
-		    }
-		}),
-	//写入的文件
-		new ExtractTextPlugin("css/[name][contenthash].css")
-	]
+  entry: {
+    entry : './src/entry.js'
+  },
+  output: {
+    path: __dirname+"/dist",
+    filename: 'js/[name].bundle.js'
+  },
+  module: {
+    loaders: [
+    { test: /\.css$/, loaders: ["style-loader","css-loader"]},
+    { test: /\.scss$/, loaders : ExtractTextPlugin.extract({fallback:"style-loader",use:["css-loader","postcss-loader","sass-loader?outputStyle=compact"]})}
+  ]
+  },
+  plugins : [
+  //压缩打包之后的js
+    new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    }),
+  //写入的文件
+    new ExtractTextPlugin("css/[name][contenthash].css")
+  ]
 };
 ```
 > 上面为sass-loader加的参数`outputStyle`作用与ruby当中的--style相同

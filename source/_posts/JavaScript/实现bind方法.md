@@ -2,10 +2,10 @@
 title: 实现bind方法
 date: 2018-4-14 00:35:19
 tags: 
-	- JavaScript
-	- prototype
+  - JavaScript
+  - prototype
 categories: 
-	- JavaScript
+  - JavaScript
 ---
 
 
@@ -19,11 +19,11 @@ func.bind(thisArg [,arg1[,arg2[, ...]]])
 **应用示例 :** 
 ```javascript
 var obj = {
-	name : "Sookie",
-	show : function() {
-		console.log(this.name);
-		console.log(arguments);
-	}
+  name : "Sookie",
+  show : function() {
+    console.log(this.name);
+    console.log(arguments);
+  }
 }
 var _show = obj.show.bind(obj,"aa","bb");
 _show("cc");
@@ -35,16 +35,16 @@ Sookie
 如果要实现一个bind方法 , 需要用到柯里化
 ```javascript
 Function.prototype.bind = function(context) {
-	var me = this;//调用bind的函数对象
-	var args = Array.prototype.slice.call(arguments, 1);//传入的固定实参
-	return function () {
-		//实际调用时传入的参数
-		var innerArgs = Array.prototype.slice.call(arguments);
-		//合并两个参数数组
-		var finalArgs = args.concat(innerArgs);
-		//调用该函数
-		return me.apply(context, finalArgs);
-	}
+  var me = this;//调用bind的函数对象
+  var args = Array.prototype.slice.call(arguments, 1);//传入的固定实参
+  return function () {
+    //实际调用时传入的参数
+    var innerArgs = Array.prototype.slice.call(arguments);
+    //合并两个参数数组
+    var finalArgs = args.concat(innerArgs);
+    //调用该函数
+    return me.apply(context, finalArgs);
+  }
 }
 ```
 这里解释一下 , arguments并不是数组对象 , 而是**类数组**
@@ -64,7 +64,7 @@ var args = Array.prototype.slice.call(arguments);
 ( 可能是出于兼容性的需要 , 比如旧版本的标准库当中无此函数 )
 ```javascript
 Function.prototype.bind = Function.prototype.bind || function(context) {
-	//...
+  //...
 }
 ```
 这属于一个加分项
@@ -82,6 +82,6 @@ Function.prototype.bind = Function.prototype.bind || function(context) {
 由于需要调用bind方法的一定是一个函数 , 所以有必要在bind的内部做一个校验
 ```javascript
 if(typeof this !== "function") {
-	throw new TypeError("what is trying to be bound is not callable");
+  throw new TypeError("what is trying to be bound is not callable");
 }
 ```

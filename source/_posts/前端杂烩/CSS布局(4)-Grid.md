@@ -2,10 +2,10 @@
 title: CSS布局(4)-grid
 date: 2018-5-17 22:38:32
 tags: 
-	- 前端
-	- css
+  - 前端
+  - css
 categories: 
-	- 前端杂烩
+  - 前端杂烩
 ---
 
 Grid布局是网站设计的基础
@@ -25,25 +25,25 @@ Grid是二维布局系统 , 通常用于整个页面的规划
 DOM结构
 ```xml
 <div class="wrapper">
-	<div>1</div>
-	<div>2</div>
-	<div>3</div>
-	<div>4</div>
-	<div>5</div>
-	<div>6</div>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
 </div>
 ```
 CSS
 ```css
 .wrapper {
-	display : grid;
+  display : grid;
 }
 /* 这里为了清晰看到效果,给子元素添加了一些样式,不过与grid无关 */
 .wrapper div {
-	background: pink;
-	margin:2px;
-	text-align:center;
-	padding:3px 0;
+  background: pink;
+  margin:2px;
+  text-align:center;
+  padding:3px 0;
 }
 ```
 ![Alt text](/images/前端杂烩/grid/grid1.png)
@@ -54,9 +54,9 @@ CSS
 分别对应`grid-template-columns`和`grid-template-rows`属性
 ```css
 .wrapper {
-	display : grid;
-	grid-template-rows: 60px 40px;
-	grid-template-columns: 120px 60px 80px;
+  display : grid;
+  grid-template-rows: 60px 40px;
+  grid-template-columns: 120px 60px 80px;
 }
 ```
 **grid-template-columns** 属性的值当中有几个数值 , 就代表有几列 , 每个数值对应每一列的宽度
@@ -83,18 +83,18 @@ CSS
 
 ```xml
 <div class="wrapper">
-	<div class="item1">1</div>
-	<div class="item2">2</div>
-	<div class="item3">3</div>
-	<div class="item4">4</div>
+  <div class="item1">1</div>
+  <div class="item2">2</div>
+  <div class="item3">3</div>
+  <div class="item4">4</div>
 </div>
 ```
 现在我们要让item1横跨3列 , 也就是从第一条纵向网格线 , 到第四条纵向网格线
 那么需要对其定义css属性如下
 ```css
 .wrapper > .item1 {
-	grid-column-start: 1;
-	grid-column-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 4;
 }
 ```
 ![Alt text](/images/前端杂烩/grid/grid6.png)
@@ -108,7 +108,7 @@ grid本身虽是二维布局 , 但是内部的元素却是以一维方式去定�
 我们还可以用更简洁的写法
 ```css
 .wrapper > .item1 {
-	grid-column: 1 / 4;
+  grid-column: 1 / 4;
 }
 ```
 
@@ -117,21 +117,21 @@ grid本身虽是二维布局 , 但是内部的元素却是以一维方式去定�
 我们就可以实现出更加复杂的布局了
 ```css
 .wrapper {
-	display : grid;
-	grid-template-rows: 60px 40px 60px;
-	grid-template-columns: 120px 60px 80px;
+  display : grid;
+  grid-template-rows: 60px 40px 60px;
+  grid-template-columns: 120px 60px 80px;
 }
 .wrapper > .item1 {
-	grid-column-start: 1;
-	grid-column-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 .wrapper > .item3 {
-	grid-row-start: 2;
-	grid-row-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 4;
 }
 .wrapper > .item4 {
-	grid-column-start: 2;
-	grid-column-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 4;
 }
 ```
 实际效果如下

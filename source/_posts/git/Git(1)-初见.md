@@ -2,10 +2,10 @@
 title: Git(1)-初见
 date: 2018-4-18 02:35:13
 tags: 
-	- git
-	- 版本控制
+  - git
+  - 版本控制
 categories: 
-	- Git
+  - Git
 ---
 
 

@@ -2,10 +2,10 @@
 title: CSS中的字体
 date: 2018-4-7 10:55:37
 tags: 
-	- 前端
-	- css
+  - 前端
+  - css
 categories: 
-	- 前端杂烩
+  - 前端杂烩
 ---
 
 在CSS当中 , 我们通常使用`@font-face`来定义字体
@@ -13,11 +13,11 @@ categories:
 比如
 ```css
 @font-face {
-	font-family : YH;
-	src : local("microsoft yahei");
+  font-family : YH;
+  src : local("microsoft yahei");
 }
 .font {
-	font-family:YH;
+  font-family:YH;
 }
 ```
 这样我们就可以在需要使用这个字体的地方直接使用这个别名
@@ -28,9 +28,9 @@ categories:
 然而在Mac系统当中没有微软雅黑字体 , 我们希望在Mac系统上使用苹方字体 , windows系统上使用微软雅黑字体
 ```css
 @font-face {
-	font-family : BASE;
-	src: local("PingFang SC"),
-		local("Microsoft Yahei");
+  font-family : BASE;
+  src: local("PingFang SC"),
+    local("Microsoft Yahei");
 }
 ```
 这样字体的应用就更加简便了

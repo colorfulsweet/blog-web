@@ -2,9 +2,9 @@
 title: Maven(2)-搭建web项目
 date: 2018-5-9 20:25:23
 tags: 
-	- maven
+  - maven
 categories: 
-	- Java
+  - Java
 ---
 
 在Maven当中创建一个web项目的步骤如下

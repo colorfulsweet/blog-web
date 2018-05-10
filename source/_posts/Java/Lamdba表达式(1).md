@@ -2,7 +2,7 @@
 title: Lamdba表达式(1)
 date: 2018-5-9 20:45:52
 categories: 
-	- Java
+  - Java
 ---
 
 `Lamdba表达式`是Java8的一项重要的新特性
@@ -22,31 +22,31 @@ Collections.sort(names, (o1,o2)->o1.compareTo(o2));
 等价于以下代码
 ```java
 Collections.sort(names, new Comparator<String>() {
-	@Override
-	public int compare(String o1, String o2) {
-		return o1.compareTo(o2);
-	}
+  @Override
+  public int compare(String o1, String o2) {
+    return o1.compareTo(o2);
+  }
 });
 ```
 也许下面的代码能更好地体现Lamdba表达式就是匿名类的另外一种写法
 ```java
 public class Main {
-	public static void main(String[] args) {
-		Demo d = ()->{return "aa";};
-		d.func();
-	}
+  public static void main(String[] args) {
+    Demo d = ()->{return "aa";};
+    d.func();
+  }
 }
 
 interface Demo {
-	public String func();
+  public String func();
 }
 ```
 ---
 #### Lamdba表达式语法
 ```java
 (Type1 param1, Type2 params,...,TypeN paramN) -> {
-	//若干语句...
-	return 表达式;
+  //若干语句...
+  return 表达式;
 }
 ```
 这是一般语法 , 也就是最完整的一种语法
@@ -56,15 +56,15 @@ interface Demo {
 1. 编译器可以根据上下文推断参数的类型 , 大多数情况下参数类型可以省略
 ```java
 (param1, params,...,paramN) -> {
-	//若干语句...
-	return 表达式;
+  //若干语句...
+  return 表达式;
 }
 ```
 2. 当参数只有一个 , 可以省略小括号
 ```java
 param -> {
-	//若干语句...
-	return 表达式;
+  //若干语句...
+  return 表达式;
 }
 ```
 3. 当方法中只包含一条语句 , 可以省略大括号 return 和 最后的分号

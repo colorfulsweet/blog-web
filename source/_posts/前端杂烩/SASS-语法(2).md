@@ -2,10 +2,10 @@
 title: SASS-语法(2)
 date: 2018-5-13 22:38:32
 tags: 
-	- 前端
-	- sass
+  - 前端
+  - sass
 categories: 
-	- 前端杂烩
+  - 前端杂烩
 ---
 
 ### 占位符 %
@@ -13,17 +13,17 @@ categories:
 
 ```scss
 %base {
-	margin : 5px;
+  margin : 5px;
 }
 .btn {
-	@extend %base;
+  @extend %base;
 }
 ```
 <!-- more -->
 编译后会得到
 ```css
 .btn {
-	margin : 5px;
+  margin : 5px;
 }
 ```
 
@@ -65,8 +65,8 @@ $direction : (left, right);
 编译后的结果为
 ```css
 .panel { 
-	margin-right: 10px; 
-	padding-left: 10px; 
+  margin-right: 10px; 
+  padding-left: 10px; 
 }
 ```
 #### `join(值列表1, 值列表2)`
@@ -92,8 +92,8 @@ $num1 : (10px, 30px);
 ```
 ```css
 .box {
-	margin : 10px 30px 15px;
-	padding : 10px 30px;
+  margin : 10px 30px 15px;
+  padding : 10px 30px;
 }
 ```
 

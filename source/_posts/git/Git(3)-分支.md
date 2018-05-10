@@ -2,10 +2,10 @@
 title: Git(3)-分支
 date: 2018-4-18 09:20:13
 tags: 
-	- git
-	- 版本控制
+  - git
+  - 版本控制
 categories: 
-	- Git
+  - Git
 ---
 
 ### 分支操作

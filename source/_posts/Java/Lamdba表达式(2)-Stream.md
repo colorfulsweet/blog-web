@@ -2,7 +2,7 @@
 title: Lamdba表达式(2)-Stream
 date: 2018-5-9 20:46:13
 categories: 
-	- Java
+  - Java
 ---
 
 有了Lamdba表达式 , Java就具有了进行函数式编程的条件

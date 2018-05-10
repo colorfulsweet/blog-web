@@ -2,9 +2,9 @@
 title: HTML5的缓存策略
 date: 2018-4-10 13:01:24
 tags: 
-	- HTML5
+  - HTML5
 categories: 
-	- 前端杂烩
+  - 前端杂烩
 ---
 
 HTML5当中新增了两种浏览器端的缓存方式
@@ -40,9 +40,9 @@ localStorage.removeItem("name");
 
 ```javascript
 for(let index=0 ; index<localStorage.length ; index++) {
-	let key = localStorage.key(index);
-	let value = localStorage.getItem(key);
-	console.log(key + " = " + value);
+  let key = localStorage.key(index);
+  let value = localStorage.getItem(key);
+  console.log(key + " = " + value);
 }
 ```
 
@@ -53,7 +53,7 @@ for(let index=0 ; index<localStorage.length ; index++) {
 
 ```javascript
 window.addEventListener("storage",function(e){
-	console.log(e);
+  console.log(e);
 });
 ```
 ![storage_event](/images/前端杂烩/storage_event.png)

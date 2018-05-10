@@ -2,9 +2,9 @@
 title: viewport
 date: 2018-4-9 11:01:56
 tags: 
-	- 前端
+  - 前端
 categories: 
-	- 前端杂烩
+  - 前端杂烩
 ---
 
 在移动设备上的页面开发 , 首先需要搞清楚的就是`viewport` , 这是适配和响应各种不同分辨率的移动设备的前提条件
@@ -97,16 +97,16 @@ div的width为2vw , 那么这个div的实际显示宽度就是20px
 这时候我们就可以用calc函数配合vw来解决这个问题
 ```css
 .left,.right {
-	height : 600px;
-	border : 3px solid black;
+  height : 600px;
+  border : 3px solid black;
 }
 .left {
-	background : blue;
-	width : calc(25vw - 6px);
+  background : blue;
+  width : calc(25vw - 6px);
 }
 .right {
-	background : pink;
-	width : calc(75vw - 6px);
+  background : pink;
+  width : calc(75vw - 6px);
 }
 ```
 > 出于兼容性的考虑 , 最好给calc加上`-webkit-`和`-moz-`的前缀

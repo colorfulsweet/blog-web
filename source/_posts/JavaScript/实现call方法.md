@@ -2,10 +2,10 @@
 title: 实现call方法
 date: 2018-4-14 00:56:44
 tags: 
-	- JavaScript
-	- prototype
+  - JavaScript
+  - prototype
 categories: 
-	- JavaScript
+  - JavaScript
 ---
 
 > call方法在使用一个指定的this值和若干个指定参数值的前提下调用某个函数
@@ -13,10 +13,10 @@ categories:
 常规调用方式
 ```javascript
 var obj = {
-	name : "Sookie",
-	func : function(msg) {
-		console.log(this.name + " : " + msg);
-	}
+  name : "Sookie",
+  func : function(msg) {
+    console.log(this.name + " : " + msg);
+  }
 }
 var fn1 = obj.func;
 fn1.call(obj, "Hello");
@@ -27,9 +27,9 @@ fn1.call(obj, "Hello");
 #### 雏形
 ```javascript
 Function.prototype.call2 = function(context) {
-	context.fn = this;
-	context.fn();
-	delete context.fn;
+  context.fn = this;
+  context.fn();
+  delete context.fn;
 }
 ```
 初步实现了不传参情况下的函数调用
@@ -42,13 +42,13 @@ Function.prototype.call2 = function(context) {
 
 ```javascript
 Function.prototype.call2 = function(context) {
-	context.fn = this;
-	var args = [];
-	for(let i=1 ; i<arguments.length ; i++) {
-		args.push("arguments[" + i + "]");
-	}
-	eval("context.fn(" + args + ")");
-	delete context.fn;
+  context.fn = this;
+  var args = [];
+  for(let i=1 ; i<arguments.length ; i++) {
+    args.push("arguments[" + i + "]");
+  }
+  eval("context.fn(" + args + ")");
+  delete context.fn;
 };
 ```
 比如实际调用函数的时候需要传入2个参数 , 包括前面的context , 所以arguments当中就有3个元素
@@ -64,23 +64,23 @@ context.fn(arguments[1], arguments[2])
 可以预先把这个对象保存下来
 ```javascript
 Function.prototype.call2 = function(context) {
-	var _fn = null;
-	var flag = false;
-	if("fn" in context) {
-		_fn = context.fn;
-	}
-	_fn = context.fn;
-	context.fn = this;
-	var args = [];
-	for(let i=1 ; i<arguments.length ; i++) {
-		args.push("arguments[" + i + "]");
-	}
-	var result = eval("context.fn(" + args + ")");
-	if(flag) {
-		context.fn = _fn;
-	} else {
-		delete context.fn;
-	}
-	return result;
+  var _fn = null;
+  var flag = false;
+  if("fn" in context) {
+    _fn = context.fn;
+  }
+  _fn = context.fn;
+  context.fn = this;
+  var args = [];
+  for(let i=1 ; i<arguments.length ; i++) {
+    args.push("arguments[" + i + "]");
+  }
+  var result = eval("context.fn(" + args + ")");
+  if(flag) {
+    context.fn = _fn;
+  } else {
+    delete context.fn;
+  }
+  return result;
 };
 ```

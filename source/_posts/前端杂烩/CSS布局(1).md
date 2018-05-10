@@ -2,17 +2,17 @@
 title: CSS布局(1)
 date: 2018-5-14 22:38:32
 tags: 
-	- 前端
-	- css
+  - 前端
+  - css
 categories: 
-	- 前端杂烩
+  - 前端杂烩
 ---
 
 #### 常用的居中方法
 1. **水平居中**
 ```xml
 <div class="parent">
-	<div class="child"></div>
+  <div class="child"></div>
 </div>
 ```
 对于子元素的不同情况 , 需要进行不同的处理
@@ -25,8 +25,8 @@ categories:
 >  使用flex布局 , 对父元素设置
 ```css
 .parent {
-	display : flex;
-	justify-content : center;
+  display : flex;
+  justify-content : center;
 }
 ```
 
@@ -38,16 +38,16 @@ categories:
 例如
 ```html
 <div class="parent">
-	<p>123456</p>
-	<p>123456</p>
-	<p>123456</p>
+  <p>123456</p>
+  <p>123456</p>
+  <p>123456</p>
 </div>
 <style>
 .parent {
-	height:200px;
-	width:300px;
-	display:table-cell;
-	vertical-align:middle;
+  height:200px;
+  width:300px;
+  display:table-cell;
+  vertical-align:middle;
 }
 </style>
 ```
@@ -56,8 +56,8 @@ categories:
 > 使用flex布局 , 父元素
 ```css
 .parent {
-	display:flex;
-	align-items:center;
+  display:flex;
+  align-items:center;
 }
 ```
 ---
@@ -66,27 +66,27 @@ categories:
 第一种布局方式DOM结构
 ```html
 <div class="layout">
-	<div class="header">头部</div>
-	<div class="content">内容</div>
-	<div class="footer">尾部</div>
+  <div class="header">头部</div>
+  <div class="content">内容</div>
+  <div class="footer">尾部</div>
 </div>
 ```
 第二种布局方式DOM结构
 ```html
 <div class="header">
-	<div class="layout">头部</div>
+  <div class="layout">头部</div>
 </div>
 <div class="layout content">内容</div>
 <div class="footer">
-	<div class="layout">尾部</div>
+  <div class="layout">尾部</div>
 </div>
 ```
 
 样式
 ```css
 .layout {
-	max-width:960px;
-	margin:0 auto;
+  max-width:960px;
+  margin:0 auto;
 }
 ```
 ---
@@ -98,29 +98,29 @@ categories:
 DOM结构
 ```xml
 <div class="content">
-	<div class="sub">侧边栏1</div>
-	<div class="extra">侧边栏2</div>
-	<div class="main">内容区域</div>
+  <div class="sub">侧边栏1</div>
+  <div class="extra">侧边栏2</div>
+  <div class="main">内容区域</div>
 </div>
 ```
 CSS样式
 ```css
 .sub,.extra,.main {
-	height : 300px;
+  height : 300px;
 }
 .sub {
-	width : 100px;
-	float : left;
-	background-color: pink;
+  width : 100px;
+  float : left;
+  background-color: pink;
 }
 .extra {
-	width : 200px;
-	float : right;
-	background-color: green;
+  width : 200px;
+  float : right;
+  background-color: green;
 }
 .main {
-	margin:0 200px 0 100px;
-	background-color: blue;
+  margin:0 200px 0 100px;
+  background-color: blue;
 }
 ```
 实际效果如下
@@ -134,25 +134,25 @@ CSS样式
 3. 内容区域设置左外边距和右外边距
 ```css
 .sub,.extra,.main {
-	height : 300px;
+  height : 300px;
 }
 .sub,.extra {
-	position: absolute;
-	top : 0;
-	width : 200px;
+  position: absolute;
+  top : 0;
+  width : 200px;
 }
 .sub {
-	left : 0;
-	background-color: pink;
+  left : 0;
+  background-color: pink;
 }
 .extra {
-	right : 0;
-	background-color: green;
+  right : 0;
+  background-color: green;
 }
 
 .main {
-	margin:0 200px;
-	backgroun-color: blue;
+  margin:0 200px;
+  backgroun-color: blue;
 }
 ```
 > 如果中间栏有最小宽度限制 , 或者其中包含有宽度的元素 , 那么当窗口宽度压缩到一定程度 , 中间栏与侧栏将会发生重叠
@@ -162,9 +162,9 @@ CSS样式
 DOM结构
 ```xml
 <div id="content">
-	<div class="main">内容区域</div>
-	<div class="sub">侧边栏1</div>
-	<div class="extra">侧边栏2</div>
+  <div class="main">内容区域</div>
+  <div class="sub">侧边栏1</div>
+  <div class="extra">侧边栏2</div>
 </div>
 ```
 布局步骤:
@@ -178,29 +178,29 @@ DOM结构
 CSS样式
 ```css
 .sub , .extra, .main {
-	float :left;
-	height : 300px;
+  float :left;
+  height : 300px;
 }
 .main {
-	width : 100%;
-	background-color: red;
+  width : 100%;
+  background-color: red;
 }
 .sub {
-	width : 100px;
-	margin-left: -100%;
-	position: relative;
-	left : -100px;
-	background-color: pink;
+  width : 100px;
+  margin-left: -100%;
+  position: relative;
+  left : -100px;
+  background-color: pink;
 }
 .extra {
-	width : 200px;
-	margin-left: -200px;
-	position: relative;
-	right: -200px;
-	background-color: blue;
+  width : 200px;
+  margin-left: -200px;
+  position: relative;
+  right: -200px;
+  background-color: blue;
 }
 #content {
-	padding : 0 200px 0 100px;
+  padding : 0 200px 0 100px;
 }
 ```
 
@@ -212,7 +212,7 @@ CSS样式
 DOM结构
 ```xml
 <div class="main-wrap" >
-	<div class="main">内容区域</div>
+  <div class="main">内容区域</div>
 </div>
 <div class="sub">侧边栏1</div>
 <div class="extra">侧边栏2</div>
@@ -226,25 +226,25 @@ DOM结构
 CSS样式
 ```css
 .main-wrap, .sub, .extra {
-	float : left;
-	height:300px;
+  float : left;
+  height:300px;
 }
 .main-wrap {
-	width : 100%;
+  width : 100%;
 }
 .sub {
-	width : 100px;
-	margin-left: -100%;
-	background-color: red;
+  width : 100px;
+  margin-left: -100%;
+  background-color: red;
 }
 .extra {
-	width : 200px;
-	margin-left: -200px;
-	background-color: green;
+  width : 200px;
+  margin-left: -200px;
+  background-color: green;
 }
 .main {
-	margin:0 200px 0 100px;
-	background-color: pink;
-	height:300px;
+  margin:0 200px 0 100px;
+  background-color: pink;
+  height:300px;
 }
 ```

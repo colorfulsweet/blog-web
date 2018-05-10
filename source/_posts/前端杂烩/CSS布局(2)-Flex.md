@@ -2,10 +2,10 @@
 title: CSS布局(2)-Flex
 date: 2018-5-15 22:38:32
 tags: 
-	- 前端
-	- css
+  - 前端
+  - css
 categories: 
-	- 前端杂烩
+  - 前端杂烩
 ---
 
 Flex是`Flexible Box`的缩写，意为`弹性布局`，用来为盒状模型提供最大的灵活性。
@@ -16,11 +16,11 @@ Flex布局将成为未来布局的首选方案
 ```css
 /*对于块元素*/
 .box {
-	display : flex;
+  display : flex;
 }
 /*对于行内元素*/
 .inline-box {
-	display : inline-flex;
+  display : inline-flex;
 }
 ```
 为了兼容性的需要 , 通常可以加上`display:-webkit-flex;`

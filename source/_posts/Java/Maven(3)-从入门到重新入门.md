@@ -2,9 +2,9 @@
 title: Maven(3)-从入门到重新入门
 date: 2018-5-9 20:29:31
 tags: 
-	- maven
+  - maven
 categories: 
-	- Java
+  - Java
 ---
 
 `Maven`是基于项目对象模型 ( POM ) , 可以通过描述信息来管理项目的构建 报告 和文档的软件项目管理工具

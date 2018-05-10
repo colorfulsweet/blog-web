@@ -2,10 +2,10 @@
 title: Git(2)-基础操作
 date: 2018-4-18 08:22:13
 tags: 
-	- git
-	- 版本控制
+  - git
+  - 版本控制
 categories: 
-	- Git
+  - Git
 ---
 
 

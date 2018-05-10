@@ -2,9 +2,9 @@
 title: Maven(6)-可运行jar打包
 date: 2018-5-9 20:42:27
 tags: 
-	- maven
+  - maven
 categories: 
-	- Java
+  - Java
 ---
 
 要让jar包是可运行的
@@ -20,24 +20,24 @@ pom.xml
 <build>
 <plugins>
 <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-shade-plugin</artifactId>
-	<version>3.1.1</version>
-	<executions>
-		<execution>
-			<phase>package</phase>
-			<goals>
-					<goal>shade</goal>
-			</goals>
-			<configuration>
-				<transformers>
-					<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-						<mainClass>com.main.Main</mainClass>
-					</transformer>
-				</transformers>
-			</configuration>
-		</execution>
-	</executions>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-shade-plugin</artifactId>
+  <version>3.1.1</version>
+  <executions>
+    <execution>
+      <phase>package</phase>
+      <goals>
+          <goal>shade</goal>
+      </goals>
+      <configuration>
+        <transformers>
+          <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+            <mainClass>com.main.Main</mainClass>
+          </transformer>
+        </transformers>
+      </configuration>
+    </execution>
+  </executions>
 </plugin>
 ...
 <plugins>

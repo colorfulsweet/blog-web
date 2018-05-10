@@ -2,10 +2,10 @@
 title: 函数形参与arguments
 date: 2018-4-14 00:28:25
 tags: 
-	- JavaScript
-	- 函数
+  - JavaScript
+  - 函数
 categories: 
-	- JavaScript
+  - JavaScript
 ---
 
 在之前我们知道 , 在JS当中函数的形参与调用时传入的实参并不需要必须对应
@@ -19,14 +19,14 @@ categories:
 调用时对于没有对应到实参的形参进行赋值
 ```javascript
 function func1(arg0, arg1) {
-	arg1 = 10;
-	console.log(arg1, arguments[1]);
+  arg1 = 10;
+  console.log(arg1, arguments[1]);
 }
 func1(19);// 10 undefined
 
 function func2(arg0, arg1) {
-	arguments[1] = 10;
-	console.log(arg1, arguments[1]);
+  arguments[1] = 10;
+  console.log(arg1, arguments[1]);
 }
 func2(21);// undefined 10
 ```
@@ -36,14 +36,14 @@ func2(21);// undefined 10
 形参与实参有对应的情况
 ```javascript
 function func1(arg0) {
-	arg0 = 10;
-	console.log(arg0, arguments[0]);
+  arg0 = 10;
+  console.log(arg0, arguments[0]);
 }
 func1(19);// 10 10
 
 function func2(arg0) {
-	arguments[0] = 10;
-	console.log(arg0, arguments[0]);
+  arguments[0] = 10;
+  console.log(arg0, arguments[0]);
 }
 func2(21);// 10 10
 ```
@@ -54,26 +54,26 @@ func2(21);// 10 10
 ```javascript
 "use strict";
 function func1(arg0) {
-	arg0 = 10;
-	console.log(arg0, arguments[0]);
+  arg0 = 10;
+  console.log(arg0, arguments[0]);
 }
 func1(19);// 10 19
 
 function func2(arg0) {
-	arguments[0] = 10;
-	console.log(arg0, arguments[0]);
+  arguments[0] = 10;
+  console.log(arg0, arguments[0]);
 }
 func2(21);// 21 10
 
 function func3(arg0) {
-	arguments[0] = 10;
-	console.log(arg0, arguments[0]);
+  arguments[0] = 10;
+  console.log(arg0, arguments[0]);
 }
 func3();// undefined 10
 
 function func4(arg0) {
-	arg0 = 10;
-	console.log(arg0, arguments[0]);
+  arg0 = 10;
+  console.log(arg0, arguments[0]);
 }
 func4();// 10 undefined
 ```
