@@ -92,16 +92,16 @@ tagcloud: true
 # 友情链接
 #----------------------------
 friends:
-  enable: true
+  enable: false
   list:
     1:
-      name: Haoren博客
-      title: 网络安全博客
-      link: http://blog.sina.com.cn/u/1825875765
+      name: google
+      title: 谷歌
+      link: https://www.google.com.hk/
     2:
-      name: Maxwell博客
-      title: 技术博客
-      link: http://blog.csdn.net/yeweiouyang
+      name: youtube
+      title: 油管
+      link: https://www.youtube.com/
 
 #----------------------------
 # 头部链接
