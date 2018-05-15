@@ -25,7 +25,7 @@
             <div id="search-result-box" >
                 <ul class="search-result-list" v-if="searchResult.length">
                     <li v-for="(article,index) in searchResult" :key="index">
-                        <a :href='article.url' class='search-result-title' target='_blank'>{{article.title}}</a>
+                        <a :href='article.url' class='search-result-title' target='_blank'>{{article.title || '无标题'}}</a>
                         <p class="search-result" v-html="article.matchContent"></p>
                     </li>
                 </ul>

@@ -117,14 +117,15 @@ var JELON = window.JELON || {};
     }
     return format;
   };
-  var htmlEncode = function (str) {
+  /**
+   * 过滤字符串中的style link script标签, 防止注入
+   * @param {String} str 需要处理的字符串
+   */
+  var htmlFilter = function (str) {
     if (typeof str !== 'string') return;
-    str = str.replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        // .replace(/>/g, '&gt;')
-        .replace(/\"/g, '&quot;')
-        .replace(/\'/g, '&#39;')
-        .replace(/ /g, '&nbsp;');
+    str = str.replace(/(<style.*?<\/style>)/g, '')
+        .replace(/(<link.*\s+href=(?:"[^"]*"|'[^']*')[^<]*>)/g, '')
+        .replace(/<script.*?>.*?<\/script>/g, '');
     return str;
   };
 
@@ -594,8 +595,7 @@ var JELON = window.JELON || {};
         removeClass('JELON__editBox', 'show');
         addClass('JELON__previewBox', 'show');
         var text = $('JELON__editBox').value.trim();
-        // 安全转义
-        text = htmlEncode(text);
+        text = htmlFilter(text);
         if (text) {
           JL.Requests.markdown({
             text: text,
@@ -617,8 +617,7 @@ var JELON = window.JELON || {};
         return;
       }
       var body = $('JELON__editBox').value.trim();
-      // 安全转义
-      body = htmlEncode(body);
+      body = htmlFilter(body);
       if (body) {
         JL.Renders.loading.create();
         if (JL.issueNumber !== 0) {

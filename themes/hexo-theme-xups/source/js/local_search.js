@@ -49,22 +49,20 @@ new Vue({
 				var index_title = -1;
 				var index_content = -1;
 				var first_occur = -1; //关键字在正文当中第一次出现的位置
-				if(title && content) {
-					keywords.forEach(function(keyword, i) {
-						index_title = title.indexOf(keyword);
-						index_content = content.indexOf(keyword);
-						if( index_title < 0 && index_content < 0 ){
-							isMatch = false;
-						} else {
-							if (index_content < 0) {
-								index_content = 0;
-							}
-							if (i == 0) {
-								first_occur = index_content;
-							}
+				keywords.forEach(function(keyword, i) {
+					index_title = title ? title.indexOf(keyword) : -1;
+					index_content = content ? content.indexOf(keyword) : -1;
+					if( index_title < 0 && index_content < 0 ){
+						isMatch = false;
+					} else {
+						if (index_content < 0) {
+							index_content = 0;
 						}
-					});
-				}
+						if (i == 0) {
+							first_occur = index_content;
+						}
+					}
+				});
 				if (isMatch) {
 					var resultItem = {};
 					resultItem.url = article.url;
