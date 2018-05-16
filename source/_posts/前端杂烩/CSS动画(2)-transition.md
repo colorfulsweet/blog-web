@@ -67,10 +67,10 @@ y的值可以超过1或者小于0 , 比如构造一个来回的缓冲效果
 为了兼容旧版本的浏览器 , 我们通常需要给transition属性加上前缀
 ```css
 box {
-	-moz-transition:color 0.5s ease-in;
-	-webkit-transition:color 0.5s ease-in;
-	-o-transition:color 0.5s ease-in;
-	transition : color 0.5s ease-in;
+  -moz-transition:color 0.5s ease-in;
+  -webkit-transition:color 0.5s ease-in;
+  -o-transition:color 0.5s ease-in;
+  transition : color 0.5s ease-in;
 }
 ```
 或者也可以使用**postcss**这种预处理工具 , 来自动添加属性的前缀

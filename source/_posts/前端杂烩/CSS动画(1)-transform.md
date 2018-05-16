@@ -47,7 +47,7 @@ transform:  &lt;transform-function&gt; [&lt;transform-function&gt;]* | none
 参数是旋转的角度
 ```css
 .rotate_div {
-	transform : rotate(30deg);
+  transform : rotate(30deg);
 }
 ```
 ![rotate](/images/前端杂烩/animation/rotate.png)
@@ -63,7 +63,7 @@ deg是旋转的角度 , 正数表示顺时针旋转 , 负数表示逆时针旋�
 同名函数接受2个参数 , 分别表示在X轴和Y轴上的移动距离 , 正数代表向该轴的正方向移动 , 负数代表向负方向移动
 ```css
 .translate_div {
-	tranform : translate(100px, 20px);
+  tranform : translate(100px, 20px);
 }
 ```
 ![translate-x-y](/images/前端杂烩/animation/translate-x-y.png)
@@ -76,7 +76,7 @@ deg是旋转的角度 , 正数表示顺时针旋转 , 负数表示逆时针旋�
 同名函数接受两个参数 , 分别表示在X轴和Y轴上的缩放比例 , 大于1是放大 , 小于1是缩小
 ```css
 .scale_div {
-	transform : scale(2, 1.5);
+  transform : scale(2, 1.5);
 }
 ```
 ![scale-x-y](/images/前端杂烩/animation/scale-x-y.png)
@@ -91,7 +91,7 @@ deg是旋转的角度 , 正数表示顺时针旋转 , 负数表示逆时针旋�
 如果提供两个参数 , 分别代表在X轴和Y轴方向的倾斜角度
 ```css
 .skew_div {
-	transform : skew(30deg, 10deg);
+  transform : skew(30deg, 10deg);
 }
 ```
 ![skew-x-y](/images/前端杂烩/animation/skew-x-y.png)

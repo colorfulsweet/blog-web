@@ -138,7 +138,7 @@ baidu_analytics: false
 #----------------------------
 # 高亮样式
 #----------------------------
-highlight_theme: normal
+highlight_theme: night
 #----------------------------
 # CDN
 # 如: //7xs305.com1.z0.glb.clouddn.com/

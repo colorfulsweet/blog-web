@@ -22,18 +22,18 @@ CSS当中以动画开始的点为`0%` , 以动画结束的点为`100%`
 我们可以尝试去定义一组关键帧
 ```css
 @keyframes ANI { /*指定该组关键帧的名称*/
-	0% {
-		width : 100px;
-		background-color:#629411;
-	}
-	50% {
-		width : 150px;
-		background-color: darkgoldenrod;
-	}
-	100% {
-		width : 250px;
-		background-color: lightgreen;
-	}
+  0% {
+    width : 100px;
+    background-color:#629411;
+  }
+  50% {
+    width : 150px;
+    background-color: darkgoldenrod;
+  }
+  100% {
+    width : 250px;
+    background-color: lightgreen;
+  }
 }
 ```
 0% 也可以写作 `from`
@@ -41,20 +41,20 @@ CSS当中以动画开始的点为`0%` , 以动画结束的点为`100%`
 定义之后我们就可以在DOM元素上调用这组关键帧 , 用来创建动画了
 ```css
 .animation_div {
-	/* 就是之前定义的关键帧名称 */
-	animation-name : ANI;
-	/* 动画持续的时间 */
-	animation-duration : 5s;
-	/* 和transition-timing-function一样 */
-	animation-timing-function : ease-in-out;
-	/* 动画延迟时间 */
-	animation-delay: 0.5s;
-	/* 定义循环次数，infinite为无限次 */
-	animation-iteration-count: 3;
-	/* 动画执行的方向 */
-	animation-direction: alternate;
-	/* 当前动画正在播放(running)或者暂停(paused) */
-	animation-play-state : running;
+  /* 就是之前定义的关键帧名称 */
+  animation-name : ANI;
+  /* 动画持续的时间 */
+  animation-duration : 5s;
+  /* 和transition-timing-function一样 */
+  animation-timing-function : ease-in-out;
+  /* 动画延迟时间 */
+  animation-delay: 0.5s;
+  /* 定义循环次数，infinite为无限次 */
+  animation-iteration-count: 3;
+  /* 动画执行的方向 */
+  animation-direction: alternate;
+  /* 当前动画正在播放(running)或者暂停(paused) */
+  animation-play-state : running;
 }
 ```
 当然动画效果也可以放在`:hover`等伪类当中 , 以创建响应式的效果
@@ -80,7 +80,7 @@ CSS当中以动画开始的点为`0%` , 以动画结束的点为`100%`
 比如
 ```css
 .animation_div:hover {
-	animation-play-state : paused;
+  animation-play-state : paused;
 }
 ```
 这样可以实现指向该元素的时候暂停动画的播放
