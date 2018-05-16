@@ -8,6 +8,7 @@ new Vue({
 		searchResult: []
 	},
 	mounted: function() {
+		resultDiv = document.getElementById("search-result-box")
 		axios({
 			url: "/search.xml"
 		}).then(function(response){
@@ -28,7 +29,6 @@ new Vue({
 					url: item.getElementsByTagName("url")[0].textContent,
 				}
 			})
-			resultDiv = document.getElementById("search-result-box")
 		});
 	},
 	watch: {
@@ -69,14 +69,12 @@ new Vue({
 					resultItem.url = article.url;
 					resultItem.title = article.title;
 					if (first_occur >= 0) {
-						// cut out characters
-						var start = first_occur - 6;
+						// 截取出关键字所在的前后若干字符
+						var start = first_occur - 10;
 						var end = first_occur + 15;
-						if(start < 0){
+						if(start <= 0){
 							start = 0;
-						}
-						if(start == 0){
-							end = 10;
+							end = 25;
 						}
 						if(end > content.length){
 							end = content.length;
