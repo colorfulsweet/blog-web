@@ -1,12 +1,9 @@
-window.String.prototype.trim = window.String.prototype.trim || function () {
-  return this.replace(/^\s+|\s+$/g, '');
-};
 var JELON = window.JELON || {};
 ;(function (JL) {
   var constants = {
     ACCESS_TOKEN_KEY: 'xups-github-comments-token', // access_token key
     USER_INFO_KEY: 'xups-github-user-info',         // 登录用户信息 key
-    PER_PAGE: 5,                                    // 每页的评论数
+    PER_PAGE: 10,                                    // 每页的评论数
     API_HOST: 'https://api.github.com'
   };
   var queryUrl = function (key, url, uncode) {
@@ -118,6 +115,33 @@ var JELON = window.JELON || {};
     return format;
   };
   /**
+   * 分享到社交平台
+   * @param {String} type 
+   */
+  var share = function(type) {
+    if(!type) return;
+    switch (type) {
+      case 'weibo' : //微博
+        window.open('http://service.weibo.com/share/share.php?url=' + 
+          encodeURIComponent(location.href) + '&title=' + document.title + '&language=zh_cn');
+        break;
+      case 'qqzone' : //QQ空间
+        window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + 
+          encodeURIComponent(location.href) + '&title=' + document.title);
+        break;
+      case 'qq' : //QQ
+        window.open('http://connect.qq.com/widget/shareqq/index.html?url=' + 
+          encodeURIComponent(location.href) + '&desc=Silence个人博客&title=' + 
+          document.title + '&callback=' + encodeURIComponent(location.href));
+        break;
+      case 'douban' : //豆瓣
+        window.open('http://shuo.douban.com/!service/share?href=' + 
+          encodeURIComponent(location.href) + '&name=' + document.title + '&text=' + document.title);
+        break;
+      default : console.warn('未知的分享类型', type)
+    }
+  }
+  /**
    * 过滤字符串中的style link script标签, 防止注入
    * @param {String} str 需要处理的字符串
    */
@@ -206,7 +230,8 @@ var JELON = window.JELON || {};
     queryUrl: queryUrl,
     addClass: addClass,
     removeClass: removeClass,
-    formatDate: formatDate
+    formatDate: formatDate,
+    share: share
   };
   JL.Renders = {
     box: {
@@ -252,7 +277,7 @@ var JELON = window.JELON || {};
        * @return void(0)
        */
       update: function (page, comments, list, callback) {
-        var perNavPageMaxSize = 5;
+        var perNavPageMaxSize = 10;
         var html = '';
         var htmlList = [];
         var pageList = [];
