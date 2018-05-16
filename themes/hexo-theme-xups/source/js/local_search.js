@@ -16,16 +16,16 @@ new Vue({
 				var parser = new DOMParser()
 				xmlDoms = parser.parseFromString(response.data, "application/xml")
 			} else {
-				var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-				xmlDoc.async = false;
-				xmlDoms = xmlDoc.loadXML(response.data);
+				xmlDoms = new ActiveXObject("Microsoft.XMLDOM");
+				xmlDoms.async = false;
+				xmlDoms.loadXML(response.data);
 			}
 			//找出所有文章的标题 正文 URL
 			articleDatas = Array.prototype.map.call(xmlDoms.getElementsByTagName("entry"), function(item){
 				return {
-					title: item.getElementsByTagName("title")[0].innerHTML,
-					content: item.getElementsByTagName("content")[0].innerHTML,
-					url: item.getElementsByTagName("url")[0].innerHTML,
+					title: item.getElementsByTagName("title")[0].textContent,
+					content: item.getElementsByTagName("content")[0].textContent,
+					url: item.getElementsByTagName("url")[0].textContent,
 				}
 			})
 			resultDiv = document.getElementById("search-result-box")
@@ -34,6 +34,7 @@ new Vue({
 	watch: {
 		queryText: function(newVal, oldVal) {
 			this.searchResult.length = 0;
+			if(!resultDiv) return;
 			if(newVal && newVal.trim() && articleDatas) {
 				resultDiv.style.display = "block"
 			} else {

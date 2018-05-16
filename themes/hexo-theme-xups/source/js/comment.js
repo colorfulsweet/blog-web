@@ -379,7 +379,6 @@ var JELON = window.JELON || {};
         var userId = userInfo.id;
         for (var i = 0, len = reactions.length; i < len; i++) {
           if (userId === reactions[i].user.id) {
-            console.log(userId, reactions[i].user.id);
             addClass($('JELON__comment_' + commentId + '_reactions').getElementsByClassName('like')[0], 'liked');
             $('JELON__comment_' + commentId + '_reactions').getElementsByClassName('like')[0].innerHTML = '已赞';
             break;
