@@ -64,14 +64,13 @@ avatar: https://i.loli.net/2018/05/04/5aeb37415a0dc.jpg
 #----------------------------
 # 是否开启分享
 #----------------------------
-share: true
-
-#----------------------------
-# 侧栏是否显示微博秀
-#----------------------------
-weibo_show:
-  enable: false
-  code: <iframe id="myWeibo" width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=2376003112&verifier=796ea597&dpc=1"></iframe>
+share: 
+  enable: true
+  list: 
+    1: weibo
+    2: qqzone
+    3: qq
+    4: douban
 
 #----------------------------
 # 是否开启评论
@@ -86,7 +85,17 @@ comment:
 #----------------------------
 # 是否开启云标签
 #----------------------------
-tagcloud: true
+tagcloud: 
+  enable: true
+  start_color: e87474
+  end_color: 524ac5
+
+#----------------------------
+# 是否开启文章归档
+#----------------------------
+archives: 
+  enable: true
+  date_format: YYYY年MM月
 
 #----------------------------
 # 友情链接

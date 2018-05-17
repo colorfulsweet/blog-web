@@ -1,11 +1,8 @@
-<!-- 文章分类 -->
+<!-- 友情链接 -->
 <ul class="widget-bd">
-    <%
-    var list = theme.friends['list'];
-    for (var i in list) {
-    %>
-        <li>
-            <a href="<%= list[i].link %>" target="_blank" title="<%= list[i].title %>"><%= list[i].name %></a>
-        </li>
-    <% } %>
+  <% for (var i in theme.friends['list']) { %>
+    <li>
+      <a href="<%= list[i].link %>" target="_blank" title="<%= theme.friends['list'][i].title %>"><%= theme.friends['list'][i].name %></a>
+    </li>
+  <% } %>
 </ul>

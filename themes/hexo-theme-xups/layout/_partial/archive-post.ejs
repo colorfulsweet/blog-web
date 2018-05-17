@@ -1,7 +1,7 @@
 <!-- 文章 -->
 <article class="post">
     <header>
-        <!-- 标签这有且只能显示一个 -->
+        <!-- 分类 -->
         <% if (post.categories && post.categories.length) { %>
         <%-
             list_categories(post.categories, {
@@ -9,7 +9,7 @@
                 class: 'cat',
                 style: 'none',
                 separator: '|'
-            }).split('|')[0]
+            })
         %>
         <% } else { %>
             <a href="javascript: void(0);" class="cat">未分类</a>
@@ -18,7 +18,7 @@
         <%- partial('post/title', { class_name: 'post-title' }) %>
     </header>
     <p class="post-meta">
-        <%- post.author || '柠烟夏季' %> 发表于
+        <%- post.author || config.author %> 发表于
         <%- partial('post/date', { date_format: 'YYYY-MM-DD' }) %>
         &nbsp;&nbsp;
         <span class="post-tags">

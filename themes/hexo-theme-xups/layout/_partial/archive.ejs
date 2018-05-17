@@ -1,27 +1,64 @@
-<% if (index == true) { %>
-    <h3 class="widget-hd">
-        <strong>
-            <% if (pagination == 2) { %>
-                最近动态
-            <% } else if (pagination == 3) { %>
-                文章归档
-            <% } else if (pagination == 4) { %>
-                `<%- page.category %>`分类下的文章
-            <% } else if (pagination == 5) { %>
-                `<%- page.tag %>`标签下的文章
-            <% } %>
-        </strong>
-    </h3>
-    <% page.posts.each(function(post) { %>
-        <%- partial('archive-post', { post: post }) %>
-    <% }) %>
-
-    <% if (page.total >= 1){ %>
-    <nav class="page-navigator">
-        <%- paginator({
-            prev_text: '前一页',
-            next_text: '后一页'
-        }) %>
-    </nav>
+<h3 class="widget-hd">
+  <strong>
+    <% if (pagination == 1) { %>
+      最近动态
+    <% } else if (pagination == 2) { %>
+      <%- page.category %> 分类下的文章
+    <% } else if (pagination == 3) { %>
+      <%- page.tag %> 标签下的文章
+    <% } else { %>
+      文章归档
     <% } %>
+  </strong>
+</h3>
+<% 
+if(pagination) {
+  page.posts.each(function(post) { 
+    %>
+    <%-partial('archive-post', { post: post }) %>
+    <%
+  })
+} else {
+  let lastYear, lastMonth;
+
+  let currentPosts = [];
+  site.posts.each(function(post) { 
+    if(post.date.year() == page.year && (post.date.month()+1 == page.month || !page.month)) {
+      currentPosts.push(post)
+    }
+  })
+  currentPosts.sort(function(a, b){ return b.date - a.date;});
+  currentPosts.forEach(function(post) { 
+    if(post.date.year() !== lastYear || post.date.month()+1 !== lastMonth) {
+      if(lastYear && lastMonth) { %> </ul> <% }
+      %>
+      <h3 class="widget-date">
+        <strong><%= post.date.year() %>年<%= post.date.month()+1 %>月</strong>
+      </h3>
+      <ul class="archive-wapper">
+      <%
+    }
+    %>
+    <li class="archive-item">
+      <a href="<%=url_for(post.permalink) %>">
+        <div class="archive-div">
+        <%=post.title %>
+        </div>
+      </a>
+    </li>
+    <%
+    lastYear = post.date.year();
+    lastMonth = post.date.month()+1;
+  })
+  %> </ul> <%
+}
+%>
+
+<% if (pagination && page.total >= 1){ %>
+<nav class="page-navigator">
+  <%- paginator({
+    prev_text: '前一页',
+    next_text: '后一页'
+  }) %>
+</nav>
 <% } %>

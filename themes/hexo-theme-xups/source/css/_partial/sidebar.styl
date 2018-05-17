@@ -15,7 +15,7 @@
   ul
     margin 0
     padding 0
-  .widget-hd
+  .widget-hd, .widget-date
     margin 0
     padding 0
     border-bottom 2px solid c-eee
@@ -34,7 +34,12 @@
       text-decoration underline
       &:hover
         text-decoration none
-  .widget-bd
+  .widget-date
+    text-align center
+    border-bottom none
+    strong
+      border-bottom none
+  .widget-bd, .archive-list
     margin 0
     padding 0
     list-style none
@@ -43,10 +48,17 @@
       padding 10px 0
       line-height 1.5
       border-bottom 1px solid c-eee
-      font-size 12px
+      font-size 14px
       overflow hidden
       text-overflow ellipsis
       white-space nowrap
+      .badge, .archive-list-count
+        &::before
+          content "("
+        &::after
+          content ")"
+        color #a4a4a4
+        padding .2em .5em
       a .avatar
         float left
         width 36px

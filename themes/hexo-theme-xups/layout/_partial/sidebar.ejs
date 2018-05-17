@@ -5,18 +5,17 @@
         <%- partial('_widget/categorys') %>
     </section>
 
-    <% if (theme.tagcloud) { %>
+    <% if (theme.tagcloud.enable) { %>
     <section class="widget">
         <h3 class="widget-hd"><strong>热门标签</strong></h3>
         <%- partial('_widget/tags_cloud') %>
     </section>
     <% } %>
 
-    <% if (theme.weibo_show.enable) { %>
-    <!-- 我的微博 -->
+    <% if (theme.archives.enable) { %>
     <section class="widget">
-        <h3 class="widget-hd"><strong>我的微博</strong></h3>
-        <%- partial('_widget/weibo') %>
+        <h3 class="widget-hd"><strong>文章归档</strong></h3>
+        <%- list_archives({format: theme.archives.date_format}) %>
     </section>
     <% } %>
 

@@ -1,11 +1,10 @@
-<% if (theme.share) { %>
+<% if (theme.share.enable) { %>
   <div class="article-share clearfix text-center">
     <div class="share-area">
       <span class="share-txt">分享到：</span>
-      <a href="javascript:void(0);" class="share-icon weibo" onclick="JELON.Utils.share('weibo')"></a>
-      <a href="javascript:void(0);" class="share-icon qqzone" onclick="JELON.Utils.share('qqzone')"></a>
-      <a href="javascript:void(0);" class="share-icon qq" onclick="JELON.Utils.share('qq')"></a>
-      <a href="javascript:void(0);" class="share-icon douban" onclick="JELON.Utils.share('douban')"></a>
+      <% for (let i in theme.share.list) { %>
+      <a href="javascript:void(0);" class="share-icon <%= theme.share.list[i] %>" onclick="JELON.Utils.share('<%= theme.share.list[i] %>')"></a>
+      <% } %>
     </div>
   </div>
 <% } %>
