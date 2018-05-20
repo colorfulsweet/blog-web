@@ -1,6 +1,6 @@
 ---
 title: CSS动画(2)-transition
-date: 2018-5-12 18:16:24
+date: 2017-10-12 18:16:24
 tags: 
   - 前端
   - css

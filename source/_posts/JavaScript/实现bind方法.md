@@ -1,6 +1,6 @@
 ---
 title: 实现bind方法
-date: 2018-4-14 00:35:19
+date: 2017-10-14 00:35:19
 tags: 
   - JavaScript
   - prototype

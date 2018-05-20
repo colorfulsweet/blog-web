@@ -1,6 +1,6 @@
 ---
 title: HTML5的缓存策略
-date: 2018-4-10 13:01:24
+date: 2017-11-10 13:01:24
 tags: 
   - HTML5
 categories: 

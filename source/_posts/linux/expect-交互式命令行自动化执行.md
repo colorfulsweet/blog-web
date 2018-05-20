@@ -1,6 +1,6 @@
 ---
 title: expect-交互式命令行自动化执行
-date: 2018-5-14 10:45:12
+date: 2018-1-14 10:45:12
 tags: 
   - linux
 categories: 

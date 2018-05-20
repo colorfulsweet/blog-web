@@ -1,6 +1,6 @@
 ---
 title: 函数形参与arguments
-date: 2018-4-14 00:28:25
+date: 2017-10-14 00:28:25
 tags: 
   - JavaScript
   - 函数

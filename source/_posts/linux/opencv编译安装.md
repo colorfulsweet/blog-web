@@ -1,6 +1,6 @@
 ---
 title: opencv编译安装
-date: 2018-5-10 09:24:53
+date: 2018-1-10 09:24:53
 tags: 
   - linux
   - opencv

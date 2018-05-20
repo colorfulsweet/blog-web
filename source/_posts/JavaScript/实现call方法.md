@@ -1,6 +1,6 @@
 ---
 title: 实现call方法
-date: 2018-4-14 00:56:44
+date: 2017-11-10 00:56:44
 tags: 
   - JavaScript
   - prototype
