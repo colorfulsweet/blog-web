@@ -13,17 +13,13 @@ menu:
     link: /
     icon: icon-home
   lab:
-    name: 实验室
-    link: /lab/
-    icon: icon-lab
+    name: 归档
+    link: /archives/
+    icon: icon-drawer
   about:
     name: 关于
     link: /about/
     icon: icon-user-tie
-  # comment:
-  #   name: 留言
-  #   link: /comment/
-  #   icon: icon-bubbles2
   rss:
     name: RSS
     link: /atom.xml

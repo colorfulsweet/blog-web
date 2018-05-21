@@ -23,7 +23,7 @@ if(pagination) {
 
   let currentPosts = [];
   site.posts.each(function(post) { 
-    if(post.date.year() == page.year && (post.date.month()+1 == page.month || !page.month)) {
+    if((post.date.year() == page.year || !page.year) && (post.date.month()+1 == page.month || !page.month)) {
       currentPosts.push(post)
     }
   })
@@ -41,9 +41,8 @@ if(pagination) {
     %>
     <li class="archive-item">
       <a href="<%=url_for(post.permalink) %>">
-        <div class="archive-div">
-        <%=post.title %>
-        </div>
+        <span class="title"><%=post.title %></span>
+        <span class="date">---- <%=date(post.date, 'YYYY-MM-DD HH:mm') %></span>
       </a>
     </li>
     <%

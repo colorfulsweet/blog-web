@@ -5,7 +5,7 @@
     </header>
     <p class="post-meta text-center">
         <%- post.author || '柠烟夏季' %> 发表于
-        <%- partial('post/date', { date_format: 'YYYY-MM-DD' }) %>
+        <%- partial('post/date', { date_format: 'YYYY-MM-DD HH:mm' }) %>
     </p>
     <div class="post-content">
         <%- post.content %>

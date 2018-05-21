@@ -91,5 +91,5 @@ search:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:sookie2010/sookie2010.github.io.git
+  repo: https://github.com/sookie2010/sookie2010.github.io.git
   branch: master
