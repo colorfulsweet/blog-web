@@ -2,6 +2,7 @@
 	"version":"1.0.0",
 	"model":"model/model.moc",
 	"textures":[
+		"model/Nightsky_Costume.png",
 		"model/Sailor_Costume_Black.png"
 	],
 	"layout":{
