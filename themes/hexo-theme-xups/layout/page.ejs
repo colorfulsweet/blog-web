@@ -4,10 +4,8 @@
         <h4 class="post-title"><a href="javascript: void(0);"><%- page.title %></a></h4>
     </header>
     <div class="post-content">
-        <% if (page.pageid && page.pageid == 'about') { %>
-            <%- partial('_custom/about', { page: page, post: page }) %>
-        <% } else if (page.pageid && page.pageid == 'lab') { %>
-            <%- partial('_custom/lab', { page: page, post: page }) %>
+        <% if (page.pageid) { %>
+            <%- partial('_custom/' + page.pageid, { page: page, post: page }) %>
         <% } else { %>
             <%- page.content %>
         <% } %>
