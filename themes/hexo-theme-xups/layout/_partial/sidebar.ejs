@@ -19,11 +19,11 @@
     </section>
     <% } %>
 
-    <% if (theme.friends.enable && theme.friends['list']) { %>
-    <!-- 友情链接 -->
+    <% if (theme.links.enable && theme.links['list']) { %>
+    <!-- 常用链接 -->
     <section class="widget">
-        <h3 class="widget-hd"><strong>友情链接</strong></h3>
-        <%- partial('_widget/friend_links') %>
+        <h3 class="widget-hd"><strong>常用链接</strong></h3>
+        <%- partial('_widget/links') %>
     </section>
     <% } %>
 </aside>

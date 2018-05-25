@@ -94,19 +94,15 @@ archives:
   date_format: YYYY年MM月
 
 #----------------------------
-# 友情链接
+# 常用链接
 #----------------------------
-friends:
-  enable: false
+links:
+  enable: true
   list:
     1:
-      name: google
-      title: 谷歌
-      link: https://www.google.com.hk/
-    2:
-      name: youtube
-      title: 油管
-      link: https://www.youtube.com/
+      name: 实验室
+      link: /lab/
+      target: _self
 
 #----------------------------
 # 头部链接

@@ -1,0 +1,8 @@
+<!-- 常用链接 -->
+<ul class="widget-bd">
+  <% for (var i in theme.links['list']) { %>
+    <li>
+      <a href="<%= theme.links.list[i].link %>" target="<%= theme.links.list[i].target || '_blank' %>" ><%= theme.links.list[i].name %></a>
+    </li>
+  <% } %>
+</ul>
