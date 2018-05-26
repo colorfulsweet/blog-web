@@ -1,7 +1,7 @@
-(function(){
+define(['axios', 'vue'],function(axios, Vue){
 var articleDatas = null,
- resultDiv = null,
- initCallback = function(){};
+  resultDiv = null,
+  initCallback = function(){};
 function executeSearch(keywords) {
 	var _this = this;
 	articleDatas.forEach(function(article){
@@ -115,4 +115,4 @@ new Vue({
 		}
 	}
 })
-})()
+})
