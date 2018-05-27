@@ -259,7 +259,7 @@ var JELON = window.JELON || {};
           userInfo = {};
         }
         // 默认头像路径 /img/jelon.jpg
-        $('loginAvatar').src = userInfo.avatar_url || '/img/unsigned_avatar.png';
+        $('loginAvatar').src = userInfo.avatar_url || '/img/github.png';
       }
     },
     list: {

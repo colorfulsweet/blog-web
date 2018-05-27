@@ -14,7 +14,8 @@ require.config({
 		}
 	}
 });
-require(['echo', 'bannerGirl'],function(echo, loadBannerGirl){
+require(['polyfill', 'local-search']);
+require(['echo', 'bannerGirl'],function(echo, bannerGirl){
 	function deepCopy(c, p) {
 	　var c = c || {};
 	　for (var i in p) {
@@ -90,7 +91,8 @@ require(['echo', 'bannerGirl'],function(echo, loadBannerGirl){
 	JELON.init();
 	window.JELON = JELON;
 	})();
-	// 加载看板娘
-	loadBannerGirl();
+	// 在PC端加载看板娘
+	if(!/Android|webOS|iPhone|iPad|BlackBerry/i.test(navigator.userAgent)) {
+		bannerGirl.init('/resource/model.json');
+	}
 });
-require(['polyfill', 'local-search'])

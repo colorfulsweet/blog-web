@@ -1,4 +1,11 @@
 define(['loadlive2d', 'axios'], function(loadlive2d, axios) {
+/**
+ * 字符串模板替换
+ * 例如 template:"这是一个{text}内容", context:{text:"有趣的"}
+ * return "这是一个有趣的内容"
+ * @param {String} template 模板内容
+ * @param {Object} context 替换的内容
+ */
 function render(template, context) {
 	var tokenReg = /(\\)?\{([^\{\}\\]+)(\\)?\}/g;
 	return template.replace(tokenReg, function (word, slash1, token, slash2) {
@@ -16,10 +23,6 @@ function render(template, context) {
 		return currentObject;
 	});
 }
-String.prototype.render = function (context) {
-	return render(this, context);
-};
-
 var re = /x/;
 console.log(re);
 re.toString = function() {
@@ -31,23 +34,31 @@ document.addEventListener('copy', function(){
 	showMessage('你都复制了些什么呀，转载要记得加上出处哦', 5000);
 })
 
-var tips = document.querySelector('.waifu-tips');
+var tips = document.querySelector('.banner-tips');
+var tipTimer = undefined;
+/**
+ * 显示消息
+ * @param {Object} text 消息内容(如果是数组则显示其中的随机一个元素)
+ * @param {Numer} timeout 消失的延迟时间
+ */
 function showMessage(text, timeout){
+	if(tipTimer) {
+		window.clearTimeout(tipTimer);
+		tipTimer = undefined;
+	}
 	if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1];
-	// $tips.stop();
-	// $tips.html(text).fadeTo(200, 1);
-	//TODO 使用原生动画库
 	tips.innerHTML = text;
 	tips.style.opacity = 1;
 	hideMessage(timeout);
 }
+/**
+ * 隐藏消息
+ * @param {Number} timeout 消失的延迟时间
+ */
 function hideMessage(timeout){
-	timeout = timeout || 5000;
-	// $tips.stop().css('opacity',1);
-	// $tips.delay(timeout).fadeTo(200, 0);
-	setTimeout(function(){
+	tipTimer = setTimeout(function(){
 		tips.style.opacity = 0;
-	}, timeout);
+	}, timeout || 5000);
 }
 var text;
 if(document.referrer){
@@ -96,24 +107,19 @@ function createTrigger(tips) {
 	return function(){
 		var text = tips.text;
 		if(Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1)-1];
-		text = text.render({text: this.textContent});
+		text = render(text, {text: this.textContent});
 		showMessage(text, 3000);
 	}
 }
 function bindElementEvent(url) {
 	axios.get(url).then(function(res){
-		res.data.mouseenter.forEach(function(tips){
-			var mouseenterTrigger = createTrigger(tips);
-			document.querySelectorAll(tips.selector).forEach(function(item){
-				item.addEventListener("mouseenter", mouseenterTrigger);
-			})
-		});
-		res.data.click.forEach(function(tips){
-			var clickTrigger = createTrigger(tips);
-			document.querySelectorAll(tips.selector).forEach(function(item){
-				item.addEventListener("click", clickTrigger);
-			})
-		});
+		for(var eventName in res.data) {
+			res.data[eventName].forEach(function(tips){
+				Array.prototype.forEach.call(document.querySelectorAll(tips.selector),function(item){
+					item.addEventListener(eventName, createTrigger(tips));
+				});
+			});
+		}
 	});
 }
 
@@ -121,31 +127,36 @@ function bindElementEvent(url) {
 function getHitokoto(){
 	axios.get('https://v1.hitokoto.cn/?encode=json&charset=utf-8&c=b&c=a&c=e').then(function(res){
 		showMessage(res.data.hitokoto, 5000);
-		setTimeout(getHitokoto, 20000);
-	}).catch(function(){
 		setTimeout(getHitokoto, 30000);
+	}).catch(function(){
+		setTimeout(getHitokoto, 45000);
 	})
 }
-
-return function(){
-	//加载看板娘模型
-	axios.get('/resource/model.json').then(function(res){
-		var randomIndex = Math.floor(Math.random() * res.data.textures.length);
-		//随机皮肤
-		if(window.location.href.startsWith('http://localhost') || ("ActiveXObject" in window)) {
-			//本地开发调试或者是IE浏览器
-			res.data.textures = ['/resource/model/skin/'+res.data.textures[randomIndex]];
-		} else {
-			//服务器部署运行(使用网易蜂巢对象存储)
-			res.data.textures = ['https://blog-cdn.nos-eastchina1.126.net/live2D/'+res.data.textures[randomIndex]];
-		}
-		loadlive2d('live2d', '/resource/', '', res.data);
-		// loadlive2d("live2d", "/resource/model.json");
-	});
-	// 定时显示"一言"
-	setTimeout(getHitokoto, 10000);
-	// 按照json当中的配置给页面元素绑定事件
-	bindElementEvent("/resource/waifu-tips.json");
-	showMessage(text, 6000);
+return {
+	/**
+	 * 加载看板娘模型
+	 * @param {Sting} modelUrl 模板的json描述文件路径
+	 */
+	init: function(modelUrl){
+		axios.get(modelUrl).then(function(res){
+			var randomIndex = Math.floor(Math.random() * res.data.textures.length);
+			//随机皮肤
+			if(window.location.href.startsWith('http://localhost') || ("ActiveXObject" in window)) {
+				//本地开发调试或者是IE浏览器
+				res.data.textures = ['/resource/model/skin/'+res.data.textures[randomIndex]];
+			} else {
+				//服务器部署运行(使用网易蜂巢对象存储)
+				res.data.textures = ['https://blog-cdn.nos-eastchina1.126.net/live2D/'+res.data.textures[randomIndex]];
+			}
+			loadlive2d('live2d', '/resource/', '', res.data);
+			// loadlive2d("live2d", "/resource/model.json");
+		});
+		// 定时显示"一言"
+		setTimeout(getHitokoto, 10000);
+		// 按照json当中的配置给页面元素绑定事件
+		bindElementEvent("/resource/banner-tips.json");
+		showMessage(text, 6000);
+	},
+	showMessage: showMessage
 }
 });
