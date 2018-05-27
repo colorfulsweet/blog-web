@@ -39,7 +39,7 @@ var tipTimer = undefined;
 /**
  * 显示消息
  * @param {Object} text 消息内容(如果是数组则显示其中的随机一个元素)
- * @param {Numer} timeout 消失的延迟时间
+ * @param {Number} timeout 消失的延迟时间
  */
 function showMessage(text, timeout){
 	if(tipTimer) {
@@ -60,7 +60,11 @@ function hideMessage(timeout){
 		tips.style.opacity = 0;
 	}, timeout || 5000);
 }
-var text;
+var text, productHref = [
+		'https://www.colorfulsweet.site/',
+		'https://sookie2010.coding.me/',
+		'https://sookie2010.github.io/'
+	];
 if(document.referrer){
 	var referrer = document.createElement('a');
 	referrer.href = document.referrer;
@@ -74,7 +78,7 @@ if(document.referrer){
 		text = 'Hello! 来自 谷歌搜索 的朋友<br>欢迎阅读<span style="color:#0099cc;">『' + document.title.split(' - ')[0] + '』</span>';
 	}
 }else {
-	if (window.location.href == 'https://www.colorfulsweet.site/') { //如果是主页
+	if (productHref.indexOf(window.location.href) !== -1) { //如果是主页
 		var now = new Date().getHours();
 		if (now > 23 || now <= 5) {
 				text = '你是夜猫子呀？这么晚还不睡觉，明天起的来吗';

@@ -15,7 +15,7 @@ require.config({
 	}
 });
 require(['polyfill', 'local-search']);
-require(['echo', 'bannerGirl'],function(echo, bannerGirl){
+require(['echo'],function(echo, bannerGirl){
 	function deepCopy(c, p) {
 	　var c = c || {};
 	　for (var i in p) {
@@ -28,7 +28,6 @@ require(['echo', 'bannerGirl'],function(echo, bannerGirl){
 	　}
 	　return c;
 	}
-	(function(){
 	var JELON = window.JELON || {};
 	JELON = deepCopy(JELON, {
 		name: 'JELON',
@@ -58,7 +57,6 @@ require(['echo', 'bannerGirl'],function(echo, bannerGirl){
 				} else {
 					$menu.className = $menu.className.replace(/\s*hidden\s*/, '');
 				}
-	
 			};
 		},
 		backToTop: function() {
@@ -90,9 +88,10 @@ require(['echo', 'bannerGirl'],function(echo, bannerGirl){
 	 */
 	JELON.init();
 	window.JELON = JELON;
-	})();
-	// 在PC端加载看板娘
-	if(!/Android|webOS|iPhone|iPad|BlackBerry/i.test(navigator.userAgent)) {
-		bannerGirl.init('/resource/model.json');
-	}
 });
+if(!/Android|webOS|iPhone|iPad|BlackBerry/i.test(navigator.userAgent)) {
+	// 只在PC端加载看板娘
+	require(['bannerGirl'], function(bannerGirl){
+		bannerGirl.init('/resource/model.json');
+	});
+}
