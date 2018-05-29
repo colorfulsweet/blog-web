@@ -76,6 +76,7 @@
   .tags-cloud > a
     margin 0 3px
     position relative
+    word-break: keep-all
     &::after
       content ''
       display block
@@ -85,7 +86,8 @@
       position absolute
       bottom -3px
       left: 0
-      background #aaa
+      background-color #ccc
+      background-color currentColor
       transition all 0.3s ease-in-out
       // 通过transform的缩放scale来让初始时x轴为0
       transform scale3d(0,1,1)

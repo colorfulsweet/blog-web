@@ -51,13 +51,13 @@
                     <!--
                     <%- image_tag(post.thumbnail, { class: "thumbnail" }) %>
                     -->
-                    <img class="thumbnail" src="<%- url_for('img/loading2.gif') %>" data-echo="<%= post.thumbnail %>" alt="<%= post.title %>" >
+                    <img class="thumbnail" src="<%- url_for('img/default-image.jpg') %>" data-echo="<%= post.thumbnail %>" alt="<%= post.title %>" >
                 <% } else if (post.photos.length) { %>
-                    <img class="thumbnail" src="<%- url_for('img/loading2.gif') %>" data-echo="<%= url_for(post.photos[0]) %>" alt="<%= post.title %>" >
+                    <img class="thumbnail" src="<%- url_for('img/default-image.jpg') %>" data-echo="<%= url_for(post.photos[0]) %>" alt="<%= post.title %>" >
                 <% } else if (theme.CDN) { %>
-                    <img class="thumbnail" src="<%- url_for('img/loading2.gif') %>" data-echo="<%- url_for(theme.CDN + 'thumbnail/' + numSum%10  + '.jpg') %>" alt="默认配图" >
+                    <img class="thumbnail" src="<%- url_for('img/default-image.jpg') %>" data-echo="<%- url_for(theme.CDN + 'thumbnail/' + numSum%10  + '.jpg') %>" alt="默认配图" >
                 <% } else  { %>
-                    <img class="thumbnail" src="<%- url_for('img/loading2.gif') %>" data-echo="<%- url_for('img/thumbnail/' + numSum%10  + '.jpg') %>" alt="默认配图" >
+                    <img class="thumbnail" src="<%- url_for('img/default-image.jpg') %>" data-echo="<%- url_for('img/thumbnail/' + numSum%10  + '.jpg') %>" alt="默认配图" >
                 <% } %>
             </a>
         </div>
