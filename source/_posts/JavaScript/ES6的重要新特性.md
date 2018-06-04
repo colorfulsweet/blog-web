@@ -124,7 +124,7 @@ model.showName();
 ```
 constructor表示这个类的构造函数
 需要注意的是 : 对于对象当中属性的赋值 , 必须要在构造函数当中完成 , 而不能像Java那样直接对类中的属性设定初始值
-#####继承
+##### 继承
 继承的实现方式与Java也十分类似
 ```javascript
 class MyModel extends BaseModel {

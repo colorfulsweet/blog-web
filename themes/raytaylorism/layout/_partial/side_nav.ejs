@@ -71,9 +71,7 @@
   <div class="side-nav <%= theme.color.side_nav %>" id="tag-menu">
     <h4 style="padding:0 15px">标签</h4>
     <% site.tags.forEach(function (item, index) { %>
-        <a href="<%= url_for(item.path) %>">
-          <%= item.name %> <span class="right"><%=  __('side_nav_paper', item.length) %></span></a>
-        </a>
+      <a href="<%= url_for(item.path) %>"><%= item.name+' ('+item.length+')' %></a>
     <% }); %>
   </div>
 </div>
