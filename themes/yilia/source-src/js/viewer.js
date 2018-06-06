@@ -32,7 +32,8 @@ function init() {
 				})
 			})
 			var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-				index: parseInt(i)
+				index: parseInt(i),
+				bgOpacity: 0.8
 			});
 			gallery.init()
 		}

@@ -1,5 +1,5 @@
 <script>
-var yiliaConfig = {
+window.yiliaConfig = {
 	isHome: <%=is_home()%>,
 	isPost: <%=is_post()%>,
 	isArchive: <%=is_archive()%>,
@@ -12,3 +12,20 @@ var yiliaConfig = {
 }
 </script>
 <%- partial('script') %>
+<% if(theme.gitalk.enable && is_post()) { %>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+(function(Gitalk){
+new Gitalk({
+	clientID: '<%=theme.gitalk.ClientID%>',
+	clientSecret: '<%=theme.gitalk.ClientSecret%>',
+	repo: '<%=theme.gitalk.repo%>',
+	owner: '<%=theme.gitalk.githubID%>',
+	admin: ['<%=theme.gitalk.adminUser%>'],
+	id: decodeURI(location.pathname),
+	distractionFreeMode: <%=theme.gitalk.distractionFreeMode%>
+}).render('gittalk-container')
+})(Gitalk)
+</script>
+<% } %>
