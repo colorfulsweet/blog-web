@@ -1,0 +1,128 @@
+<%
+  var hasInnerArchive = theme.smart_menu.innerArchive
+  var hasFriends = theme.smart_menu.friends
+  var hasAboutme = theme.smart_menu.aboutme
+%>
+<div class="tools-col" :class="{show:isShow,hide:!isShow}" @click="stop">
+  <div class="tools-nav header-menu">
+    <% 
+    var count = 0
+    for(let menu_name in theme.smart_menu) {
+      if(theme.smart_menu[menu_name]) count++
+    }
+    %>
+    <ul style="width:70%">
+    <% var divide = 100 / count + '%' %>
+    <% for (let menu_name in theme.smart_menu){ %>
+      <% if(theme.smart_menu[menu_name]){ %>
+      <li style="width: <%= divide %>" @click="openSlider($event, '<%-menu_name%>')"><a href="javascript:void(0)" :class="{active:<%-menu_name%>}"><%= theme.smart_menu[menu_name] %></a></li>
+      <% } %>
+      <% } %>
+    </ul>
+  </div>
+  <div class="tools-wrap">
+    <%if(hasInnerArchive){%>
+    	<section class="tools-section tools-section-all" v-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" v-model="search" type="text" placeholder="文章搜索…">
+          <i class="icon-search icon" v-show="!search"></i>
+          <i class="icon-close icon" v-show="search" @click="clearChose"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <div>
+            <label class="search-tag-wording">标签:</label>
+            <label class="search-switch">
+              <input type="checkbox" @click="showTags=!showTags" >
+            </label>
+            <label class="search-tag-wording">分类:</label>
+            <label class="search-switch">
+              <input type="checkbox" @click="showCategories=!showCategories" >
+            </label>
+          </div>
+          <ul class="article-tag-list" v-show="showTags">
+            <% site.tags.forEach(function(tag, i){ %> 
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" @click="chose('<%-tag.name%>','#')" class="js-tag color<%= tag.name.length % 5 + 1 %>"><%-tag.name%></a>
+              </li>
+            <% }) %>
+            <div class="clearfix"></div>
+          </ul>
+          <ul class="article-tag-list" v-show="showCategories">
+            <% site.categories.forEach(function(category, i){ %> 
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" @click="chose('<%-category.name%>','$')" class="js-tag color<%= category.name.length % 5 + 1 %>"><%-category.name%></a>
+              </li>
+            <% }) %>
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p v-if="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+          <pre style="font-size: 12px;" v-if="jsonFail">
+            jsonContent:
+              meta: false
+              pages: false
+              posts:
+                title: true
+                date: true
+                path: true
+                text: false
+                raw: false
+                content: false
+                slug: false
+                updated: false
+                comments: false
+                link: false
+                permalink: false
+                excerpt: false
+                categories: false
+                tags: true
+          </pre>
+          </p>
+          <li class="search-li" v-for="item in items" v-show="!item.isHide">
+            <a :href="item.path|urlformat" class="search-title"><i class="icon-quo-left icon"></i>
+              <span>{{item.title}}</span>
+            </a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span >{{item.date|dateformat}}</span>
+            </p>
+            <p class="search-category">
+              <i class="icon-book icon"></i>
+              <span v-for="category in item.categories" @click="chose(category.name, '$')" >{{'$'+category.name}}</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span v-for="tag in item.tags" @click="chose(tag.name, '#')" >{{'#'+tag.name}}</span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    <%}%>
+
+    <%if(hasFriends){%>
+    	<section class="tools-section tools-section-friends" v-show="friends">
+  		<%if(theme.friends && theme.friends.length != 0){%>
+        <ul class="search-ul">
+          <% for (var i in theme.friends){ %>
+            <li class="search-li">
+              <a href="<%- url_for(theme.friends[i]) %>" target="_blank" class="search-title"><i class="icon-quo-left icon"></i><%= i %></a>
+            </li>
+          <% } %>
+        </ul>
+  		<%}%>
+    	</section>
+    <%}%>
+
+    <%if(hasAboutme){%>
+    	<section class="tools-section tools-section-me" v-show="aboutme">
+  	  	<%if(theme.aboutme){%>
+  	  		<div class="aboutme-wrap" id="js-aboutme"><%=theme.aboutme%></div>
+  	  	<%}%>
+    	</section>
+    <%}%>
+  </div>
+  
+</div>

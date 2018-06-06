@@ -1,0 +1,7 @@
+<% var left = '<%-' %>
+<% var right = '%' %>
+<% var right2 = '>' %>
+
+<% for (let chunk in htmlWebpackPlugin.files.chunks) { %>
+<%= `${left} js('js/${chunk}.${htmlWebpackPlugin.files.chunks[chunk].hash}.js') ${right}${right2}` %>
+<%  } %>
