@@ -82,8 +82,8 @@ disqus: false
 #3、gitalk
 gitalk:
   enable: true
-  ClientID: bede8dd783185299d256
-  ClientSecret: 91eaf4bf12a203793e3096aea07837812de32350
+  ClientID: 90e8f648da2a669f7975
+  ClientSecret: 7d2b602616387748ef0df10f7a8a626bdfd1034c
   repo: hexo_blog
   githubID: sookie2010
   adminUser: sookie2010
