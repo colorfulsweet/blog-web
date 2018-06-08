@@ -30,6 +30,9 @@
 			color: #5e5e5e;
 		}
 	}
+	.prev.disabled,.next.disabled {
+		visibility: hidden;
+	}
 	&:hover{
 		.extend{
 			opacity: 1;
