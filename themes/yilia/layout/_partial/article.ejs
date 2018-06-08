@@ -57,9 +57,9 @@
       <% } %>
       <%- partial('post/tag') %>
       <%- partial('post/category') %>
-      <% if (index && theme.show_all_link){ %>
+      <% if (index){ %>
         <p class="article-more-link">
-          <a class="article-more-a" href="<%- url_for(post.path) %>"><%= theme.show_all_link %> >></a>
+          <a class="article-more-a" href="<%- url_for(post.path) %>"><%= __('show_full_text') %> >></a>
         </p>
       <% } %>
 

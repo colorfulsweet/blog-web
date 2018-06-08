@@ -1,11 +1,10 @@
 categories: Catégories
+category: Catégorie
 search: Rechercher
 tags: Mot-clés
-tagcloud: Nuage de mot-clés
-tweets: Tweets
+tag: Mot-clé
 prev: Précédent
 next: Suivant
-comment: Commentaires
 archive_a: Archives
 archive_b: "Archives: %s"
 page: Page %d
@@ -13,7 +12,9 @@ recent_posts: Articles récents
 newer: Récent
 older: Ancien
 share: Partager
-powered_by: Propulsé by
-rss_feed: Flux RSS
-category: Catégorie
-tag: Mot-clé
+show_full_text: Voir le texte intégral de la
+home: Homepage
+informal_essay: Essais
+laboratory: Laboratoires
+all_articles: Tous les articles
+about_me: À propos de moi

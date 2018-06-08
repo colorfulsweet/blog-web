@@ -1,11 +1,10 @@
 categories: Категории
+category: Категория
 search: Поиск
 tags: Метки
-tagcloud: Облако меток
-tweets: Твиты
+tag: Метка
 prev: Назад
 next: Вперед
-comment: Комментарии
 archive_a: Архив
 archive_b: "Архив: %s"
 page: Страница %d
@@ -13,7 +12,9 @@ recent_posts: Недавние записи
 newer: Следующий
 older: Предыдущий
 share: Поделиться
-powered_by: Создано с помощью
-rss_feed: RSS-каналы
-category: Категория
-tag: Метка
+show_full_text: просмотреть полный текст
+home: дома
+informal_essay: эссе
+laboratory: лаборатория
+all_articles: Все статьи
+about_me: Обо мне

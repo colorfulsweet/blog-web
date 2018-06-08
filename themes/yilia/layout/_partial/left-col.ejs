@@ -10,27 +10,27 @@
 		</hgroup>
 		<% if (theme.subtitle){ %>
 		<p class="header-subtitle"><%=theme.subtitle%></p>
-		<%}%>
+		<% } %>
 
 		<nav class="header-menu">
 			<ul>
-			<% for (var i in theme.menu){ %>
-				<li><a href="<%- url_for(theme.menu[i]) %>"><%= i %></a></li>
-	        <%}%>
+				<% for (let menuName in theme.menu){ %>
+				<li><a href="<%- url_for(theme.menu[menuName]) %>"><%= __(menuName) %></a></li>
+	    	<% } %>
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
-    		<% for (var i in theme.smart_menu){ %>
-    			<% if(theme.smart_menu[i]){ %>
-    			<a @click="openSlider($event, '<%-i%>')" href="javascript:void(0)"><%= theme.smart_menu[i] %></a>
+    		<% for (let menuName in theme.smart_menu){ %>
+    			<% if(theme.smart_menu[menuName]){ %>
+    			<a @click="openSlider($event, '<%-menuName%>')" href="javascript:void(0)"><%= __(theme.smart_menu[menuName]) %></a>
     			<% } %>
-          <% } %>
+        <% } %>
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
-				<% for (var i in theme.subnav){ %>
+				<% for (let i in theme.subnav){ %>
 					<a class="<%= i %>" target="_blank" href="<%- url_for(theme.subnav[i]) %>" title="<%= i %>"><i class="icon-<%= i %>"></i></a>
-		        <%}%>
+		    <% } %>
 			</div>
 		</nav>
 	</header>		

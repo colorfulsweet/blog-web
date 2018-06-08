@@ -1,11 +1,10 @@
 categories: Categories
+category: Category
 search: Search
 tags: Tags
-tagcloud: Tag Cloud
-tweets: Tweets
+tag: Tag
 prev: Prev
 next: Next
-comment: Comments
 archive_a: Archives
 archive_b: "Archives: %s"
 page: Page %d
@@ -13,7 +12,9 @@ recent_posts: Recent Posts
 newer: Newer
 older: Older
 share: Share
-powered_by: Powered by
-rss_feed: RSS Feed
-category: Category
-tag: Tag
+show_full_text: Show Full Text
+home: Homepage
+informal_essay: Informal Essay
+laboratory: Laboratory
+all_articles: All Articles
+about_me: About Me

@@ -15,7 +15,7 @@
     <% var divide = 100 / count + '%' %>
     <% for (let menu_name in theme.smart_menu){ %>
       <% if(theme.smart_menu[menu_name]){ %>
-      <li style="width: <%= divide %>" @click="openSlider($event, '<%-menu_name%>')"><a href="javascript:void(0)" :class="{active:<%-menu_name%>}"><%= theme.smart_menu[menu_name] %></a></li>
+      <li style="width: <%= divide %>" @click="openSlider($event, '<%-menu_name%>')"><a href="javascript:void(0)" :class="{active:<%-menu_name%>}"><%= __(theme.smart_menu[menu_name]) %></a></li>
       <% } %>
       <% } %>
     </ul>
@@ -24,18 +24,18 @@
     <%if(hasInnerArchive){%>
     	<section class="tools-section tools-section-all" v-show="innerArchive">
         <div class="search-wrap">
-          <input class="search-ipt" v-model="search" type="text" placeholder="文章搜索…">
+          <input class="search-ipt" v-model="search" type="text" placeholder="<%=__('search') %>…">
           <i class="icon-search icon" v-show="!search"></i>
           <i class="icon-close icon" v-show="search" @click="clearChose"></i>
         </div>
         <div class="widget tagcloud search-tag">
           <div>
-            <span >标签:</span>
+            <span ><%=__('tags') %>:</span>
             <label class="bui-switch-label bui-switch-animbg">
-              <input type="checkbox" name="s" @click="showTags=!showTags"/>
+              <input type="checkbox" @click="showTags=!showTags"/>
               <i class="bui-switch"></i>
             </label>
-            <span style="margin-left: 50px;">分类:</span>
+            <span style="margin-left: 50px;"><%=__('categories') %>:</span>
             <label class="bui-switch-label bui-switch-animbg">
               <input type="checkbox" @click="showCategories=!showCategories"/>
               <i class="bui-switch"></i>
