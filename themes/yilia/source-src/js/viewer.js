@@ -10,14 +10,12 @@ window.PhotoSwipeUI_Default = PhotoSwipeUI_Default
 function init() {
 	let pswpElement = document.querySelectorAll('.pswp')[0];
 	let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
-
-	$imgArr.forEach(($em, i) => {
+	Array.prototype.forEach.call($imgArr, ($em, i) => {
 		$em.onclick = () => {
 			// slider展开状态
-			// todo: 这样不好，后面改成状态
 			if (document.querySelector('.left-col.show')) return
 			let items = []
-			$imgArr.forEach(($em2, i2) => {
+			Array.prototype.forEach.call($imgArr, ($em2, i2) => {
 				let img = $em2.getAttribute('data-idx', i2)
 				let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
 				let title = $em2.getAttribute('alt')
@@ -40,6 +38,4 @@ function init() {
 	})
 }
 
-module.exports = {
-	init: init
-}
+export default { init }

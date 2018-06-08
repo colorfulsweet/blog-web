@@ -6,7 +6,7 @@ import Browser from './browser'
 // fix hexo 不支持的配置
 import Fix from './fix'
 
-import {addLoadEvent} from './util'
+import Util from './util'
 
 function isPathMatch(path, href) {
 	let reg = /\/|index.html/g
@@ -16,13 +16,11 @@ function isPathMatch(path, href) {
 function tabActive() {
 	let $tabs = document.querySelectorAll('.js-header-menu li a')
 	let path = window.location.pathname
-
-	for (var i = 0, len = $tabs.length; i < len; i++) {
-		let $tab = $tabs[i]
+	Array.prototype.forEach.call($tabs, function($tab, i){
 		if (isPathMatch(path, $tab.getAttribute('href'))) {
 			addClass($tab, 'active')
 		}
-	}
+	})
 }
 
 function getElementLeft(element) {　　　　
@@ -99,6 +97,6 @@ function init() {
 
 init();
 
-addLoadEvent(function() {
+Util.addLoadEvent(function() {
 	Fix.init()
 })

@@ -15,12 +15,8 @@
 			<% if (theme.subtitle){ %>
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i><%=theme.subtitle%><i class="icon icon-quo-right"></i></p>
 			<% } %>
-			<% var count = 0%>
-			<% for (var i in theme.menu){ %>
-				<% count++ %>
-			<% } %>
-			<% var ulWidth = count > 2 ? '70%' : '50%' %>
-			
+			<% var count = Object.keys(theme.menu).length 
+			var ulWidth = count > 2 ? '70%' : '50%' %>
 			<nav class="header-nav">
 				<div class="social">
 					<% for (var i in theme.subnav){ %>

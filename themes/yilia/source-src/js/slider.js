@@ -15,7 +15,7 @@ function fixzero(str) {
 
 function setScrollZero() {
 	let $sct = document.querySelectorAll('.tools-section')
-	$sct.forEach((em) => {
+	Array.prototype.forEach.call($sct, (em) => {
 		em.scrollTop = 0
 	})
 }

@@ -89,7 +89,4 @@ function init() {
     }
 }
 
-
-module.exports = {
-    init: init
-}
+export default { init }
