@@ -1,17 +1,20 @@
-var webpack = require("webpack");
-var autoprefixer = require('autoprefixer');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanPlugin = require('clean-webpack-plugin');
+const webpack = require("webpack")
+const autoprefixer = require('autoprefixer')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanPlugin = require('clean-webpack-plugin')
 
 // 模板压缩
 // 详见：https://github.com/kangax/html-minifier#options-quick-reference
 
-var minifyHTML = {
+const minifyHTML = {
   collapseInlineTagWhitespace: true,
   collapseWhitespace: true,
   minifyJS:true
 }
+
+const mainCss = new ExtractTextPlugin("css/main.css")
+const extraCss = new ExtractTextPlugin("css/extra.css")
 
 module.exports = {
   entry: {
@@ -28,22 +31,36 @@ module.exports = {
       test: /\.js$/,
       loader: 'babel-loader?cacheDirectory',
       exclude: /node_modules/
-    }, {
+    },{
       test: /\.html$/,
       loader: 'html'
-    }, {
-      test: /\.(scss|sass|css)$/,
-      loader: ExtractTextPlugin.extract({fallback:"style-loader",use:["css-loader","postcss-loader","sass-loader?outputStyle=compressed"]})
-    }, {
-      test: /\.(gif|jpg|png)\??.*$/,
-      loader: 'url-loader?limit=500&name=img/[name].[ext]'
-    }, {
-      test: /\.(woff|svg|eot|ttf)\??.*$/,
-      loader: "file-loader?name=fonts/[name].[hash:6].[ext]"
+    },{
+      test: /\.(scss|sass)$/,
+      loader: mainCss.extract({fallback:"style-loader",use:["css-loader","postcss-loader","sass-loader?outputStyle=compressed"]})
+    },{
+      test: /\.css$/, 
+      loaders: extraCss.extract({fallback:"style-loader",use:["css-loader?minimize=true","postcss-loader"]})
+    },{
+      test: /\.(png|jpe?g|gif|ico)$/,
+      loader: "url-loader",
+      options: {
+        limit: 1000,
+        publicPath: "../",
+        name: "images/[name].[ext]"
+      }
+    },{
+      test: /\.(svg|eot|ttf|woff2?|otf)$/,
+      loader: "url-loader",
+      options: {
+        limit: 1000,
+        publicPath: "../",
+        name: "fonts/[name].[hash:6].[ext]"
+      }
     }]
   },
   plugins: [
-    new ExtractTextPlugin('style.css'),
+    mainCss,
+    extraCss,
     new HtmlWebpackPlugin({
       inject: false,
       cache: false,

@@ -1,17 +1,13 @@
-
-import PhotoSwipe from 'photoswipe'
-import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default'
-import 'photoswipe/dist/default-skin/default-skin.css'
-import 'photoswipe/dist/photoswipe.css'
-
-window.PhotoSwipe = PhotoSwipe
-window.PhotoSwipeUI_Default = PhotoSwipeUI_Default
+import PhotoSwipe from '../lib/photoswipe/photoswipe'
+import PhotoSwipeUI_Default from '../lib/photoswipe/photoswipe-ui-default'
+import '../lib/photoswipe/photoswipe.css'
+import '../lib/photoswipe/default-skin/default-skin.css'
 
 function init() {
 	let pswpElement = document.querySelectorAll('.pswp')[0];
 	let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
 	Array.prototype.forEach.call($imgArr, ($em, i) => {
-		$em.onclick = () => {
+		$em.addEventListener('click', function(){
 			// slider展开状态
 			if (document.querySelector('.left-col.show')) return
 			let items = []
@@ -34,7 +30,7 @@ function init() {
 				bgOpacity: 0.8
 			});
 			gallery.init()
-		}
+		})
 	})
 }
 
