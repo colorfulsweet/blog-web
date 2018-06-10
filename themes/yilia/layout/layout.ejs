@@ -7,7 +7,7 @@
     </div>
     <div class="mid-col" :class="{show:isShow,hide:!isShow}">
       <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div id="wrapper" class="body-wrap">
+      <div id="wrapper" class="body-wrap" v-pre>
         <div class="menu-l">
           <div class="canvas-wrap">
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" class="anm-canvas"></canvas>

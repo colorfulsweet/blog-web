@@ -4,10 +4,8 @@
   <meta charset="utf-8">
   <%
   var title = page.title;
-
   if (is_archive()){
     title = 'Archives';
-
     if (is_month()){
       title += ': ' + page.year + '/' + page.month;
     } else if (is_year()){
@@ -34,10 +32,9 @@
   <%- css('css/main.css') %>
   <%- css('css/extra.css') %>
   <style type="text/css">
-  <% var defaultCtnBg = 'linear-gradient(200deg,#a0cfe4,#e8c37e)' %>
-    #container.show {
-      background: <%= theme.style && theme.style.slider ? theme.style.slider : defaultCtnBg %>;
-    }
+  #container.show {
+    background: <%= theme.style && theme.style.slider ? theme.style.slider : 'linear-gradient(200deg,#a0cfe4,#e8c37e)' %>;
+  }
   </style>
   <%- partial('google-analytics') %>
   <%- partial('baidu-analytics') %>

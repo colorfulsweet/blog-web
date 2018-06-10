@@ -20,11 +20,11 @@
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
-    		<% for (let menuName in theme.smart_menu){ %>
-    			<% if(theme.smart_menu[menuName]){ %>
+    		<% for (let menuName in theme.smart_menu){ 
+    			if(theme.smart_menu[menuName]){ %>
     			<a @click="openSlider($event, '<%-menuName%>')" href="javascript:void(0)"><%= __(theme.smart_menu[menuName]) %></a>
-    			<% } %>
-        <% } %>
+    			<% } 
+        } %>
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
