@@ -36,7 +36,7 @@ module.exports = {
       loader: 'html'
     },{
       test: /\.(scss|sass)$/,
-      loader: mainCss.extract({fallback:"style-loader",use:["css-loader","postcss-loader","sass-loader?outputStyle=compressed"]})
+      loader: mainCss.extract({fallback:"style-loader",use:["css-loader","postcss-loader","sass-loader?outputStyle=compact"]})
     },{
       test: /\.css$/, 
       loaders: extraCss.extract({fallback:"style-loader",use:["css-loader?minimize=true","postcss-loader"]})

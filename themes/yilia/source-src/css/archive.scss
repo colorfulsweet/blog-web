@@ -63,7 +63,6 @@
         content: "“";
         font-family: serif;
         font-size: 30px;
-        float: left;
         margin: 4px 4px 0 -12px;
         color: #c8c8c8;
       }
@@ -102,13 +101,11 @@
       font-size: 14px;
     }
     .archive-article-date{
-     cursor: default;
-     font-size: 12px;
-     margin-bottom: 5px;
-     margin-top: -10px;
-     margin-right: 0;
-     time{
-     }
+    cursor: default;
+      font-size: 12px;
+      margin-bottom: 5px;
+      margin-top: -10px;
+      margin-right: 0;
     }
     .article-category{
       &:before{

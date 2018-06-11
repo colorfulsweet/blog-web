@@ -51,15 +51,18 @@
 			min-height: 150px;
 			margin-left: -12px;
 			text-align: center;
-			display: -webkit-box;
-			-webkit-box-orient: horizontal;
-			-webkit-box-pack: center;
-			-webkit-box-align: center;
-			li{
-				cursor: default;
-				a{
-					font-size: 14px;
-					min-width: 300px;
+			position: relative;
+			ul {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				li{
+					cursor: default;
+					a{
+						font-size: 14px;
+						min-width: 300px;
+					}
 				}
 			}
 		}
@@ -68,7 +71,8 @@
 			margin-bottom: 20px;
 			a {
 				&:after {
-					content: '/'
+					content: '/';
+					margin-left: 4px;
 				}
 				&:last-child {
 					&:after {
@@ -96,6 +100,8 @@
 			text-align: center;
 			img{
 				border-radius: 300px;
+				width: 100%;
+				height: 100%;
 				opacity: 1;
 				-webkit-transition: all 0.2s ease-in;
 				&.show{
@@ -108,7 +114,6 @@
 		.header-author{
 			text-align: center;
 			margin: 0.67em 0;
-			font-family: Roboto, "Roboto", serif;
 			font-size: 30px;
 			transition: 0.3s;
 		}

@@ -12,12 +12,12 @@
     }
     %>
     <ul style="width:70%">
-    <% var divide = 100 / count + '%' %>
-    <% for (let menu_name in theme.smart_menu){ %>
-      <% if(theme.smart_menu[menu_name]){ %>
+    <% var divide = 100 / count + '%' 
+    for (let menu_name in theme.smart_menu){ 
+      if(theme.smart_menu[menu_name]){ %>
       <li style="width: <%= divide %>" @click="openSlider($event, '<%-menu_name%>')"><a href="javascript:void(0)" :class="{active:<%-menu_name%>}"><%= __(theme.smart_menu[menu_name]) %></a></li>
-      <% } %>
-      <% } %>
+      <% }
+      } %>
     </ul>
   </div>
   <div class="tools-wrap">
@@ -103,7 +103,6 @@
         </ul>
     	</section>
     <%}%>
-
     <%if(hasFriends){%>
     	<section class="tools-section tools-section-friends" v-show="friends">
   		<%if(theme.friends && theme.friends.length != 0){%>
@@ -117,12 +116,11 @@
   		<%}%>
     	</section>
     <%}%>
-
     <%if(hasAboutme){%>
     	<section class="tools-section tools-section-me" v-show="aboutme">
-  	  	<%if(theme.aboutme){%>
-  	  		<div class="aboutme-wrap" id="js-aboutme"><%-theme.aboutme%></div>
-  	  	<%}%>
+      <%if(theme.aboutme){%>
+        <div class="aboutme-wrap" id="js-aboutme"><%-theme.aboutme%></div>
+      <%}%>
     	</section>
     <%}%>
   </div>
