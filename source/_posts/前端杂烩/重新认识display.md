@@ -60,10 +60,10 @@ width和height是作用在哪个盒子上的 , 根据上面设置height和width�
 
 width的默认值是`auto`
 它至少包含以下不同的宽度表现
-+ **充分利用可用空间** : 这种表现之下 , 横向占满父容器 , 见于外在块级元素 , 比如`<div>`, `<p>`
-+ **收缩与包裹** : 代表是浮动 绝对定位 inline-block元素或table元素
-+ **收缩到最小** : 容易出现在table-layout为auto的表格中 ( 表现为表格中的文字呈竖排被压缩为一列 )
-+ **超出父容器限制** : 内容为很长的连续英文或数字 ( 汉字可以在任意位置截断 ) , 或者内联元素被设置了`white-space:nowrap`
+1. **充分利用可用空间** : 这种表现之下 , 横向占满父容器 , 见于外在块级元素 , 比如`<div>`, `<p>`
+2. **收缩与包裹** : 代表是浮动 绝对定位 inline-block元素或table元素
+3. **收缩到最小** : 容易出现在table-layout为auto的表格中 ( 表现为表格中的文字呈竖排被压缩为一列 )
+4. **超出父容器限制** : 内容为很长的连续英文或数字 ( 汉字可以在任意位置截断 ) , 或者内联元素被设置了`white-space:nowrap`
 
 ##### 关于100%
 对于display为block的元素 , 它的宽度如果是auto , 那么自然会表现为 **充分利用可用空间**
@@ -94,3 +94,30 @@ width的默认值是`auto`
 设置了宽度100% , 反而会溢出父容器之外
 ![no width layout](/images/前端杂烩/no_width_layout.jpg)
 更好的办法是借助流动性无宽度布局
+
+#### 自适应性
+简单来说就是内容越多 , 宽度越宽
+如果这个宽度达到了父容器的宽度, 则会自动换行 
+> 前提是内容按照当前换行规则可以换行, 否则会溢出父容器
+
+比如要实现内容为单行时居中 , 多行时最后未占满的一行居左 , 可以这样做
+```html
+<div class="box">
+  <div class="content">这是一行文字</div>
+  <div class="content">这是很多文字这是很多文字这是很多文字</div>
+</div>
+```
+```css
+.box {
+  width:180px;
+  border:1px solid red;
+  padding:5px;
+  text-align:center;
+}
+.box > .content {
+  display:inline-block;
+  text-align:left;
+  border:1px solid blue;
+}
+```
+![自适应性](/images/前端杂烩/自适应性.jpg)
