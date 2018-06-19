@@ -3,8 +3,8 @@
   "version": "4.0.0",
   "description": "a theme for hexo",
   "scripts": {
-    "dev": "webpack",
-    "dist": "webpack -p"
+    "dev": "webpack --watch",
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",

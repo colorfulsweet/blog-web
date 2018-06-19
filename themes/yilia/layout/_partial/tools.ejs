@@ -91,13 +91,13 @@
               <i class="icon-calendar icon"></i>
               <span >{{item.date|dateformat}}</span>
             </p>
-            <p class="search-category">
-              <i class="icon-book icon"></i>
-              <span v-for="category in item.categories" @click="chose(category.name, '$')" >{{'$'+category.name}}</span>
+            <p class="search-category" v-if="item.categories.length">
+              <i class="icon-book icon" ></i>
+              <span v-for="category in item.categories" @click="chose(category.name, '$')" >{{category.name}}</span>
             </p>
-            <p class="search-tag">
-              <i class="icon-price-tags icon"></i>
-              <span v-for="tag in item.tags" @click="chose(tag.name, '#')" >{{'#'+tag.name}}</span>
+            <p class="search-tag" v-if="item.tags.length">
+              <i class="icon-price-tags icon" ></i>
+              <span v-for="tag in item.tags" @click="chose(tag.name, '#')" >{{tag.name}}</span>
             </p>
           </li>
         </ul>
@@ -124,5 +124,4 @@
     	</section>
     <%}%>
   </div>
-  
 </div>

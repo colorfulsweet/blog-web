@@ -73,5 +73,5 @@ module.exports = {
       dry: false,
     })
   ],
-  watch: true
+  // watch: true
 }

@@ -113,12 +113,12 @@ function handleSearch(val) {
 			break
 		case 'tag' : 
 			item.isHide = Array.prototype.every.call(item.tags, function(tag){
-				return tag.name.toLowerCase().indexOf(val) < 0
+				return tag.name.toLowerCase() !== val
 			})
 			break
 		case 'category' : 
 			item.isHide = Array.prototype.every.call(item.categories, function(category){
-				return category.name.toLowerCase().indexOf(val) < 0
+				return category.name.toLowerCase() !== val
 			})
 			break
 		}
