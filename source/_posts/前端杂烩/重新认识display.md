@@ -95,6 +95,41 @@ width的默认值是`auto`
 ![no width layout](/images/前端杂烩/no_width_layout.jpg)
 更好的办法是借助流动性无宽度布局
 
+例外的是`textarea`和`input`, 他们都自带border和padding, 并且如果强行清除padding, 内容会顶着边框, 并不美观
+但是即使设置他们的display是block , 也不会自适应父容器宽度
+这种情况下是 **必须**用到`box-sizing: border-box`的
+```html
+<div class="box">
+  <textarea ></textarea>
+  <input type="text" />
+  <br>
+  <textarea class="border"></textarea>
+  <input type="text" class="border"/>
+</div>
+```
+```css
+.box {
+  width: 300px;
+  height: 150px;
+  border: 1px solid red;
+}
+.box > textarea, .box > input {
+  display: block;
+  width: 100%;
+}
+.box > textarea.border, .box > input.border {
+  box-sizing: border-box;
+}
+```
+![文本域和输入框的自适应](/images/前端杂烩/textarea_and_input.png)
+
+##### height:auto
+与width相比, height就简单许多了, 因为CSS默认的流是水平方向的
+宽度是稀缺的, 高度是无限的
+多数情况下都是内部元素高度总和多高, 父元素就有多高 ( 子元素未脱离标准流 )
+需要注意的一点就是
+**高度的百分比值要想起作用, 父元素必须有可以生效的高度值**
+
 #### 自适应性
 简单来说就是内容越多 , 宽度越宽
 如果这个宽度达到了父容器的宽度, 则会自动换行 
