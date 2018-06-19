@@ -85,19 +85,19 @@
           </p>
           <li class="search-li" v-for="item in items" v-show="!item.isHide">
             <a :href="item.path|urlformat" class="search-title"><i class="icon-quo-left icon"></i>
-              <span>{{item.title}}</span>
+              <span v-text="item.title"></span>
             </a>
             <p class="search-time">
               <i class="icon-calendar icon"></i>
-              <span >{{item.date|dateformat}}</span>
+              <span v-text="item.date"></span>
             </p>
             <p class="search-category" v-if="item.categories.length">
               <i class="icon-book icon" ></i>
-              <span v-for="category in item.categories" @click="chose(category.name, '$')" >{{category.name}}</span>
+              <span v-for="category in item.categories" @click="chose(category.name, '$')" v-text="category.name"></span>
             </p>
             <p class="search-tag" v-if="item.tags.length">
               <i class="icon-price-tags icon" ></i>
-              <span v-for="tag in item.tags" @click="chose(tag.name, '#')" >{{tag.name}}</span>
+              <span v-for="tag in item.tags" @click="chose(tag.name, '#')" v-text="tag.name"></span>
             </p>
           </li>
         </ul>

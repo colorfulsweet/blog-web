@@ -18,7 +18,6 @@ timezone:
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://www.colorfulsweet.site
-# url: http://localhost:6603
 root: /
 permalink: :title/
 permalink_defaults:
@@ -83,9 +82,9 @@ theme: yilia
 #----------------------------
 # 搜索
 #----------------------------
-search:
-  path: search.xml
-  field: all
+# search:
+#   path: search.xml
+#   field: all
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -97,6 +96,7 @@ deploy:
 jsonContent:
   meta: false
   pages: false
+  dateFormat: YYYY-MM-DD
   posts:
     title: true
     date: true

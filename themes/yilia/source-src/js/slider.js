@@ -8,18 +8,13 @@ import Vue from './vue.min'
 
 const isMobile = (Browser.versions.mobile && window.screen.width < 800)
 
-function fixzero(str) {
-	str = str + ''
-	return str.length === 1 ? '0' + str : str
-}
-
 function setScrollZero() {
 	let $sct = document.querySelectorAll('.tools-section')
 	Array.prototype.forEach.call($sct, (em) => {
 		em.scrollTop = 0
 	})
 }
-let vm = new Vue({
+new Vue({
 	el: '#container',
 	data: {
 		isCtnShow: false,
@@ -64,14 +59,7 @@ let vm = new Vue({
 	},
 	filters: {
 		urlformat: (str) => {
-			if (window.yiliaConfig && window.yiliaConfig.root) {
-				return window.yiliaConfig.root + str
-			}
-			return '/' + str
-		},
-		dateformat: (str) => {
-			let d = new Date(str)
-			return d.getFullYear() + '-' + fixzero((d.getMonth() + 1)) + '-' + fixzero(d.getDate())
+			return (window.yiliaConfig && window.yiliaConfig.root) ? window.yiliaConfig.root + str : '/' + str;
 		}
 	},
 	watch: {
