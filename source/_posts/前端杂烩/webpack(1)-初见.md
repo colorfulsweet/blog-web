@@ -76,10 +76,10 @@ document.write(require("./content.js"));
 ```xml
 <html>
 <head>
-	<meta charset="utf-8"/>
+  <meta charset="utf-8"/>
 </head>
 <body>
-	<script src="bundle.js"></script>
+  <script src="bundle.js"></script>
 </body>
 </html>
 ```
@@ -97,7 +97,7 @@ $ npm install css-loader style-loader --save-dev
 ![目录结构](/images/前端杂烩/webpack/目录结构.png)
 ```css
 body {
-	background-color : #ccc;
+  background-color : #ccc;
 }
 ```
 修改entry.js文件 , 引入这个css文件

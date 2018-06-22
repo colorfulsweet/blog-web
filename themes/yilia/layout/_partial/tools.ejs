@@ -25,8 +25,7 @@
     	<section class="tools-section tools-section-all" v-show="innerArchive">
         <div class="search-wrap">
           <input class="search-ipt" v-model="search" type="text" placeholder="<%=__('search') %>…">
-          <i class="icon-search icon" v-show="!search"></i>
-          <i class="icon-close icon" v-show="search" @click="clearChose"></i>
+          <i class="icon" :class="search?'icon-close':'icon-search'" @click="clearChose"></i>
         </div>
         <div class="widget tagcloud search-tag">
           <div>
