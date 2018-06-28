@@ -81,13 +81,19 @@ disqus: false
 
 #3、gitalk
 gitalk:
-  enable: true
+  enable: false
   ClientID: 90e8f648da2a669f7975
   ClientSecret: 7d2b602616387748ef0df10f7a8a626bdfd1034c
   repo: hexo_blog
   githubID: sookie2010
   adminUser: sookie2010
   distractionFreeMode: false
+
+#4、Valine
+valine:
+  enable: true
+  appId: 40jq6uO51rpVT4PEEcayYkda-gzGzoHsz
+  appKey: nBOoOEDP4EBUfgpSJAF6idKi
 
 # 样式定制 - 一般不需要修改，除非有很强的定制欲望…
 style:

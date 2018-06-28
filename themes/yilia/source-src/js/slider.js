@@ -4,7 +4,7 @@ import Anm from './anm'
 import Browser from './browser'
 
 import axios from 'axios'
-import Vue from './vue.min'
+import Vue from '../lib/vue/vue.min'
 
 const isMobile = (Browser.versions.mobile && window.screen.width < 800)
 

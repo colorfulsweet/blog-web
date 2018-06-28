@@ -20,7 +20,8 @@ module.exports = {
   entry: {
     main: "./source-src/js/main.js",
     slider: "./source-src/js/slider.js",
-    mobile: ["babel-polyfill", "./source-src/js/mobile.js"]
+    mobile: ["babel-polyfill", "./source-src/js/mobile.js"],
+    comment: "./source-src/js/comment.js"
   },
   output: {
     path: __dirname+"/source",

@@ -1,0 +1,25 @@
+{
+	"gitalk": {
+		"enable": false,
+		"config": {
+			"ClientID": "90e8f648da2a669f7975",
+			"ClientSecret": "7d2b602616387748ef0df10f7a8a626bdfd1034c",
+			"repo": "hexo_blog",
+			"githubID": "sookie2010",
+			"adminUser": "sookie2010",
+			"distractionFreeMode": false
+		}
+	},
+	"valine": {
+		"enable": true,
+		"config": {
+			"el": "#comments",
+			"notify": false, 
+			"verify": false, 
+			"appId": "40jq6uO51rpVT4PEEcayYkda-gzGzoHsz",
+			"appKey": "nBOoOEDP4EBUfgpSJAF6idKi",
+			"placeholder": "ヾﾉ≧∀≦)o来啊，快活啊!",
+			"avatar": "mm"
+		}
+	}
+}

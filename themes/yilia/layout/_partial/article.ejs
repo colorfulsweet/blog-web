@@ -99,9 +99,8 @@
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </section>
-  <% } %>
-
-  <% if(theme.gitalk.enable){ %>
-  <div id="gittalk-container" style="margin:0 30px"></div> 
+  <% }
+  if(theme.gitalk.enable || theme.valine.enable){ %>
+  <div id="comments" style="margin:0 30px; background-color:#fff; padding:0 10px"></div> 
   <% } %>
 <% } %>
