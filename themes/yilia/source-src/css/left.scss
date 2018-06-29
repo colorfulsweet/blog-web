@@ -98,6 +98,9 @@
 			-webkit-box-pack: center;
 			-webkit-box-align: center;
 			text-align: center;
+			&:hover {
+				@extend %picRotate;
+			}
 			img{
 				border-radius: 300px;
 				width: 100%;

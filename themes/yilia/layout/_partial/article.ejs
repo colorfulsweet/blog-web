@@ -4,7 +4,8 @@
       <header class="article-header">
         <%- partial('post/title', {class_name: 'article-title'}) %>
         <% if (!post.noDate){ %>
-        <%- partial('post/date', {class_name: 'archive-article-date', date_format: null}) %>
+        <%- partial('post/date', {class_name: 'archive-article-date', 
+          date_format: config.date_format+(post.excerpt && index ? '':' '+config.time_format)}) %>
         <% } %>
       </header>
     <% } %>
@@ -13,8 +14,8 @@
         <%- post.excerpt %>
       <% } else { %>
         <div class="post-count">
-          <div>总字数<span><%= wordcount(post.content) %></span></div>
-          <div>预计阅读<span><%= min2read(post.content) %></span>分钟</div>
+          <div class="count-item">总字数 <span><%= wordcount(post.content) %></span></div> | 
+          <div class="count-item">预计阅读时间 <span><%= min2read(post.content) %></span> 分钟</div>
         </div>
         <%- post.content %>
       <% } %>

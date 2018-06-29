@@ -376,3 +376,15 @@
     animation-fill-mode: both;
     animation-name: smallleftOut;
 }
+// 头像旋转动画
+@keyframes profilepic {
+    0% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+%picRotate {
+    animation: profilepic 5s linear infinite;
+}
