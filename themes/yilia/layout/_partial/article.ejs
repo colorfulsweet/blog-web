@@ -12,6 +12,10 @@
       <% if (post.excerpt && index){ %>
         <%- post.excerpt %>
       <% } else { %>
+        <div class="post-count">
+          <div>总字数<span><%= wordcount(post.content) %></span></div>
+          <div>预计阅读<span><%= min2read(post.content) %></span>分钟</div>
+        </div>
         <%- post.content %>
       <% } %>
 
