@@ -1,5 +1,6 @@
 import addClass from 'dom101/add-class'
 import removeClass from 'dom101/remove-class'
+import QRious from 'qrious'
 
 function generate(url, opts) {
   var url = url.replace(/<%-sUrl%>/g, encodeURIComponent(opts.sUrl))
@@ -10,9 +11,17 @@ function generate(url, opts) {
   window.open(url);
 }
 
+var qrcodeInit = false
 function showWX() {
   let $wx = document.querySelector('.js-wx-box')
   let $mask = document.querySelector('.mask')
+  if(!qrcodeInit) {
+    new QRious({
+      element: document.querySelector('.qrcode-canvas'),
+      value: location.href
+    });
+    qrcodeInit = true
+  }
   addClass($wx, 'in')
   addClass($wx, 'ready')
   addClass($mask, 'in')
@@ -68,8 +77,8 @@ let init = function() {
       })
     }
   })
-  document.querySelector('.mask').onclick = hideWX
-  document.querySelector('.js-modal-close').onclick = hideWX
+  document.querySelector('.mask').addEventListener('click', hideWX)
+  document.querySelector('.js-modal-close').addEventListener('click', hideWX)
 }
 
 export default { init }
