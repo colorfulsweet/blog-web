@@ -29,7 +29,7 @@
 				<ul style="width: <%= ulWidth %>">
 				<% var divide = 100 / count + '%' %>
 				<% for (let menuName in theme.menu){ %>
-					<li style="width: <%= divide %>"><a href="<%- url_for(theme.menu[menuName]) %>"><%= __(menuName) %></a></li>
+					<li style="width: <%= divide %>"><a href="<%- url_for(theme.menu[menuName].url) %>"><%= __(theme.menu[menuName].name) %></a></li>
 		        <%}%>
 				</ul>
 			</nav>

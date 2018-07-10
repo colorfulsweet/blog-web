@@ -1,8 +1,16 @@
 # Header
 
 menu:
-  home: /
-  laboratory: /lab/
+  home: # 主页
+    name: home
+    url: / 
+  netdisc: # 网盘
+    name: netdisc
+    url: http://www.colorfulsweet.site:8090/
+    target: _blank
+  laboratory: # 实验室
+    name: laboratory
+    url: /lab/
 
 # SubNav
 subnav:

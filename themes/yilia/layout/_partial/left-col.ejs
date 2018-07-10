@@ -15,7 +15,7 @@
 		<nav class="header-menu">
 			<ul>
 				<% for (let menuName in theme.menu){ %>
-				<li><a href="<%- url_for(theme.menu[menuName]) %>"><%= __(menuName) %></a></li>
+				<li><a href="<%- url_for(theme.menu[menuName].url) %>" target="<%= theme.menu[menuName].target || '_self' %>"><%= __(theme.menu[menuName].name) %></a></li>
 	    	<% } %>
 			</ul>
 		</nav>
