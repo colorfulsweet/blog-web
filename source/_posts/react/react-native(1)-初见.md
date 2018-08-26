@@ -22,7 +22,7 @@ React Native 使用Javascript语言，类似于HTML的JSX，以及CSS来开发�
 ```bash
 npm install -g react-native-cli
 ```
-#### android-stdio
+#### android-studio
 由于react-native项目需要在安卓模拟器当中运行
 首先需要 [下载](http://www.android-studio.org/) 安装android-stdio
 
@@ -38,7 +38,7 @@ npm install -g react-native-cli
 ![创建安卓模拟器](/images/react/Android_Virtual_Device.png)
 
 ##### 启动安卓模拟器
-我们可以直接在android stdio里面运行这个刚才创建好的模拟器
+我们可以直接在android studio里面运行这个刚才创建好的模拟器
 也可以在命令行运行
 在安装sdk的目录下, 会有一个emulator目录
 模拟器的运行程序就在这个目录当中
