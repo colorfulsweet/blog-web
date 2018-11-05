@@ -33,8 +33,10 @@ connection.start();
 Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 // 第一个参数是是否使用事务, 第二个参数是应答模式, 这里是自动应答
 
-//step5 创建一个目标(队列)
+//step5 创建一个目标(队列模式)
 Queue queue = session.createQueue("queue-test");
+// 主题模式
+// Topic topic = session.createTopic("topic-test");
 ```
 使用完毕之后需要调用close关闭连接
 ```java
@@ -74,3 +76,13 @@ consumer.setMessageListener(new MessageListener() {
   }
 });
 ```
+> **注意**:
+1. 由于监听操作是一个异步操作
+创建并设置监听器之后, 不能立即关闭连接, 否则就无法接收到消息
+2. 这里如果写成lamdba表达式的形式会无法接收到消息, 暂时不明白为什么
+
+在队列模式下, 如果有多个消费者, 每个消息只会被其中一个消费者接收
+在主题模式下, 如果有多个消费者, 推送消息之后, 推送的消息会被在此之前建立监听的所有消费者接收
+(基本类似于redis里面的发布订阅)
+
+
