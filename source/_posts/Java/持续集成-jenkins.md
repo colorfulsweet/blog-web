@@ -1,5 +1,5 @@
 ---
-title: jenkins(1)-初见
+title: 持续集成-jenkins
 date: 2018-11-7 10:08:13
 categories: 
   - Java

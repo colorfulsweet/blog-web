@@ -84,5 +84,3 @@ consumer.setMessageListener(new MessageListener() {
 在队列模式下, 如果有多个消费者, 每个消息只会被其中一个消费者接收
 在主题模式下, 如果有多个消费者, 推送消息之后, 推送的消息会被在此之前建立监听的所有消费者接收
 (基本类似于redis里面的发布订阅)
-
-
