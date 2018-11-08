@@ -65,6 +65,8 @@ export TOMCAT_PATH=/root/apache-tomcat-9.0.12
 bash /root/deploy.sh
 ```
 ### 编写deploy.sh
+上面的构建脚本当中执行的是deploy.sh
+我们需要在这个脚本当中编写停止tomcat进程 maven打包 拷贝程序包 启动tomcat这些步骤
 ```bash
 #!/bin/bash
 #编译+部署
