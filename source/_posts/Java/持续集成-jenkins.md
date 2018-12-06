@@ -19,7 +19,7 @@ Jenkins是一款由Java编写的开源的**持续集成**工具
 ```bash
 java -jar jenkins.war
 ```
-默认在8080端口运行
+默认在8080端口运行, 修改运行端口可以加参数`--httpPort=8081`
 运行之后访问可以进行初始化操作
 输入首次运行时生成的初始化密码
 ![初始化密码](/images/Java/jenkins/init_password.jpg)

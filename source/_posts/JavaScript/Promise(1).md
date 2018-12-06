@@ -13,7 +13,7 @@ categories:
 例如 : 使用定时器去执行一个回调函数
 ```javascript
 function callback(){
-    console.debug("Time Out!");
+  console.debug("Time Out!");
 }
 console.log("before");
 setTimeout(callback,1000);
@@ -32,11 +32,11 @@ Ajax的异步请求也是一种异步操作
 ```javascript
 var status = true;
 function test(resolve, reject) {
-    if (status) {
-        resolve('success');
-    } else {
-        reject('failed');
-    }
+  if (status) {
+    resolve('success');
+  } else {
+    reject('failed');
+  }
 }
 var p1 = new Promise(test);
 //then传入的是resolve的实现
@@ -44,10 +44,11 @@ var p1 = new Promise(test);
 p1.then(console.log).catch(console.error);
 /*
 也可以用如下的方式, 实际效果同上
-p1.then(console.log, console.log);
+p1.then(console.log, console.error);
 */
 ```
-Promise对象在创建的时候 , 传入的这个函数当中并不关心成功与失败具体的回调是什么 , 而只是关心何时去执行该回调函数
+Promise对象在创建的时候 , 接收一个函数(这个函数是同步执行的)
+传入的这个函数当中并不关心成功与失败具体的回调是什么 , 而只是关心何时去执行该回调函数
 
 Promise对象有3种状态
 1. `Fulfilled` 成功的状态
@@ -64,22 +65,24 @@ Promise对象有3种状态
 ```javascript
 var status = true;
 function test(resolve, reject) {
-    if (status) {
-        resolve('success');
-    } else {
-        reject('failed');
-    }
+  //这里的代码是同步执行的
+  console.log('立即执行')
+  if (status) {
+    resolve('success')
+  } else {
+    reject('failed')
+  }
 }
 var p1 = new Promise(test);
-p1
-.then(function(msg){
-  console.log("我是第一个回调函数:" + msg);
-  return msg;
+p1.then(function(msg){
+  // 这里的代码是异步执行的
+  console.log("我是第一个回调函数:" + msg)
+  return msg
 })
 .then(function(msg){
-  console.log("我是第二个回调函数:" + msg);
+  console.log("我是第二个回调函数:" + msg)
 })
-.catch(console.error);
+.catch(console.error)
 ```
 当然上面这种方式只能适用于多重回调函数中只有一个参数的情况
 如果要传多个参数
