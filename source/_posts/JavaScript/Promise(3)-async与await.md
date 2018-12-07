@@ -13,6 +13,7 @@ categories:
 带有async的函数, 调用的返回值必定是一个Promise对象
 1. 如果本身返回的就是Promise对象, 则不会做任何处理
 2. 如果本身返回的不是Promise对象, 则会用`Promise.resolve`包装后再返回
+<!-- more -->
 
 ```javascript
 async function test1() {
