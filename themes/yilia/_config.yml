@@ -4,9 +4,9 @@ menu:
   home: # 主页
     name: home
     url: / 
-  netdisc: # 网盘
-    name: netdisc
-    url: http://www.colorfulsweet.site:8090/
+  netdisc: # jenkins
+    name: jenkins
+    url: /jenkin/
     target: _blank
   laboratory: # 实验室
     name: laboratory
