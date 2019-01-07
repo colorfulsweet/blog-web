@@ -6,7 +6,7 @@ menu:
     url: / 
   netdisc: # jenkins
     name: jenkins
-    url: /jenkin/
+    url: /jenkins/
     target: _blank
   laboratory: # 实验室
     name: laboratory
