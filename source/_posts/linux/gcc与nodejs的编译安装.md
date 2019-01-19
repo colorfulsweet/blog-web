@@ -91,3 +91,29 @@ cd node-v11.7.0
 make && make install
 ```
 
+### 常见问题与解决方案
+
+1. GLIBCXX_3.4.20 not found
+![GLIBCXX_3.4.20 not found](/images/linux/GLIBCXX_not_found.png)
+首先执行
+```bash
+strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
+```
+![查找GLIBCXX](/images/linux/查找GLIBCXX.png)
+发现少了GLIBCXX_3.4.20，解决方法是升级libstdc++
+```bash
+yum provides libstdc++.so.6
+yum install libstdc++-4.8.5-11.el7.i686
+# 从lib64目录下拷贝(等于或高于6.0.20即可)
+cp /usr/local/lib64/libstdc++.so.6.0.25 /usr/lib64/
+cd /usr/lib64
+# 删除现有的软链接
+rm libstdc++.so.6
+# 创建软链接
+ln -s libstdc++.so.6.0.25 libstdc++.so.6
+```
+![查找lib64目录](/images/linux/查找lib64目录.png)
+
+2. cc命令未找到
+![cc命令未找到](/images/linux/cc命令未找到.png)
+这里只需要临时添加环境变量CC指定为gcc即可, 也就是`export CC=gcc`
