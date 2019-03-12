@@ -1,6 +1,7 @@
 ## 个人博客
 
 <img src="https://img.shields.io/github/repo-size/sookie2010/hexo_blog.svg">
+<img src=https://img.shields.io/github/package-json/v/sookie2010/hexo_blog.svg />
 <a target="_blank" href="https://www.colorfulsweet.site">
 <img src="https://img.shields.io/badge/blog-colorfulsweet-green.svg">
 </a>
