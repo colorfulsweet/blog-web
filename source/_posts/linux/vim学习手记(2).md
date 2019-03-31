@@ -53,6 +53,7 @@ flags是替换方式的标识
 + `g` global 在当前指定的范围内全局替换
 + `i` ignore case 忽略大小写
 
+例如
 + **s/str1/str2/g** - 将当前行中的str1替换为str2
 + **%s/str1/str2/g** - 将整篇文档所有的str1替换为str2
 
