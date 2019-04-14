@@ -26,7 +26,6 @@
     "hexo-wordcount": "^3.0.2"
   },
   "devDependencies": {
-    "hexo-cli": "^1.1.0",
-    "hexo-deployer-git": "^1.0.0"
+    "hexo-cli": "^1.1.0"
   }
 }

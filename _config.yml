@@ -86,13 +86,6 @@ sitemap:
 baidusitemap:
   path: baidusitemap.xml
 
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  # repo: git@git.coding.net:sookie2010/sookie2010.coding.me.git
-  repo: ssh://git@www.colorfulsweet.site:28280/git-repo/blog.git
-  branch: master
 
 jsonContent:
   meta: false
