@@ -11,23 +11,23 @@
 	}
 	.overlay{
 		width: 100%;
-		height: 180px;
+		height: 150px;
 		position: absolute;
 	}
 
 	.intrude-less {
 		width: 76%;
 		text-align: center;
-		margin: 112px auto 0;
+		margin: 82px auto 0;
 	}
 
 	#header{
 		width:100%;
 		height: 300px;
 		position: relative;
-		border-bottom: 1px solid color-border;
 		a {
 			color: #696969;
+			transition: color 0.3s;
 			&:hover {
 				color: #B0A0AA;
 			}
@@ -67,7 +67,7 @@
 			}
 		}
 		.header-smart-menu {
-			font-size: 12px;
+			font-size: 16px;
 			margin-bottom: 20px;
 			a {
 				&:after {
