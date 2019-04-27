@@ -4,7 +4,7 @@ import Browser from './browser'
 const isMobile = (Browser.versions.mobile && window.screen.width < 800)
 // 加载live2d模型
 if(!isMobile) {
-  loadlive2d('live2d', '/model/model.json')
+  loadlive2d('live2d', 'https://blog-cdn.nos-eastchina1.126.net/live2D/Kesshouban/model.json')
   document.querySelector('.waifu').style.display = 'block'
 }
 
