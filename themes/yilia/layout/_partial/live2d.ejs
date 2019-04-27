@@ -1,0 +1,13 @@
+<div class="waifu" @mouseover="waifu.showTools=true" @mouseout="waifu.showTools=false">
+  <div class="waifu-tips" v-text="waifu.tip" v-bind:style="{opacity: waifu.tipOpacity}"></div>
+  <div style="width: 250px;overflow: hidden;">
+    <canvas id="live2d" width="650" height="600" @mouseover="linkMouseover('waifu')" style="width: 325px;height: 300px;"></canvas>
+  </div>
+  <div class="waifu-tool" v-show="waifu.showTools">
+    <span class="fui-eye" @mouseover="linkMouseover('tools.eye')" @click="toolsClick('tools.eye')">夜间</span>
+    <span class="fui-chat" @mouseover="linkMouseover('tools.chart')" @click="toolsClick('tools.chart')">一言</span>
+    <span class="fui-photo" @mouseover="linkMouseover('tools.photo')" @click="toolsClick('tools.photo')">拍照</span>
+    <span class="fui-info-circle" @mouseover="linkMouseover('tools.info')">关于</span>
+    <span class="fui-cross" @mouseover="linkMouseover('tools.close')" @click="toolsClick('tools.close')">关闭</span>
+  </div>
+</div>

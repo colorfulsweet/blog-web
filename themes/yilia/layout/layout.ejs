@@ -4,6 +4,7 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" :class="{show:isShow}">
       <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+      <%- partial('_partial/live2d') %>
     </div>
     <div class="mid-col" :class="{show:isShow,hide:!isShow}">
       <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>

@@ -2,11 +2,11 @@
 <div class="overlay" style="background: <%= theme.style && theme.style.header ? theme.style.header : defaultBg %>"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="<%=config.root%>" class="profilepic">
+		<a href="<%=config.root%>" @mouseover="linkMouseover('home')" class="profilepic">
 			<img src="<%=theme.avatar%>" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="<%=config.root%>"><%=theme.author%></a></h1>
+		  <h1 class="header-author"><a href="<%=config.root%>" @mouseover="linkMouseover('home')"><%=theme.author%></a></h1>
 		</hgroup>
 		<% if (theme.subtitle){ %>
 		<p class="header-subtitle"><%=theme.subtitle%></p>
@@ -22,14 +22,14 @@
 		<nav class="header-smart-menu">
 			<% for (let menuName in theme.smart_menu){ 
 				if(theme.smart_menu[menuName]){ %>
-				<a @click="openSlider($event, '<%-menuName%>')" href="javascript:void(0)"><%= __(theme.smart_menu[menuName]) %></a>
+				<a @click="openSlider($event, '<%=menuName%>')" @mouseover="linkMouseover('<%=menuName%>')" href="javascript:void(0)"><%= __(theme.smart_menu[menuName]) %></a>
 				<% } 
 			} %>
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
-				<% for (let i in theme.subnav){ %>
-					<a class="<%= i %>" target="_blank" href="<%- url_for(theme.subnav[i]) %>" title="<%= i %>"><i class="icon-<%= i %>"></i></a>
+				<% for (let navName in theme.subnav){ %>
+					<a class="<%= navName %>" target="_blank" href="<%- url_for(theme.subnav[navName]) %>" @mouseover="linkMouseover('<%=navName %>')" title="<%= navName %>"><i class="icon-<%= navName %>"></i></a>
 		    <% } %>
 			</div>
 		</nav>
