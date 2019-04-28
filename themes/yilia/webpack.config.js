@@ -1,5 +1,3 @@
-const webpack = require("webpack")
-const autoprefixer = require('autoprefixer')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
@@ -13,8 +11,8 @@ const minifyHTML = {
   minifyJS:true
 }
 
-const mainCss = new ExtractTextPlugin("css/main.css")
-const extraCss = new ExtractTextPlugin("css/extra.css")
+const mainCss = new ExtractTextPlugin("css/main.[contenthash:8].css")
+const extraCss = new ExtractTextPlugin("css/extra.[contenthash:8].css")
 
 module.exports = {
   entry: {
@@ -26,16 +24,13 @@ module.exports = {
   },
   output: {
     path: __dirname+"/source",
-    filename: "js/[name].[chunkhash].js"
+    filename: "js/[name].[chunkhash:8].js"
   },
   module: {
     loaders: [{
       test: /\.js$/,
       loader: 'babel-loader?cacheDirectory',
       exclude: /node_modules/
-    },{
-      test: /\.html$/,
-      loader: 'html'
     },{
       test: /\.(scss|sass)$/,
       loader: mainCss.extract({fallback:"style-loader",use:["css-loader","postcss-loader","sass-loader?outputStyle=compact"]})
@@ -67,10 +62,17 @@ module.exports = {
       inject: false,
       cache: false,
       minify: minifyHTML,
-      template: './source-src/script.ejs',
+      template: './source-src/template/script.html',
       filename: '../layout/_partial/script.ejs'
     }),
-    new CleanPlugin(['source/js/*.js'],{
+    new HtmlWebpackPlugin({
+      inject: false,
+      cache: false,
+      minify: minifyHTML,
+      template: './source-src/template/css.html',
+      filename: '../layout/_partial/css.ejs'
+    }),
+    new CleanPlugin(['source/js/*.js','source/css/*.css'],{
       verbose: true,
       dry: false,
     })

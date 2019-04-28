@@ -3,5 +3,5 @@
 <% var right2 = '>' %>
 
 <% for (let chunk in htmlWebpackPlugin.files.chunks) { %>
-<%= `${left} js('js/${chunk}.${htmlWebpackPlugin.files.chunks[chunk].hash}.js') ${right}${right2}` %>
+<%= `${left} js('js/${chunk}.${htmlWebpackPlugin.files.chunks[chunk].hash.substr(0,8)}.js') ${right}${right2}` %>
 <%  } %>

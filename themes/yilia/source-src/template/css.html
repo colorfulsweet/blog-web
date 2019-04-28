@@ -1,0 +1,8 @@
+<% var left = '<%-' %>
+<% var right = '%' %>
+<% var right2 = '>' %>
+
+<% for (let index in htmlWebpackPlugin.files.css) { %>
+<% let cssFile = htmlWebpackPlugin.files.css[index] %>
+<%= `${left} css('${cssFile.substr(cssFile.indexOf("css"),cssFile.length)}') ${right}${right2}` %>
+<%  } %>

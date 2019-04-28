@@ -2,8 +2,18 @@ import '../lib/live2d'
 // 浏览器判断
 import Browser from './browser'
 const isMobile = (Browser.versions.mobile && window.screen.width < 800)
-// 加载live2d模型
-if(!isMobile) {
+
+/**
+ * 判断浏览器是否支持WebGL
+ */
+function isSupportWebGL() {
+  var canvas = document.createElement("canvas");
+  var webGL = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+  return webGL && webGL instanceof WebGLRenderingContext
+}
+
+if(!isMobile && isSupportWebGL()) {
+  // 加载live2d模型
   loadlive2d('live2d', 'https://blog-cdn.nos-eastchina1.126.net/live2D/Kesshouban/model.json')
   document.querySelector('.waifu').style.display = 'block'
 }
