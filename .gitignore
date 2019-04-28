@@ -5,3 +5,9 @@ db.json
 node_modules/
 public/
 .deploy*/
+# 主题构建生成的目标文件
+themes/yilia/source/css/
+themes/yilia/source/js/
+themes/yilia/source/fonts/
+themes/yilia/layout/_partial/css.ejs
+themes/yilia/layout/_partial/script.ejs
