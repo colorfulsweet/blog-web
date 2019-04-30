@@ -3,6 +3,8 @@ import PhotoSwipeUI_Default from '../lib/photoswipe/photoswipe-ui-default'
 import '../lib/photoswipe/photoswipe.css'
 import '../lib/photoswipe/default-skin/default-skin.css'
 
+import Util from './util'
+
 function init() {
 	let pswpElement = document.querySelectorAll('.pswp')[0];
 	let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
@@ -12,7 +14,6 @@ function init() {
 			if (document.querySelector('.left-col.show')) return
 			let items = []
 			Array.prototype.forEach.call($imgArr, ($em2, i2) => {
-				let img = $em2.getAttribute('data-idx', i2)
 				let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
 				let title = $em2.getAttribute('alt')
 				// 获得原图尺寸
@@ -34,4 +35,7 @@ function init() {
 	})
 }
 
-export default { init }
+// export default { init }
+Util.addLoadEvent(function() {
+	init()
+})

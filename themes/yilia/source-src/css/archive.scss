@@ -19,7 +19,7 @@
     z-index: 1;
   }
   .archive-year-wrap a{
-    color: #666;
+    color: $color6;
     font-weight: bold;
     padding-left: 48px;
   }
@@ -46,7 +46,7 @@
 
   .archive-article-title {
     font-size: 16px;
-    color: #333;
+    color: $colorText;
     transition: color 0.3s;
     &:hover{
       color: #657b83;
@@ -88,7 +88,7 @@
     width: auto;
     .article-date{
       time{
-        color: #aaa;
+        color: $colorA;
       }
     }
     .archive-article-date, .article-tag-list{
@@ -97,7 +97,7 @@
       display: inline-block;
       vertical-align: middle;
       zoom: 1;
-      color: #666;
+      color: $color6;
       font-size: 14px;
     }
     .archive-article-date{

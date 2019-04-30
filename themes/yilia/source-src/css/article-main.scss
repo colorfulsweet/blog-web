@@ -60,7 +60,7 @@
   border: 1px solid #ddd;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
-  background: #fff;
+  background: $colorBg;
   transition: all 0.2s ease-in;
   img{
     max-width: 100%;
@@ -68,7 +68,7 @@
 }
 #comments {
   margin:0 30px;
-  background-color:#fff;
+  background-color:$colorBg;
 }
 .article-inner h1.article-title, .article-title {
   color: #696969;
@@ -113,7 +113,7 @@
   float: right;
   a{
     background: #4d4d4d;
-    color: #fff;
+    color: $colorF;
     font-size: 12px;
     padding: 5px 8px 5px;
     line-height: 16px;

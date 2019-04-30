@@ -20,7 +20,7 @@
     padding: 5px 10px;
     border: 1px solid rgba(107, 107, 107, 0.7);
     border-radius: 8px;
-    background-color: #fff;
+    background-color: $colorBg;
     font-size: 13px;
     text-overflow: ellipsis;
     position: absolute;
@@ -48,9 +48,9 @@
       width: 0;
       height: 0;
       left: 20px;
-      border-top: 10px white solid;
+      border-top: 10px $colorBg solid;
       border-left: 7px transparent solid;
-      border-right: 6px white solid;
+      border-right: 6px $colorBg solid;
       border-bottom: 10px transparent solid;
     }
   }
@@ -64,7 +64,7 @@
       display: block;
       cursor: pointer;
       color: rgb(57, 57, 57);
-      background-color: #fff;
+      background-color: $colorBg;
       border: 1px solid rgb(57, 57, 57);
       border-radius: 5px;
       padding: 0 4px;

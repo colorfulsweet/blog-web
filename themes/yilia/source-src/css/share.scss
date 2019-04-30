@@ -11,7 +11,7 @@
     align-items: center;
     flex-wrap: wrap;
     a {
-        border: 1px solid #fff;
+        border: 1px solid $colorBorder;
         border-radius: 50%;
         display: -moz-inline-stack;
         display: inline-block;
@@ -21,21 +21,21 @@
         -webkit-transition: 0.3s;
         transition: 0.3s;
         text-align: center;
-        color: #fff;
+        color: $colorF;
         opacity: 0.7;
         width: 28px;
         height: 28px;
         line-height: 26px;
         text-shadow: 1px 1px 1px #509eb7;
         &:active {
-            color: #fff;
+            color: $colorF;
         }
         &:hover {
             transform: scale(1.2);
         }
         &.share-outer {
             border: none;
-            color: #fff;
+            color: $colorF;
             background: #4d4d4d;
             text-shadow: none;
         }
@@ -50,7 +50,7 @@
     padding: 20px;
     text-align: center;
     color: #727272;
-    background: #fff;
+    background: $colorBg;
     border-radius: 4px;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
     opacity: 0;

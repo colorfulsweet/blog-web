@@ -5,7 +5,7 @@
     z-index: 999;
     font-size: 14px;
     .icon-plane {
-        color: #fff;
+        color: $colorF;
         text-shadow: 1px 1px 1px #509eb7;
         opacity: 0.7;
         font-size: 52px;
@@ -52,7 +52,7 @@
 .mod-side-operation__jump-to-top {
     .icon-back {
         transition: 0.3s;
-        color: #fff;
+        color: $colorF;
         background: #ccc;
         transform: rotate(90deg);
         font-size: 32px;
@@ -68,7 +68,7 @@
 }
 
 .toc-container.tooltip-left{
-    background: #ccc;
+    background: $colorC;
     margin-top: 10px;
     transition: 0.3s;
     &:hover {
@@ -77,7 +77,7 @@
     .icon-font {
         font-size: 22px;
         line-height: 40px;
-        color: #fff;
+        color: $colorF;
     }
     .tooltip {
         width: 40px;
@@ -98,7 +98,7 @@
         transform-origin: 100% 100%;
         transform: translate3d(0, -10px, 0) rotate3d(1, 1, 1, -30deg);
         a {
-            color: #fff;
+            color: $colorF;
         }
         &::after {
             top: initial;

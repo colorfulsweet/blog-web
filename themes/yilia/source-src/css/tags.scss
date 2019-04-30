@@ -7,7 +7,7 @@
     text-decoration:none;  
     font-weight: normal;
     font-size:10px;  
-    color:#fff;   
+    color:$colorF;   
     height:18px;  
     line-height:18px;  
     padding:0 5px 0px 10px;  
@@ -31,7 +31,7 @@
       content:" ";  
       width:4px;  
       height:4px;  
-      background-color:#fff;  
+      background-color:$colorF;  
       border-radius:4px;  
       box-shadow:0px 0px 0px 1px rgba(0,0,0,.3);  
       position:absolute;  
@@ -79,7 +79,7 @@
 .article-pop-out{
   float: left;
   .icon-tuding {
-    color: #999;
+    color: $color9;
     float: left;
     margin-right: 10px;
     margin-top: 6px;
@@ -91,7 +91,7 @@
     float: left;
   }
   .icon {
-    color: #999;
+    color: $color9;
     float: left;
     margin-right: 10px;
     margin-top: 6px;
@@ -102,7 +102,7 @@
 }
 
 .archive-article-date {
-  color: #999;
+  color: $color9;
   margin-right: 7.6923%;
   float: right;
   transition: color 0.3s;

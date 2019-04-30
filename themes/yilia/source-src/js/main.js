@@ -1,7 +1,7 @@
 // 样式
 import '../css/main.scss'
-// 图片查看器
-import Viewer from './viewer'
+// 图片查看器 -> 改为单独分块打包
+// import Viewer from './viewer'
 // 分享
 import Share from './share'
 // 边缘
@@ -11,6 +11,6 @@ import Util from './util'
 
 Util.addLoadEvent(function() {
 	Share.init()
-	Viewer.init()
+	// Viewer.init()
 	Aside.init()
 })

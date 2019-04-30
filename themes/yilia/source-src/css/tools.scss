@@ -38,16 +38,16 @@
       position: relative;
       .search-ipt {
         width: 310px;
-        color: #fff;
+        color: $colorF;
         background: none;
         border: none;
-        border-bottom: 2px solid #fff;
+        border-bottom: 2px solid $colorF;
       }
       .icon {
         position: absolute;
         right: 0;
         top: 7px;
-        color: #fff;
+        color: $colorF;
         cursor: pointer;
         @extend %trans;
         &:hover {

@@ -1,9 +1,8 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
 
-// 模板压缩
-// 详见：https://github.com/kangax/html-minifier#options-quick-reference
 
 const minifyHTML = {
   collapseInlineTagWhitespace: true,
@@ -11,15 +10,13 @@ const minifyHTML = {
   minifyJS:true
 }
 
-const mainCss = new ExtractTextPlugin("css/main.[contenthash:8].css")
-const extraCss = new ExtractTextPlugin("css/extra.[contenthash:8].css")
-
 module.exports = {
   entry: {
     main: "./source-src/js/main.js",
     slider: "./source-src/js/slider.js",
     mobile: ["babel-polyfill", "./source-src/js/mobile.js"],
     comment: "./source-src/js/comment.js",
+    viewer: "./source-src/js/viewer.js",
     waifu: "./source-src/js/waifu.js"
   },
   output: {
@@ -27,37 +24,65 @@ module.exports = {
     filename: "js/[name].[chunkhash:8].js"
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel-loader?cacheDirectory',
-      exclude: /node_modules/
-    },{
-      test: /\.(scss|sass)$/,
-      loader: mainCss.extract({fallback:"style-loader",use:["css-loader","postcss-loader","sass-loader?outputStyle=compact"]})
-    },{
-      test: /\.css$/, 
-      loaders: extraCss.extract({fallback:"style-loader",use:["css-loader?minimize=true","postcss-loader"]})
-    },{
-      test: /\.(png|jpe?g|gif|ico)$/,
-      loader: "url-loader",
-      options: {
-        limit: 1000,
-        publicPath: "../",
-        name: "images/[name].[ext]"
+    rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader', 
+          options:{cacheDirectory: true}
+        },
+        exclude: /node_modules/
+      },{
+        test: /\.(scss|sass)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader"
+        ]
+      },{
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader"
+        ]
+      },{
+        test: /\.(png|jpe?g|gif|ico)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 1000,
+            publicPath: "../",
+            name: "images/[name].[ext]"
+          }
+        }
+        
+      },{
+        test: /\.(svg|eot|ttf|woff2?|otf)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 1000,
+            publicPath: "../",
+            name: "fonts/[name].[hash:6].[ext]"
+          }
+        }
       }
-    },{
-      test: /\.(svg|eot|ttf|woff2?|otf)$/,
-      loader: "url-loader",
-      options: {
-        limit: 1000,
-        publicPath: "../",
-        name: "fonts/[name].[hash:6].[ext]"
-      }
-    }]
+    ]
   },
   plugins: [
-    mainCss,
-    extraCss,
+    new MiniCssExtractPlugin({
+      filename: "css/[name].[contenthash:8].css",
+      chunkFilename: "[id].css"
+    }),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /viewer\..*?\.css$/g,
+      cssProcessorPluginOptions: {
+        preset: ['default', { discardComments: { removeAll: true } }],
+      },
+      canPrint: true
+    }),
     new HtmlWebpackPlugin({
       inject: false,
       cache: false,
@@ -72,7 +97,7 @@ module.exports = {
       template: './source-src/template/css.html',
       filename: '../layout/_partial/css.ejs'
     }),
-    new CleanPlugin(['source/js/*.js','source/css/*.css'],{
+    new CleanPlugin(['source/js/*.js','source/css/*.css','source/fonts/*'],{
       verbose: true,
       dry: false,
     })
