@@ -185,7 +185,7 @@ const waifuTools = {
   "tools.chart"() {
     // 一言
     axios.get('https://api.imjad.cn/hitokoto/?cat=&charset=utf-8&length=55&encode=json').then(res => {
-      this.showMessage(res.data.hitokoto + res.data.source?`　　——${res.data.source}`:'')
+      this.showMessage(res.data.hitokoto + (res.data.source?`　　——${res.data.source}`:''))
     })
   }
 }
