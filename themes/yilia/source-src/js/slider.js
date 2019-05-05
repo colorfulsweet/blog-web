@@ -109,8 +109,15 @@ new Vue({
     })
     this.showMessage(welcomeMessage(), 6000)
     document.addEventListener('copy', () => {
-      this.showMessage('你都复制了些什么呀，转载要记得加上出处哦');
+      this.showMessage('你都复制了些什么呀，转载要记得加上出处哦')
     })
+  },
+  created() {
+    // 夜间模式
+    let night = localStorage.getItem('night')
+    try {
+      if(night && eval(night)) document.querySelector('body').classList.add('night')
+    } catch (e){}
   }
 })
 
@@ -171,16 +178,20 @@ function welcomeMessage() {
 
 const waifuTools = {
   "tools.photo"() {
+    // 生成canvas快照
     window.Live2D.captureName = 'Kesshouban.png'
     window.Live2D.captureFrame = true
   },
   "tools.close"() {
+    // 隐藏看板娘
     setTimeout(function() {
-      document.querySelector('.waifu').style.display = 'none';
+      document.querySelector('.waifu').style.display = 'none'
     }, 1300);
   },
   "tools.eye"() {
-    //TODO  切换到夜间模式
+    // 切换到夜间模式
+    let night = document.querySelector('body').classList.toggle('night')
+    localStorage.setItem('night', night)
   },
   "tools.chart"() {
     // 一言

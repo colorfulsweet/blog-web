@@ -1,0 +1,54 @@
+/*
+* 夜间模式配色
+*/
+$mainBg_night: #1f2e3c; // 主背景色
+$articleBg_night: #15202b; // 文章背景色
+$textColor_night: #d5d5d5; // 文字颜色
+
+body.night {
+  background: $mainBg_night;
+  // 展开菜单之后的背景
+  #container.show {
+    background: none;
+  }
+  // 主背景
+  .mid-col {
+    background: $mainBg_night;
+  }
+  // 文章区域
+  .article{
+    background: $articleBg_night;
+    border-color: rgb(56, 68, 77);
+    color: $textColor_night;
+    .article-title { // 主标题
+      color: $colorF;
+    }
+    .article-entry blockquote{ // 引用
+      background: #2c2c2c;
+    }
+    h1,h2,h3,h4,h5,h6 { // 章节标题
+      color: #b8a7a7;
+    }
+  }
+  // 左侧栏
+  .left-col {
+    background: $articleBg_night;
+    .overlay {
+      background: none;
+    }
+    .profilepic { // 头像
+      filter: brightness(30%);
+    }
+  }
+  // 看板娘
+  .waifu {
+    filter: brightness(30%);
+  }
+  // 评论
+  #comments {
+    background: none;
+  }
+  #footer {
+    color: $textColor_night;
+  }
+}
