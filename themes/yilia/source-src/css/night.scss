@@ -3,6 +3,7 @@
 */
 $mainBg_night: #1f2e3c; // 主背景色
 $articleBg_night: #15202b; // 文章背景色
+$borderColor_night: #38444d; // 边框颜色
 $textColor_night: #d5d5d5; // 文字颜色
 
 body.night {
@@ -18,7 +19,7 @@ body.night {
   // 文章区域
   .article{
     background: $articleBg_night;
-    border-color: rgb(56, 68, 77);
+    border-color: $borderColor_night;
     color: $textColor_night;
     .article-title { // 主标题
       color: $colorF;
@@ -28,6 +29,17 @@ body.night {
     }
     h1,h2,h3,h4,h5,h6 { // 章节标题
       color: #b8a7a7;
+    }
+  }
+  // 归档列表
+  .archives-wrap {
+    background: $articleBg_night;
+    border-bottom-color: $borderColor_night;
+    .archive-article {
+      border-color: $borderColor_night;
+    }
+    a.archive-article-title {
+      color: $textColor_night;
     }
   }
   // 左侧栏

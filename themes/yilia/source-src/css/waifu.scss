@@ -55,7 +55,7 @@
     }
   }
   .waifu-tool {
-    color: #aaa;
+    color: $colorA;
     top: 100px;
     right: 10px;
     font-size: 14px;
@@ -88,17 +88,6 @@
     &:active {
       cursor: grabbing;
     }
-  }
-}
-/*
-body.night .waifu {
-  color: #34495e;
-  filter: brightness(30%);
-}
-*/
-@media (max-width: 768px) {
-  .waifu {
-    display: none;
   }
 }
 
