@@ -19,13 +19,10 @@
     width: 40px;
     text-align: center;
 }
-.jump-container {
-    &:hover {
-        .icon-back {
-            background: rgba(36, 193, 246, 0.9);
-        }
-    }
+.jump-container:hover .icon-back {
+    background: rgba(36, 193, 246, 0.9);
 }
+
 .jump-container, .toc-container {
     position: relative;
     cursor: pointer;
@@ -49,21 +46,19 @@
         left: -2px;
     }
 }
-.mod-side-operation__jump-to-top {
-    .icon-back {
-        transition: 0.3s;
-        color: $colorF;
-        background: #ccc;
-        transform: rotate(90deg);
-        font-size: 32px;
-        line-height: 40px;
-        width: 40px;
-        text-align: center;
-        display: block;
-        &:hover {
-            background: #24c1f6;
-            color: #24c1f6;
-        }
+.mod-side-operation__jump-to-top .icon-back {
+    transition: 0.3s;
+    color: $colorF;
+    background: #ccc;
+    transform: rotate(90deg);
+    font-size: 32px;
+    line-height: 40px;
+    width: 40px;
+    text-align: center;
+    display: block;
+    &:hover {
+        background: #24c1f6;
+        color: #24c1f6;
     }
 }
 

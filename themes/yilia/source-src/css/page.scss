@@ -33,9 +33,7 @@
 	.prev.disabled,.next.disabled {
 		visibility: hidden;
 	}
-	&:hover{
-		.extend{
-			opacity: 1;
-		}
+	&:hover .extend {
+		opacity: 1;
 	}
 }

@@ -15,7 +15,6 @@ module.exports = {
     main: "./source-src/js/main.js",
     slider: "./source-src/js/slider.js",
     mobile: ["babel-polyfill", "./source-src/js/mobile.js"],
-    // comment: "./source-src/js/comment.js",
     viewer: "./source-src/js/viewer.js",
     waifu: "./source-src/js/waifu.js"
   },

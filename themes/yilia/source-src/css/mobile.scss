@@ -16,10 +16,8 @@ html, body, #container {
   left: 0;
   position: relative;
 }
-#header{
-  .header-nav{
-    position: relative;
-  }
+#header .header-nav{
+  position: relative;
 }
 .wrap-side-operation {
   display: none;
@@ -275,11 +273,9 @@ html, body, #container {
     }
   }
 }
-.archives{
-  .archive-article{
-    padding: 10px 0;
-    margin-left: 0;
-  }
+.archives .archive-article{
+  padding: 10px 0;
+  margin-left: 0;
 }
 
 #footer {
