@@ -45,15 +45,15 @@ body.night {
   // 左侧栏
   .left-col {
     background: $articleBg_night;
-    .overlay {
-      background: none;
-    }
-    .profilepic { // 头像
-      filter: brightness(30%);
-    }
   }
-  // 看板娘
-  .waifu {
+  #mobile-nav {
+    background: none;
+  }
+  .overlay {
+    background: none;
+  }
+  // 头像 看板娘
+  .profilepic, .waifu {
     filter: brightness(30%);
   }
   // 评论
