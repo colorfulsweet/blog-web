@@ -1,0 +1,21 @@
+/*
+* 照片墙页面专用css
+*/
+// 瀑布流最外层
+#photo-wall {
+  margin: 0 auto;
+  column-count: auto;
+  column-width: 240px;
+  column-gap: 20px;
+  // 每一列图片包含层
+  .item {
+    margin-bottom: 20px;
+    // 防止多列布局，分页媒体和多区域上下文中的意外中断
+    break-inside: avoid;
+  }
+  // 图片
+  .item-img {
+    width: 100%;
+    vertical-align: middle;
+  }
+}

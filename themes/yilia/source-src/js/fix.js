@@ -8,21 +8,11 @@ function init() {
 		$nav.innerHTML = $nav.innerHTML + '<a class="extend next disabled" rel="next">Next &raquo;</a>'
 	}
 
-	// 新窗口打开
-	if (yiliaConfig && yiliaConfig.open_in_new) {
-		let $a = document.querySelectorAll(('.article-entry a:not(.article-more-a)'))
-		$a.forEach(($em) => {
-			let target = $em.getAttribute('target');
-			if (!target || target === '') {
-				$em.setAttribute('target', '_blank');
-			}
-		})
-	}
 	// 目录序号
 	if (yiliaConfig && yiliaConfig.toc_hide_index) {
-		let $a = document.querySelectorAll(('.toc-number'))
+		let $a = document.querySelectorAll('.toc-number')
 		Array.prototype.forEach.call($a, function($em){
-			$em.style.display = 'none';
+			$em.style.display = 'none'
 		})
 	}
 }

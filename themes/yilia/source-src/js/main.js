@@ -16,6 +16,11 @@ Util.addLoadEvent(function() {
 })
 const commentConfig = require("../config/comment.json")
 if(window.yiliaConfig.isPost && commentConfig.valine.enable) {
-  // 如果是文章详情页面, 并且启用了评论, 则加载评论相关代码
+  // 文章详情页面, 并且启用了评论, 则加载评论相关代码
   import(/* webpackChunkName: "comment" */ './comment')
+}
+
+if(window.yiliaConfig.pageid === 'PhotoWall') {
+  // 自定义的照片墙页面
+  import(/* webpackChunkName: "photo-wall" */ './photo-wall')
 }

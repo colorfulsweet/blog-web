@@ -11,7 +11,7 @@ title: Silence
 subtitle: 世上有条唯一的路，除了你无人能走
 description:
 keywords:
-author: 柠烟夏季
+author: 夏夜梦星辰
 language: zh-CN
 timezone:
 
@@ -82,14 +82,14 @@ theme: yilia
 # 图片存储仓库地址
 picture_cdn: https://blog-cdn.nos-eastchina1.126.net
 
-### 站点地图
+# 站点地图
 sitemap:
   path: sitemap.xml
   template: ./sitemap_template.xml
 baidusitemap:
   path: baidusitemap.xml
 
-
+# 内容索引json
 jsonContent:
   meta: false
   pages: false

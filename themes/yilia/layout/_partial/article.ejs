@@ -13,13 +13,14 @@
       <% if (post.excerpt && index){ %>
         <%- post.excerpt %>
       <% } else { %>
+        <% if (!page.pageid){ %>
         <div class="post-count">
           <div class="count-item">总字数 <span><%= wordcount(post.content) %></span></div> | 
           <div class="count-item">预计阅读时间 <span><%= min2read(post.content) %></span> 分钟</div>
         </div>
+        <% } %>
         <%- post.content %>
       <% } %>
-
       <% if ((theme.reward_type === 2 || (theme.reward_type === 1 && post.reward)) && !index){ %>
         <div class="page-reward">
           <a href="javascript:;" class="page-reward-btn tooltip-top">

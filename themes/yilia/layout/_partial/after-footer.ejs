@@ -1,14 +1,13 @@
 <script>
 window.yiliaConfig = {
-	isHome: <%=is_home()%>,
-	isPost: <%=is_post()%>,
-	isArchive: <%=is_archive()%>,
-	isTag: <%=is_tag()%>,
-	isCategory: <%=is_category()%>,
-	open_in_new: <%=theme.open_in_new%>,
-	toc_hide_index: <%=theme.toc_hide_index%>,
-	root: "<%=config.root%>",
-	showTags: <%=(theme.slider && theme.slider.showTags) ? true : false%>
+  isHome: <%=is_home()%>, // 是否为首页
+  isPost: <%=is_post()%>, // 是否为文章全文页面
+  isArchive: <%=is_archive()%>, // 是否为归档页面
+  isTag: <%=is_tag()%>, // 是否为标签页面
+  isCategory: <%=is_category()%>, // 是否为分类页面
+  pageid: <%-page.pageid ? `"${page.pageid}"` : 'undefined'%>, // 页面标识, 用于个性化页面开发
+  toc_hide_index: <%=theme.toc_hide_index%>, // 目录序号
+  root: "<%=config.root%>" // 资源根路径
 }
 </script>
 <%- partial('script') %>
@@ -18,13 +17,13 @@ window.yiliaConfig = {
 <script>
 (function(Gitalk){
 new Gitalk({
-	clientID: '<%=theme.gitalk.ClientID%>',
-	clientSecret: '<%=theme.gitalk.ClientSecret%>',
-	repo: '<%=theme.gitalk.repo%>',
-	owner: '<%=theme.gitalk.githubID%>',
-	admin: ['<%=theme.gitalk.adminUser%>'],
-	id: decodeURI(location.pathname),
-	distractionFreeMode: <%=theme.gitalk.distractionFreeMode%>
+  clientID: '<%=theme.gitalk.ClientID%>',
+  clientSecret: '<%=theme.gitalk.ClientSecret%>',
+  repo: '<%=theme.gitalk.repo%>',
+  owner: '<%=theme.gitalk.githubID%>',
+  admin: ['<%=theme.gitalk.adminUser%>'],
+  id: decodeURI(location.pathname),
+  distractionFreeMode: <%=theme.gitalk.distractionFreeMode%>
 }).render('comments')
 })(Gitalk)
 </script>

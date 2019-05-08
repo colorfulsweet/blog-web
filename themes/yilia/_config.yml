@@ -8,9 +8,9 @@ menu:
     name: jenkins
     url: /jenkins/
     target: _blank
-  laboratory: # 实验室
-    name: laboratory
-    url: /lab/
+  photo_wall: # 照片墙
+    name: photo_wall
+    url: /photo_wall/
 
 # SubNav
 subnav:
@@ -34,9 +34,6 @@ subnav:
 rss: /atom.xml
 
 # Content
-
-# 是否在新窗口打开链接
-open_in_new: false
 
 # 打赏
 # 打赏type设定：0-关闭打赏； 1-文章对应的md文件里有reward:true属性，才有打赏； 2-所有文章均有打赏
