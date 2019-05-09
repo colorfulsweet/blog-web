@@ -5,5 +5,5 @@ hexo.extend.filter.register('before_post_render', function(data){
     data.content = data.content.replace(/\]\s*\((?=(?!http).*?\))/gi, 
       `](${hexo.config.picture_cdn}`)
   }
-  return data;
-});
+  return data
+})

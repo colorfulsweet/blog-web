@@ -86,7 +86,7 @@ new Vue({
   },
   filters: {
     urlformat: (str) => {
-      return (window.themeConfig && window.themeConfig.root) ? window.themeConfig.root + str : '/' + str;
+      return (window.themeConfig && window.themeConfig.root) ? window.themeConfig.root + str : '/' + str
     }
   },
   watch: {
@@ -186,7 +186,7 @@ const waifuTools = {
     // 隐藏看板娘
     setTimeout(function() {
       document.querySelector('.waifu').style.display = 'none'
-    }, 1300);
+    }, 1300)
   },
   "tools.eye"() {
     // 切换到夜间模式

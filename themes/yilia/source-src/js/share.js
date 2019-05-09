@@ -4,9 +4,9 @@ function generate(url, opts) {
   var url = url.replace(/<%-sUrl%>/g, encodeURIComponent(opts.sUrl))
     .replace(/<%-sTitle%>/g, opts.sTitle)
     .replace(/<%-sDesc%>/g, opts.sDesc)
-    .replace(/<%-sPic%>/g, encodeURIComponent(opts.sPic));
+    .replace(/<%-sPic%>/g, encodeURIComponent(opts.sPic))
 
-  window.open(url);
+  window.open(url)
 }
 
 var qrcodeInit = false
@@ -47,18 +47,18 @@ function handleClick(type, opts) {
   } else if (type === 'google') {
     generate('https://plus.google.com/share?url=<%-sUrl%>', opts)
   } else if (type === 'weixin') {
-    showWX();
+    showWX()
   }
 }
 
 let init = function() {
-  let $sns = document.querySelectorAll('.share-sns');
-  if (!$sns || $sns.length === 0) return;
+  let $sns = document.querySelectorAll('.share-sns')
+  if (!$sns || $sns.length === 0) return
 
-  let sUrl = window.location.href;
-  let sTitle = document.querySelector('title').innerHTML;
-  let $img = document.querySelectorAll('.article-entry img');
-  let sPic = $img.length ? document.querySelector('.article-entry img').getAttribute('src') : '';
+  let sUrl = window.location.href
+  let sTitle = document.querySelector('title').innerHTML
+  let $img = document.querySelectorAll('.article-entry img')
+  let sPic = $img.length ? document.querySelector('.article-entry img').getAttribute('src') : ''
   if ((sPic !== '') && !/^(http:|https:)?\/\//.test(sPic)) {
     sPic = window.location.origin + sPic
   }

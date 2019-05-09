@@ -21,22 +21,22 @@ function tabActive() {
 }
 
 function getElementLeft(element) {　　　　
-	var actualLeft = element.offsetLeft;　　　　
-	var current = element.offsetParent;　　　　
+	var actualLeft = element.offsetLeft　　　　
+	var current = element.offsetParent　　　　
 	while (current !== null) {　　　　　　
-		actualLeft += current.offsetLeft;　　　　
-		current = current.offsetParent;　　
+		actualLeft += current.offsetLeft　　　　
+		current = current.offsetParent　　
 	}　　
-	return actualLeft;
+	return actualLeft
 }　　
 function getElementTop(element) {　　　　
-	var actualTop = element.offsetTop;　　　　
-	var current = element.offsetParent;　　　　
+	var actualTop = element.offsetTop　　　　
+	var current = element.offsetParent　　　　
 	while (current !== null) {　　　　　　
-		actualTop += current.offsetTop;　　　　　　
-		current = current.offsetParent;　　　　
+		actualTop += current.offsetTop　　　　　　
+		current = current.offsetParent　　　　
 	}　　　　
-	return actualTop;　　
+	return actualTop　　
 }
 
 function scrollStop($dom, top, limit, zIndex, diff) {

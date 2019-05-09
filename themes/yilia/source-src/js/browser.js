@@ -1,6 +1,6 @@
 export default  {
   versions: function() {
-    var u = window.navigator.userAgent;
+    var u = window.navigator.userAgent
     return {
       trident: u.indexOf('Trident') > -1, //IE内核
       presto: u.indexOf('Presto') > -1, //opera内核
@@ -13,6 +13,6 @@ export default  {
       iPad: u.indexOf('iPad') > -1, //是否为iPad
       webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
       weixin: u.indexOf('MicroMessenger') == -1 //是否为微信浏览器
-    };
+    }
   }()
 }

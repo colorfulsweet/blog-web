@@ -7,8 +7,8 @@ const isMobile = (Browser.versions.mobile && window.screen.width < 800)
  * 判断浏览器是否支持WebGL
  */
 function isSupportWebGL() {
-  var canvas = document.createElement("canvas");
-  var webGL = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+  var canvas = document.createElement("canvas")
+  var webGL = canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
   return webGL && webGL instanceof WebGLRenderingContext
 }
 

@@ -18,7 +18,7 @@ const Util = (function(){
     , a = /<br\s*\/?>/gi
     , i = /\r?\n/g
     , f = /\s/g
-    , p = {};
+    , p = {}
   for (var s in u)
     p[u[s]] = s;
   return u["&apos;"] = "'",
@@ -32,39 +32,39 @@ const Util = (function(){
     },
     encodeBase16: function(e) {
       if (!e)
-        return e;
-      e += "";
+        return e
+      e += ""
       for (var r = [], n = 0, t = e.length; t > n; n++)
-        r.push(e.charCodeAt(n).toString(16).toUpperCase());
+        r.push(e.charCodeAt(n).toString(16).toUpperCase())
       return r.join("")
     },
     encodeBase16forJSON: function(e) {
       if (!e)
-        return e;
+        return e
       e = e.replace(/[\u4E00-\u9FBF]/gi, function(e) {
         return escape(e).replace("%u", "\\u")
-      });
+      })
       for (var r = [], n = 0, t = e.length; t > n; n++)
-        r.push(e.charCodeAt(n).toString(16).toUpperCase());
+        r.push(e.charCodeAt(n).toString(16).toUpperCase())
       return r.join("")
     },
     decodeBase16: function(e) {
       if (!e)
-        return e;
-      e += "";
+        return e
+      e += ""
       for (var r = [], n = 0, t = e.length; t > n; n += 2)
-        r.push(String.fromCharCode("0x" + e.slice(n, n + 2)));
+        r.push(String.fromCharCode("0x" + e.slice(n, n + 2)))
       return r.join("")
     },
     encodeObject: function(r) {
       if (r instanceof Array)
         for (var n = 0, t = r.length; t > n; n++)
-          r[n] = e.encodeObject(r[n]);
+          r[n] = e.encodeObject(r[n])
       else if ("object" == typeof r)
         for (var o in r)
-          r[o] = e.encodeObject(r[o]);
+          r[o] = e.encodeObject(r[o])
       else if ("string" == typeof r)
-        return e.encode(r);
+        return e.encode(r)
       return r
     },
     loadScript: function(path) {
@@ -73,17 +73,17 @@ const Util = (function(){
       $script.setAttribute('src', path)
     },
     addLoadEvent: function(func){
-      var oldonload = window.onload;
+      var oldonload = window.onload
       if (typeof window.onload !== "function") {
-        window.onload = func;
+        window.onload = func
       } else {
         window.onload = function() {
-          oldonload();
-          func();
+          oldonload()
+          func()
         }
       }
     }
   }
-})();
+})()
 
 export default Util
