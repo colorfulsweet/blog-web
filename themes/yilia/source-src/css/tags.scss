@@ -103,7 +103,7 @@
 
 .archive-article-date {
   color: $color9;
-  margin-right: 7.6923%;
+  margin-right: $articlePadding;
   float: right;
   transition: color 0.3s;
   &:hover {

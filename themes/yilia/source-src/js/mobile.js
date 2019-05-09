@@ -1,6 +1,3 @@
-import addClass from 'dom101/add-class'
-import removeClass from 'dom101/remove-class'
-import after from 'dom101/after'
 // 浏览器判断
 import Browser from './browser'
 // fix hexo 不支持的配置
@@ -14,11 +11,11 @@ function isPathMatch(path, href) {
 }
 
 function tabActive() {
-	let $tabs = document.querySelectorAll('.js-header-menu li a')
+	let tabs = document.querySelectorAll('.js-header-menu li a')
 	let path = window.location.pathname
-	Array.prototype.forEach.call($tabs, function($tab, i){
-		if (isPathMatch(path, $tab.getAttribute('href'))) {
-			addClass($tab, 'active')
+	Array.prototype.forEach.call(tabs, function(tab, i){
+		if (isPathMatch(path, tab.getAttribute('href'))) {
+      tab.classList.add('active')
 		}
 	})
 }
@@ -49,8 +46,13 @@ function scrollStop($dom, top, limit, zIndex, diff) {
 	if (nowTop - limit <= diff) {
 		let $newDom = $dom.$newDom
 		if (!$newDom) {
-			$newDom = $dom.cloneNode(true)
-			after($dom, $newDom)
+      $newDom = $dom.cloneNode(true)
+      let parentNode = $dom.parentNode
+      if(parentNode.lastChild == $dom){ // 将新生成的节点插入到当前节点之后
+        parentNode.appendChild($newDom)
+      }else{
+        parentNode.insertBefore($newDom, $dom.nextSibling)
+      }
 			$dom.$newDom = $newDom
 			$newDom.style.position = 'fixed'
 			$newDom.style.top = (limit || nowTop) + 'px'
@@ -88,14 +90,12 @@ function bindScroll() {
 	handleScroll()
 }
 
-function init() {
+(function () {
 	if (Browser.versions.mobile && window.screen.width < 800) {
 		tabActive()
 		bindScroll()
 	}
-}
-
-init();
+})()
 
 Util.addLoadEvent(function() {
 	Fix.init()

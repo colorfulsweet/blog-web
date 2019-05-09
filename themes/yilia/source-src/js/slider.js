@@ -86,7 +86,7 @@ new Vue({
   },
   filters: {
     urlformat: (str) => {
-      return (window.yiliaConfig && window.yiliaConfig.root) ? window.yiliaConfig.root + str : '/' + str;
+      return (window.themeConfig && window.themeConfig.root) ? window.themeConfig.root + str : '/' + str;
     }
   },
   watch: {
@@ -101,7 +101,7 @@ new Vue({
     }
   },
   mounted () {
-    axios.get(window.yiliaConfig.root + 'content.json?t=' + (+ new Date()))
+    axios.get(window.themeConfig.root + 'content.json?t=' + (+ new Date()))
     .then((res)=>{
       this.items = res.data
     }).catch((err) => {

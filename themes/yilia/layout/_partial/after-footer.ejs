@@ -1,5 +1,5 @@
 <script>
-window.yiliaConfig = {
+window.themeConfig = {
   isHome: <%=is_home()%>, // 是否为首页
   isPost: <%=is_post()%>, // 是否为文章全文页面
   isArchive: <%=is_archive()%>, // 是否为归档页面
@@ -7,7 +7,8 @@ window.yiliaConfig = {
   isCategory: <%=is_category()%>, // 是否为分类页面
   pageid: <%-page.pageid ? `"${page.pageid}"` : 'undefined'%>, // 页面标识, 用于个性化页面开发
   toc_hide_index: <%=theme.toc_hide_index%>, // 目录序号
-  root: "<%=config.root%>" // 资源根路径
+  root: "<%=config.root%>", // 资源根路径
+  pictureCdn: "<%=config.picture_cdn%>" // 图片存储仓库地址
 }
 </script>
 <%- partial('script') %>

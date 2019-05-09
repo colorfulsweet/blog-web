@@ -9,7 +9,7 @@ function init() {
 	}
 
 	// 目录序号
-	if (yiliaConfig && yiliaConfig.toc_hide_index) {
+	if (window.themeConfig && window.themeConfig.toc_hide_index) {
 		let $a = document.querySelectorAll('.toc-number')
 		Array.prototype.forEach.call($a, function($em){
 			$em.style.display = 'none'

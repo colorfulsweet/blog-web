@@ -36,6 +36,6 @@ function init() {
 }
 
 // export default { init }
-if(!window.yiliaConfig.pageid) { // 非个性化页面的普通文章
+if(!window.themeConfig.pageid) { // 非个性化页面的普通文章
   Util.addLoadEvent(init)
 }

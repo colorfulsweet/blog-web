@@ -44,12 +44,8 @@ html, body, #container {
       padding: 5px 20px;
     }
   }
-  &.show {
-    .header-menu{
-      &.tools-nav {
-        display: block;
-      }
-    }
+  &.show .header-menu.tools-nav{
+    display: block;
   }
 }
 
@@ -159,7 +155,7 @@ html, body, #container {
     width: auto;
     height: 30px;
     margin-top: -5px;
-    position: ralative;
+    position: relative;
     .article-date{
       font-size: 12px;
       border-radius: 0;
@@ -257,9 +253,9 @@ html, body, #container {
   padding: 10px;
   .archive-year-wrap{
     position: relative;
-    padding: 0 0 0 0;
+    padding: 0;
     a{
-      padding: 0 0 0 0;
+      padding: 0;
     }
   }
   .article-meta{

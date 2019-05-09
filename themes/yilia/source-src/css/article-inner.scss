@@ -48,8 +48,8 @@
 
 .article-entry{
   line-height: 1.8em;
-  padding-right: 7.6923%;
-  padding-left: 7.6923%;
+  padding-right: $articlePadding;
+  padding-left: $articlePadding;
   .post-count { // 字数统计
     color: rgb(185, 185, 185);
     font-size: 14px;
@@ -61,7 +61,7 @@
     }
   }
   img {
-    transition: transform 0.2s ease-out,box-shadow 0.5s ease;
+    transition: transform 0.3s ease-out,box-shadow 0.4s ease;
     cursor: zoom-in;
     &:hover {
       transform: scale(1.05,1.05);
