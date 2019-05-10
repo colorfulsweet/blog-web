@@ -29,6 +29,7 @@
 
 .article-entry .highlight {
   border-radius: 4px;
+  background-color: #2a2a2a;
   pre {
     border: none;
     margin: 0;
@@ -50,7 +51,7 @@
       }
     }
     &.code {
-      background-color: #363636;
+      background-color: #2a2a2a;
       padding: 10px;
     }
   }
@@ -122,7 +123,7 @@
   text-decoration: underline;
 }
 pre .comment {
-  color: #75715e;
+  color: #368022;
 }
 pre .keyword,
 pre .function .keyword,
