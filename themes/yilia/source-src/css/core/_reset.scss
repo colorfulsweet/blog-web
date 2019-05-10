@@ -158,19 +158,19 @@ svg:not(:root) {
 
 // 1. Contain overflow in all browsers.
 // 2. Improve readability of pre-formatted text in all browsers.
-pre {
-  overflow: auto; // 1
-  white-space: pre; // 2
-  white-space: pre-wrap; // 2
-  word-wrap: break-word; // 2
-}
+// pre {
+//   overflow: auto; // 1
+//   white-space: pre; // 2
+//   white-space: pre-wrap; // 2
+//   word-wrap: break-word; // 2
+// }
 
 // 1. Address odd `em`-unit font size rendering in all browsers.
 code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace; // 1
+  font-family: monospace; // 1
   font-size: 1em; // 2
 }
 

@@ -1,10 +1,12 @@
 .DS_Store
 Thumbs.db
 db.json
+package-lock.json
 *.log
 node_modules/
 public/
 .deploy*/
+
 # 主题构建生成的目标文件
 themes/yilia/source/css/
 themes/yilia/source/js/
