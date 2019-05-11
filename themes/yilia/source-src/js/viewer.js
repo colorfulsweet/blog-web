@@ -7,7 +7,13 @@ import Util from './util'
 
 function init() {
 	let pswpElement = document.querySelectorAll('.pswp')[0]
-	let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+  let $imgArr = document.querySelectorAll('.article-entry img:not(.reward-img)')
+  let getThumbBoundsFn = function(index) {
+    var thumbnail = document.querySelectorAll('.article-entry img:not(.reward-img)')[index]
+    var pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+    var rect = thumbnail.getBoundingClientRect()
+    return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
+  }
 	Array.prototype.forEach.call($imgArr, ($em, i) => {
 		$em.addEventListener('click', function(){
 			// slider展开状态
@@ -20,15 +26,17 @@ function init() {
 				const image = new Image()
 				image.src = src
 				items.push({
-					src: src,
+          msrc: src, // 缩略图的地址(在动画过程中显示的是缩略图, 这里暂且用相同的地址了)
+					src,
 					w: image.width || $em2.width,
 					h: image.height || $em2.height,
-					title: title
+					title
 				})
 			})
 			var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
 				index: parseInt(i),
-				bgOpacity: 0.8
+        bgOpacity: 0.8,
+        getThumbBoundsFn
 			})
 			gallery.init()
 		})
