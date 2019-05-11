@@ -4,6 +4,14 @@ const gulp = require('gulp'),
   plumber = require('gulp-plumber'),  //容错组件（发生错误不跳出任务，并报出错误内容）
   Hexo = require('hexo')
 
+// 程序执行的传参
+const argv = require('optimist')
+  .demand(['accessKey', 'accessSecret', 'deployPath'])
+  .describe('accessKey', '网易云对象存储key')
+  .describe('accessSecret', '网易云对象存储secret')
+  .describe('deployPath', '静态化后发布的目录')
+  .argv
+
 const hexo = new Hexo(process.cwd(), {})
 
 // 创建静态页面 （等同 hexo generate）
@@ -45,16 +53,10 @@ gulp.task('compressHtml', () => {
 
 // 同步图片到对象存储仓库
 gulp.task('syncImages', () => {
-  // 程序执行的传参
-  var argv = require('optimist')
-    .usage('$0 --accessKey [string] --accessSecret [string]')
-    .demand(['accessKey', 'accessSecret'])
-    .argv
-  
-  const listImages = require('./image_sync/list_images')
+  const listImages = require('./deploy_utils/list_images')
   // 当前本地存在的所有图片
   const imagesList = listImages(`${process.cwd()}/source/`, 'images/')
-  const ImageSynchronizer = require('./image_sync/image_synchronize')
+  const ImageSynchronizer = require('./deploy_utils/image_synchronize')
   const nosSetting = {
     defaultBucket: 'blog-cdn',
     endpoint: 'http://nos-eastchina1.126.net',
@@ -65,7 +67,12 @@ gulp.task('syncImages', () => {
   return imageSynchronizer.synchronize('images/')
 })
 
+gulp.task('deploy', () => {
+  const deploy = require('./deploy_utils/deploy')
+  return deploy.exec('./public', argv.deployPath, false)
+})
+
 // 默认任务
 gulp.task('default', 
-	gulp.series('generate', 'compressHtml', 'syncImages') // 串行执行任务
+	gulp.series('generate', 'compressHtml', 'syncImages', 'deploy') // 串行执行任务
 )

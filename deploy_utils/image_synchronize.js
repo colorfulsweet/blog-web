@@ -32,43 +32,44 @@ class ImageSynchronizer {
    * @param {Function} uploadCallback 处理待上传文件的回调函数
    * @param {Function} deleteCallback 处理待删除文件的回调函数
    */
-  _queryObjects(params, uploadCallback, deleteCallback) {
+  async _queryObjects(params, uploadCallback, deleteCallback) {
     // 列出所有已存储的对象
-    return this.client.listObject(params).then(ret => {
-      // ret 包括 items(元素)，limit(请求的数量)，nextMarker(下一个标记)
-      let storageItems = ret.items.filter((item) => {
-        return /^images.+?\.(png|jpe?g|gif)$/.test(item.key)
-      }).sort((item1, item2) => {
-        if(item1.key > item2.key) {
-          return 1
-        } else if(item1.key < item2.key) {
-          return -1
-        }
-        return 0
-      })
-      // 待上传的文件列表
-      let pendingUploadFiles = this.imagesList.filter(item => {
-        let index = this._binarySearch(storageItems, item.name, 'key', 0, storageItems.length-1)
-        if(index === -1) {
-          // 文件名不存在, 代表是新文件
-          item.type = 'new'
-          return true
-        } else if(storageItems[index].eTag !== item.md5) {
-          // 文件名存在, 但是hash值不同, 代表有变化
-          item.type = 'change'
-          return true
-        }
-        return false
-      })
-      // 处理待上传的文件
-      uploadCallback.call(this, pendingUploadFiles)
-      // 待删除的文件列表( 仓库中存在, 本地不存在 )
-      let pendingDeleteFiles = storageItems.filter(item => {
-        return this._binarySearch(this.imagesList, item.key, 'name', 0, this.imagesList.length-1) === -1
-      })
-      // 处理待删除的文件
-      deleteCallback.call(this, pendingDeleteFiles.map(item => item.key))
+    const ret = await this.client.listObject(params)
+    // ret 包括 items(元素)，limit(请求的数量)，nextMarker(下一个标记)
+    let storageItems = ret.items.filter(item => {
+      return /^images.+?\.(png|jpe?g|gif)$/.test(item.key)
+    }).sort((item1, item2) => {
+      if (item1.key > item2.key) {
+        return 1
+      }
+      else if (item1.key < item2.key) {
+        return -1
+      }
+      return 0
+    });
+    // 待上传的文件列表
+    let pendingUploadFiles = this.imagesList.filter(item => {
+      let index = this._binarySearch(storageItems, item.name, 'key', 0, storageItems.length - 1)
+      if (index === -1) {
+        // 文件名不存在, 代表是新文件
+        item.type = 'new'
+        return true
+      }
+      else if (storageItems[index].eTag !== item.md5) {
+        // 文件名存在, 但是hash值不同, 代表有变化
+        item.type = 'change'
+        return true
+      }
+      return false
+    });
+    // 处理待上传的文件
+    uploadCallback.call(this, pendingUploadFiles);
+    // 待删除的文件列表( 仓库中存在, 本地不存在 )
+    let pendingDeleteFiles = storageItems.filter(item => {
+      return this._binarySearch(this.imagesList, item.key, 'name', 0, this.imagesList.length - 1) === -1;
     })
+    // 处理待删除的文件
+    deleteCallback.call(this, pendingDeleteFiles.map(item => item.key))
   }
   /**
    * 上传文件对象
