@@ -1,7 +1,7 @@
 var backTop = function (domE, ctn, distance) {
   if (!domE) return;
   var timer = null;
-  var _onscroll = window.onscroll,
+  var _onscroll = (ctn || window).onscroll,
     _onclick = domE.onclick;
   (ctn || window).onscroll = throttle(function () {
     typeof _onscroll === 'function' && _onscroll.apply(this, arguments);
@@ -9,7 +9,6 @@ var backTop = function (domE, ctn, distance) {
   }, 100);
   domE.onclick = function () {
     typeof _onclick === 'function' && _onclick.apply(this, arguments);
-    var baseCt = ctn.scrollTop || document.documentElement.scrollTop || document.body.scrollTop;
     timer = setInterval(function () { //设置一个计时器
       var ct = ctn.scrollTop || document.documentElement.scrollTop || document.body.scrollTop; //获取距离顶部的距离
       var diff = Math.max(10, ct / 6);

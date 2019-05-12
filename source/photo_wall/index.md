@@ -4,4 +4,4 @@ date: 2018-5-24 10:05:28
 pageid: PhotoWall
 ---
 
-<div id="photo-wall"></div>
+<div id="photo-wall"></div><div id="load-top">正在加载ԅ( ¯་། ¯ԅ)</div>

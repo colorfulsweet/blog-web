@@ -9,7 +9,7 @@ window.AV = require('leancloud-storage')
 // 评论配置
 const commentConfig = require("../config/comment.json")
 
-import(/* webpackChunkName: "valine" */ '../lib/Valine.min').then(({ default: Valine }) => {
+import(/* webpackChunkName: "valine" */ '../lib/Valine.min').then((: Valine }) => {
   commentConfig.valine.config.path = window.location.pathname
   // commentConfig.valine.config.av = AV
   new Valine(commentConfig.valine.config)

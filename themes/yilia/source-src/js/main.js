@@ -12,15 +12,17 @@ import Util from './util'
 Util.addLoadEvent(function() {
 	Share.init()
 	// Viewer.init()
-	Aside.init()
+  Aside.init()
+  if(window.themeConfig.pageid === 'PhotoWall') {
+    // 自定义的照片墙页面
+    import(/* webpackChunkName: "photo-wall" */ './photo-wall').then(PhotoWall => {
+      // PhotoWall.default.init()
+    })
+  }
 })
+
 const commentConfig = require("../config/comment.json")
 if(window.themeConfig.isPost && commentConfig.valine.enable) {
   // 文章详情页面, 并且启用了评论, 则加载评论相关代码
   import(/* webpackChunkName: "comment" */ './comment')
-}
-
-if(window.themeConfig.pageid === 'PhotoWall') {
-  // 自定义的照片墙页面
-  import(/* webpackChunkName: "photo-wall" */ './photo-wall')
 }
