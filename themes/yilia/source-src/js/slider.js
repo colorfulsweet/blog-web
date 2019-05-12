@@ -24,7 +24,6 @@ new Vue({
     innerArchive: false,
     friends: false,
     aboutme: false,
-    jsonFail: false,
     showTags: false,
     showCategories: false,
     search: null,
@@ -105,7 +104,7 @@ new Vue({
     .then((res)=>{
       this.items = res.data
     }).catch((err) => {
-      this.jsonFail = true
+      console.warn('加载文章列表失败')
     })
     this.showMessage(welcomeMessage(), 6000)
     document.addEventListener('copy', () => {

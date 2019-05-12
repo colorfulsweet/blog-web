@@ -7,36 +7,36 @@ import Util from './util'
 
 function init() {
 	let pswpElement = document.querySelectorAll('.pswp')[0]
-  let $imgArr = document.querySelectorAll('.article-entry img:not(.reward-img)')
-  let getThumbBoundsFn = function(index) {
-    var thumbnail = document.querySelectorAll('.article-entry img:not(.reward-img)')[index]
-    var pageYScroll = window.pageYOffset || document.documentElement.scrollTop
-    var rect = thumbnail.getBoundingClientRect()
-    return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
+  let imgArr = document.querySelectorAll('.article-entry img:not(.reward-img)')
+  let getThumbBoundsFn = function(target) {
+    return function(index) { // index是当前点击的图片在相册中的索引值
+      var pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+      var rect = target.getBoundingClientRect()
+      return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
+    }
   }
-	Array.prototype.forEach.call($imgArr, ($em, i) => {
-		$em.addEventListener('click', function(){
+  const items = Array.prototype.map.call(imgArr, em => {
+    let src = em.getAttribute('data-target') || em.getAttribute('src')
+    let title = em.getAttribute('alt')
+    // 获得原图尺寸
+    const image = new Image()
+    image.src = src
+    return {
+      msrc: src, // 缩略图的地址(在动画过程中显示的是缩略图, 这里暂且用相同的地址了)
+      src,
+      w: image.width || em.width,
+      h: image.height || em.height,
+      title
+    }
+  })
+	Array.prototype.forEach.call(imgArr, (em, index) => {
+		em.addEventListener('click', function(e){
 			// slider展开状态
 			if (document.querySelector('.left-col.show')) return
-			let items = []
-			Array.prototype.forEach.call($imgArr, ($em2, i2) => {
-				let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
-				let title = $em2.getAttribute('alt')
-				// 获得原图尺寸
-				const image = new Image()
-				image.src = src
-				items.push({
-          msrc: src, // 缩略图的地址(在动画过程中显示的是缩略图, 这里暂且用相同的地址了)
-					src,
-					w: image.width || $em2.width,
-					h: image.height || $em2.height,
-					title
-				})
-			})
 			var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-				index: parseInt(i),
+				index,
         bgOpacity: 0.8,
-        getThumbBoundsFn
+        getThumbBoundsFn: getThumbBoundsFn(e.target)
 			})
 			gallery.init()
 		})
