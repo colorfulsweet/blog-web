@@ -7,7 +7,7 @@ const scrollDom = document.getElementById('container')
 // 作为底部标记的DOM
 const markDom = document.getElementById('footer')
 // 加载提示文字
-const loadTip = document.getElementById('load-top')
+const loadTip = document.getElementById('load-tip')
 
 function loadMoreItems(step) {
   scrollLock = true //加载过程中锁定滚动加载
