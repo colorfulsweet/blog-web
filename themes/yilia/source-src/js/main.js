@@ -16,7 +16,7 @@ Util.addLoadEvent(function() {
   if(window.themeConfig.pageid === 'PhotoWall') {
     // 自定义的照片墙页面
     import(/* webpackChunkName: "photo-wall" */ './photo-wall').then(PhotoWall => {
-      // PhotoWall.default.init()
+      PhotoWall.default.init()
     })
   }
 })
