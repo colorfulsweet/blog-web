@@ -30,10 +30,11 @@ function loadMoreItems(step) {
     } else {
       currentIndex = index
     }
+    itemContainer.classList.add('item-container')
     itemContainer.insertAdjacentHTML('beforeend', imgItems)
     document.getElementById('photo-wall').appendChild(itemContainer)
-    loadTip.style.display = 'none'
     setTimeout(()=>{
+      loadTip.style.display = 'none'
       scrollLock = false
     }, 2000)
   }).catch(res => { // 未加载到文件列表, 代表已经没有更多图片
@@ -55,6 +56,7 @@ function init() {
   var _onscroll = scrollDom.onscroll
   var timer = null
   scrollDom.onscroll = function () {
+    // 保留已有的滚动事件回调函数并在新的回调函数中进行调用
     typeof _onscroll === 'function' && _onscroll.apply(this, arguments)
     if(scrollLock) return
     if(timer) clearTimeout(timer)
