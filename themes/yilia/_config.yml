@@ -4,10 +4,10 @@ menu:
   home: # 主页
     name: home
     url: / 
-  netdisc: # jenkins
-    name: jenkins
-    url: /jenkins/
-    target: _blank
+  archives: # 归档
+    name: archives
+    url: /archives/
+    # target: _blank
   photo_wall: # 照片墙
     name: photo_wall
     url: /photo_wall/
@@ -102,15 +102,14 @@ valine:
 #  friends: false
 smart_menu:
   innerArchive: all_articles
-  friends: false #friends_link
+  friends: friends_link
   aboutme: about_me
 
 friends: 
-  友情链接1: http://localhost:6603/
-  友情链接2: http://localhost:6603/
-  友情链接3: http://localhost:6603/
-  友情链接4: http://localhost:6603/
-  友情链接5: http://localhost:6603/
-  友情链接6: http://localhost:6603/
+  十年饮冰，难凉热血: https://blog.colorfulsweet.site/
+  †少女癌†: https://co5.me/
+  猫与向日葵 : https://imjad.cn/
+  coderfun: https://www.gxg.red/
+  JENKINS: https://www.colorfulsweet.site/jenkins/
 
 aboutme: 愿你最终能接纳每一面每一种的自己<br>独自活着便是团圆

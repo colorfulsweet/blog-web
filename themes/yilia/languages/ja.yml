@@ -7,8 +7,6 @@ tags: タグ
 tag: タグ
 prev: 前のページ
 next: 次のページ
-archive_a: アーカイブ
-archive_b: アーカイブ：%s
 page: ページ %d
 recent_posts: 最新の記事
 newer: 新しい
@@ -18,6 +16,7 @@ show_full_text: 記事全体を見る
 home: ホーム
 informal_essay: エッセイ
 photo_wall: フォトウォール
-netdisc: ネットワークディスク
+archives: アーカイブ
 all_articles: すべての記事
+friends_link: フレンドリーリンク
 about_me: 私について

@@ -7,8 +7,6 @@ tags: Метки
 tag: Метка
 prev: Назад
 next: Вперед
-archive_a: Архив
-archive_b: "Архив: %s"
 page: Страница %d
 recent_posts: Недавние записи
 newer: Следующий
@@ -18,6 +16,7 @@ show_full_text: просмотреть полный текст
 home: дома
 informal_essay: эссе
 photo_wall: Фото стена
-netdisc: Сетевой диск
+archives: Архив
 all_articles: Все статьи
+friends_link: Дружеская ссылка
 about_me: Обо мне

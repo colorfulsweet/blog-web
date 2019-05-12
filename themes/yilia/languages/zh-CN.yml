@@ -7,8 +7,6 @@ tags: 标签
 tag: 标签
 prev: 上一页
 next: 下一页
-archive_a: 归档
-archive_b: 归档：%s
 page: 第 %d 页
 recent_posts: 最新文章
 newer: 新的
@@ -18,6 +16,7 @@ show_full_text: 查看全文
 home: 主页
 informal_essay: 随笔
 photo_wall: 照片墙
-netdisc: 网盘
+archives: 归档
 all_articles: 所有文章
+friends_link: 友情链接
 about_me: 关于我

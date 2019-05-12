@@ -7,8 +7,6 @@ tags: Mot-clés
 tag: Mot-clé
 prev: Précédent
 next: Suivant
-archive_a: Archives
-archive_b: "Archives: %s"
 page: Page %d
 recent_posts: Articles récents
 newer: Récent
@@ -18,6 +16,7 @@ show_full_text: Voir le texte intégral de la
 home: Homepage
 informal_essay: Essais
 photo_wall: Mur de photo
-netdisc: Disque réseau
+archives: Archives
 all_articles: Tous les articles
+friends_link: Lien amical
 about_me: À propos de moi
