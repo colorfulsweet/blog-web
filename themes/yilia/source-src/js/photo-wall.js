@@ -12,14 +12,23 @@ const loadTip = document.getElementById('load-tip')
 function loadMoreItems(step) {
   scrollLock = true //加载过程中锁定滚动加载
   loadTip.style.display = 'block'
+  var photoWallWrapper = document.getElementById('photo-wall')
   // 滚动到底部时调用
   axios.get(`${themeConfig.pictureCdn}/photo-wall/${groupid}/list.json`).then(res => {
     var itemContainer = document.createElement('div')
     var imgItems = '', index = currentIndex
-    for( ; index<currentIndex+step && index<res.data.files.length ; index++) {
-      imgItems += `<div class="item">
+    while(index<currentIndex+step && index<res.data.files.length) {
+      let imgHeight = null
+      if(res.data.files[index].width && res.data.files[index].height) {
+        let wrapperWidth = photoWallWrapper.getBoundingClientRect().width
+        // 列宽240px 列间距20px, 计算每列宽度
+        let columnWidth = (wrapperWidth + 20) / Math.floor((wrapperWidth + 20) / (240 + 20)) - 20
+        imgHeight = (columnWidth / res.data.files[index].width) * res.data.files[index].height
+      }
+      imgItems += `<div class="item" ${imgHeight ? 'style="height:' + imgHeight + 'px"' : ''}>
           <img class="item-img" src="${themeConfig.pictureCdn}/${res.data.files[index].name}" alt=""/>
       </div>`
+      index++
     }
     if(index >= res.data.files.length) { // 已到达当前分组列表的末尾
       groupid++
@@ -32,7 +41,7 @@ function loadMoreItems(step) {
     }
     itemContainer.classList.add('item-container')
     itemContainer.insertAdjacentHTML('beforeend', imgItems)
-    document.getElementById('photo-wall').appendChild(itemContainer)
+    photoWallWrapper.appendChild(itemContainer)
     setTimeout(()=>{
       loadTip.style.display = 'none'
       scrollLock = false
