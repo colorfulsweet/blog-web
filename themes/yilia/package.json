@@ -3,8 +3,8 @@
   "version": "5.1.0",
   "description": "Hexo响应式主题",
   "scripts": {
-    "dev": "webpack --watch",
-    "build": "webpack -p"
+    "dev": "webpack --watch --mode development",
+    "build": "webpack -p --mode production"
   },
   "repository": {
     "type": "git",
