@@ -34,7 +34,9 @@ function loadMoreItems(step) {
       groupid++
       if(index<currentIndex+step) { // 如果加载的数据数量不足步长
         // 则需要再加载下一个分组, 下一个分组需要加载的图片数量是剩余的步长
-        loadMoreItems(currentIndex + step - index) 
+        let tempIndex = currentIndex
+        currentIndex = 0
+        loadMoreItems(tempIndex + step - index) 
       }
     } else {
       currentIndex = index
