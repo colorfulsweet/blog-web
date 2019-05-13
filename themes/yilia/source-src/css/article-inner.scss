@@ -21,22 +21,16 @@
     font-size: 23px;
     font-size: 1.4375rem;
     line-height: 1.2173913043;
-    margin-top: 2.4347826087em;
-    margin-bottom: 1.2173913043em;
   }
   h3 {
     font-size: 19px;
     font-size: 1.1875rem;
     line-height: 1.1052631579;
-    margin-top: 2.9473684211em;
-    margin-bottom: 1.4736842105em;
   }
   h4,h5,h6{
     font-size: 16px;
     font-size: 1rem;
     line-height: 1.3125;
-    margin-top: 3.5em;
-    margin-bottom: 1.75em;
   }
   h6 {
     font-style: italic;
@@ -66,7 +60,7 @@
     }
   }
   p{
-    margin-top: 10px;
+    margin-top: 1em;
   }
   p code,li code{
     padding: 3px 4px;
@@ -113,8 +107,7 @@
     }
   }
   ul,ol{
-    font-size: 14px;
-    margin: 10px 0px;  
+    margin-top: 1em;
   }
   li{
     ul,ol{
@@ -128,18 +121,12 @@
   h1{
     margin-top: 30px;
   }
-  h2{
+  h2,h3,h4,h5,h6{
     margin-top: 20px;
     font-weight: bold;
     color: #574C4C;
     padding-bottom: 5px;
-    border-bottom: 1px solid #ddd;
-  }
-  h3,h4,h5,h6{
-    margin-top: 20px;
-    font-weight: bold;
-    color: #574C4C;
-    padding-bottom: 5px;
+    padding-left: 20px;
     border-bottom: 1px solid #ddd;
   }
   video{
