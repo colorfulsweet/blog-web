@@ -60,7 +60,6 @@
   }
 }
 .article-entry .highlight figcaption {
-  color: highlight-comment;
   line-height: 1em;
   margin-bottom: 1em;
   &::after {
@@ -108,7 +107,6 @@
 }
 .article-entry .gist .gist-file .gist-meta {
   background: #272822;
-  color: highlight-comment;
   font: 0.85em "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-shadow: 0 0;
   padding: 0;
@@ -123,7 +121,7 @@
   text-decoration: underline;
 }
 pre .comment {
-  color: #368022;
+  color: #6A9955;
 }
 pre .keyword,
 pre .function .keyword,

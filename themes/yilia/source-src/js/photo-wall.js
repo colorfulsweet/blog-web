@@ -23,7 +23,9 @@ function loadMoreItems(step) {
         let wrapperWidth = photoWallWrapper.getBoundingClientRect().width
         // 列宽240px 列间距20px, 计算每列宽度
         let columnWidth = (wrapperWidth + 20) / Math.floor((wrapperWidth + 20) / (240 + 20)) - 20
+        // 图片的实际显示高度
         imgHeight = (columnWidth / res.data.files[index].width) * res.data.files[index].height
+        imgHeight = Math.round(imgHeight * 100) / 100 // 四舍五入保留2位小数
       }
       imgItems += `<div class="item" ${imgHeight ? 'style="height:' + imgHeight + 'px"' : ''}>
           <img class="item-img" src="${themeConfig.pictureCdn}/${res.data.files[index].name}" alt=""/>
