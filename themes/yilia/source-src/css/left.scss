@@ -3,7 +3,7 @@
 	width: 300px;
 	position:fixed;
 	opacity:1;
-	transition:all .2s ease-in;
+	@extend %trans;
 	height:100%;
 	z-index: 999;
 	&.show {
@@ -13,7 +13,8 @@
 		width: 100%;
 		height: 150px;
 		position: absolute;
-		background: #4d4d4d;
+    background: #4d4d4d;
+    @extend %trans;
 	}
 
 	.intrude-less {
@@ -93,7 +94,7 @@
 			position: relative;
 			overflow: hidden;
 			background: #88acdb;
-			-webkit-transition: all 0.2s ease-in;
+			@extend %trans;
 			display: -webkit-box;
 			-webkit-box-orient: horizontal;
 			-webkit-box-pack: center;
@@ -107,7 +108,7 @@
 				width: 100%;
 				height: 100%;
 				opacity: 1;
-				-webkit-transition: all 0.2s ease-in;
+				@extend %trans;
 				&.show{
 					width: 100%;
 					height: 100%;

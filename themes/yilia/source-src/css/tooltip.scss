@@ -16,14 +16,9 @@
 
   /* Trigger item */
 
-  @-webkit-keyframes pulse {
-    from { -webkit-transform: scale3d(0.5,0.5,1); }
-    to { -webkit-transform: scale3d(1,1,1); }
-  }
-
   @keyframes pulse {
-    from { -webkit-transform: scale3d(0.5,0.5,1); transform: scale3d(0.5,0.5,1); }
-    to { -webkit-transform: scale3d(1,1,1); transform: scale3d(1,1,1); }
+    from { transform: scale3d(0.5,0.5,1); }
+    to { transform: scale3d(1,1,1); }
   }
 
   /* Tooltip */
@@ -43,29 +38,23 @@
     cursor: default;
     pointer-events: none;
     -webkit-font-smoothing: antialiased;
-    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
     transition: opacity 0.3s, transform 0.3s;
   }
 
   .tooltip-west .tooltip-content {
     left: 3.5em;
-    -webkit-transform-origin: -2em 50%;
     transform-origin: -2em 50%;
-    -webkit-transform: translate3d(0,50%,0) rotate3d(1,1,1,30deg);
     transform: translate3d(0,50%,0) rotate3d(1,1,1,30deg);
   }
 
   .tooltip-east .tooltip-content {
     right: 3.5em;
-    -webkit-transform-origin: calc(100% + 2em) 50%;
     transform-origin: calc(100% + 2em) 50%;
-    -webkit-transform: translate3d(0,50%,0) rotate3d(1,1,1,-30deg);
     transform: translate3d(0,50%,0) rotate3d(1,1,1,-30deg);
   }
 
   .tooltip:hover .tooltip-content {
     opacity: 1;
-    -webkit-transform: translate3d(0,50%,0) rotate3d(0,0,0,0);
     transform: translate3d(0,50%,0) rotate3d(0,0,0,0);
     pointer-events: auto;
   }
@@ -103,7 +92,6 @@
   }
 
   .tooltip-east .tooltip-content::after {
-    -webkit-transform: scale3d(-1,1,1);
     transform: scale3d(-1,1,1);
   }  
 }
@@ -152,15 +140,13 @@
     pointer-events: none;
     font-family: 'Satisfy', cursive;
     -webkit-font-smoothing: antialiased;
-    -webkit-transition: opacity 0.3s 0.3s;
-    transition: opacity 0.3s 0.3s;
+    transition: opacity 0.3s ease-in;
     padding-bottom: 80px;
   }
 
   .tooltip:hover .tooltip-content {
     opacity: 1;
     pointer-events: auto;
-    -webkit-transition-delay: 0s;
     transition-delay: 0s;
   }
 
@@ -171,32 +157,24 @@
   .tooltip-text {
     border-bottom: 10px solid #4d4d4d;
     overflow: hidden;
-    -webkit-transform: scale3d(0,1,1);
     transform: scale3d(0,1,1);
-    -webkit-transition: -webkit-transform 0.3s 0.3s;
-    transition: transform 0.3s 0.3s;
+    transition: transform 0.3s ease-in;
   }
 
   .tooltip:hover .tooltip-text {
-    -webkit-transition-delay: 0s;
     transition-delay: 0s;
-    -webkit-transform: scale3d(1,1,1);
     transform: scale3d(1,1,1);
   }
 
   .tooltip-inner {
     background: rgba(36,193,246,0.9);
     padding: 40px;
-    -webkit-transform: translate3d(0,100%,0);
     transform: translate3d(0,100%,0);
-    -webkit-transition: -webkit-transform 0.3s;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease-in;
   }
 
   .tooltip:hover .tooltip-inner {
-    -webkit-transition-delay: 0.3s;
     transition-delay: 0.3s;
-    -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
 

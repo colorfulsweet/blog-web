@@ -213,19 +213,15 @@ label.bui-switch-label {
     }
   }
   &.bui-switch-animbg {
-    -webkit-transition: background-color ease $duration;
     transition: background-color ease $duration;
     .bui-switch:before {
-      -webkit-transition: left 0.3s;
       transition: left 0.3s;
     }
     input:checked + .bui-switch {
       box-shadow: #dfdfdf 0 0 0 0 inset;
       background-color: $checkedColor;
-      -webkit-transition: border-color $duration, background-color ease $duration;
       transition: border-color $duration, background-color ease $duration;
       &:before {
-        -webkit-transition: left 0.3s;
         transition: left 0.3s;
       }
     }

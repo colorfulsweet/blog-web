@@ -28,7 +28,8 @@ body.night {
       background: #2c2c2c;
     }
     h1,h2,h3,h4,h5,h6 { // 章节标题
-      color: #b8a7a7;
+      color: $colorC;
+      border-bottom-color: $borderColor_night;
     }
   }
   // 归档列表
@@ -52,15 +53,24 @@ body.night {
   .overlay {
     background: none;
   }
-  // 头像 看板娘
-  .profilepic, .waifu {
+  // 头像 看板娘 图标 -> 降低亮度滤镜
+  .profilepic, .waifu, #header .header-nav .social a {
     filter: brightness(30%);
   }
   // 评论
   #comments {
     background: none;
   }
+  // 文章信息栏
+  .article-info-index.article-info {
+    border-top-color: $borderColor_night;
+  }
   #footer {
     color: $textColor_night;
+  }
+  // 高亮关键字
+  .article-entry p code, .article-entry li code {
+    background: $mainBg_night;
+    color: #bf7676;
   }
 }

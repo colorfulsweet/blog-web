@@ -18,7 +18,6 @@
     vertical-align: middle;
     zoom: 1;
     margin: 10px;
-    -webkit-transition: 0.3s;
     transition: 0.3s;
     text-align: center;
     color: $colorF;
@@ -97,7 +96,6 @@
   opacity: 0;
   filter: alpha(opacity=0);
   pointer-events: none;
-  -webkit-transition: .3s ease-in-out;
   transition: .3s ease-in-out;
   &.in {
     visibility: visible;

@@ -645,8 +645,7 @@
   @if $colorBorder {
     border-color: nth($colorBorder, 1);
   }
-  &:hover,
-  &:active {
+  &:hover,&:active {
     @if length($colorText) == 2 {
       color: nth($colorText, 2);
     }
@@ -686,12 +685,10 @@
 
 %trans {
   transition: all 0.2s ease-in;
-  -ms-transition: all 0.2s ease-in;
 }
 
 %trans8 {
   transition: all 0.8s ease-in;
-  -ms-transition: all 0.8s ease-in;
 }
 
 %paper-bg {
