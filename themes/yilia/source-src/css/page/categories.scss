@@ -11,9 +11,16 @@
 }
 .category-count {
   text-align: center;
+  line-height: 3;
+  font-size: 18px;
+  font-weight: bold;
 }
 // hexo自带的标签云
 .tag-cloud {
   text-align: center;
   padding: 20px;
+  a {
+    margin: 0 20px;
+    word-break: keep-all;
+  }
 }
