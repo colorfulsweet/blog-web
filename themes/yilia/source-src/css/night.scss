@@ -73,4 +73,8 @@ body.night {
     background: $mainBg_night;
     color: #bf7676;
   }
+  // 分类列表
+  .category-list li.category-list-item {
+    border-color: $borderColor_night;
+  }
 }

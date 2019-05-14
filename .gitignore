@@ -11,5 +11,6 @@ public/
 themes/yilia/source/css/
 themes/yilia/source/js/
 themes/yilia/source/fonts/
+themes/yilia/source/images/
 themes/yilia/layout/_partial/css.ejs
 themes/yilia/layout/_partial/script.ejs

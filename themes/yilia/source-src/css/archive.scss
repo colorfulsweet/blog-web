@@ -4,6 +4,7 @@
   padding-right: 60px;
   border-bottom: 1px solid #eee;
   background: $colorBg;
+  @extend %trans;
   &:first-child{
     margin-top: 30px;
   }
@@ -35,6 +36,7 @@
     padding:20px 0;
     border-bottom: 1px solid #eee;
     border-top: 1px solid #fff;
+    transition: border-color 0.2s ease-in;
     position: relative;
     &:first-child{
       border-top: none;
@@ -79,17 +81,10 @@
     min-height: 36px;
   }
   .article-meta{
-    position: relative;
-    float: right;
-    margin-top: -10px;
-    color: #555;
-    background: none;
-    text-align: right;
-    width: auto;
-    .article-date{
-      time{
-        color: $colorA;
-      }
+    position: absolute;
+    top: 10px;
+    .article-date time{
+      color: $colorA;
     }
     .archive-article-date, .article-tag-list{
       margin-right: 30px;
@@ -101,9 +96,6 @@
     }
     .archive-article-date{
       cursor: default;
-      font-size: 12px;
-      margin-bottom: 5px;
-      margin-top: -10px;
       margin-right: 0;
     }
     .article-category{

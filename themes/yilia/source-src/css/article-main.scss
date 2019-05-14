@@ -49,9 +49,6 @@
 }
 
 .article-meta{
-  width: 150px;
-  font-size: 14;
-  text-align: right;
   position: absolute;
   right: 0;
   top: 23px;
@@ -85,10 +82,6 @@
       visibility: hidden;
     }
   }
-}
-.article-info.info-on-right{
-	margin: 10px 0 0 0;
-	float: right;
 }
 .article-info-index.article-info{
 	padding-top: 20px;

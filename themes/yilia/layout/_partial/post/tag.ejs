@@ -4,7 +4,7 @@
 		<ul class="article-tag-list">
 			<% post.tags.forEach(function(tag, i){ %> 
 				<li class="article-tag-list-item">
-					<a href="<%= url_for(tag.path) %>" class="js-tag article-tag-list-link color<%= tag.name.length % 5 + 1 %>"><%-tag.name%></a>
+					<a href="<%= url_for(tag.path) %>" class="js-tag article-tag-list-link color<%= tag.name.length % 7 + 1 %>"><%-tag.name%></a>
 				</li>
 			<% }) %>
 		</ul>

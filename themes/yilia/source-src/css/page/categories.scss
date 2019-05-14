@@ -5,8 +5,12 @@
     display: inline-block;
     margin: 0 1em .5em 0;
     padding: 4px;
-    border: 1px solid #d3d3d3;
+    border: 1px solid $colorBorder;
     font-size: 1.2rem;
+    @extend %trans;
+    &:hover {
+      background:rgba(204, 204, 204, 0.3);
+    }
   }
 }
 .category-count {
@@ -22,5 +26,21 @@
   a {
     margin: 0 20px;
     word-break: keep-all;
+    position: relative;
+    &:hover::before {
+      width: 100%;
+      left: 0;
+      right: auto;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: $colorLink;
+      transition: width .3s ease;
+    }
   }
 }

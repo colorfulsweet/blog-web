@@ -39,37 +39,19 @@
       left: 2px;
     }  
   }
-  a.color1{
-    background:  #FF945C;
-    &::before{
-      border-right-color: #FF945C;  
-    }
-  }
-  a.color2{
-    background:  #cc8167;
-    &::before{
-      border-right-color: #cc8167;  
-    }
-  }
-  a.color3{
-    background:  #BA8F6C;
-    &::before{
-      border-right-color: #BA8F6C;  
-    }
-  }
-  a.color4{
-    background: #94635c;
-    &::before{
-      border-right-color:#94635c;  
-    }
-  }
-  a.color5{
-    background: #7B5D5F;
-    &::before{
-      border-right-color:#7B5D5F;  
+  // 标签背景色
+  $tagcolorlist: #88acdb #ffa07a #f08080 #76becc #918597 #6fc0e4 #bc8f8f;
+
+  @for $index from 1 to length($tagcolorlist)+1 {
+    a.color#{$index}{
+      background: nth($tagcolorlist,$index);
+      &::before{
+        border-right-color: nth($tagcolorlist,$index);  
+      }
     }
   }
 }
+
 
 .article-tag-list{
   .article-tag-list-item{
