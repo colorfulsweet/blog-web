@@ -1,7 +1,11 @@
 import axios from 'axios'
+import PhotoSwipe from '../lib/photoswipe/photoswipe'
+import PhotoSwipeUI_Default from '../lib/photoswipe/photoswipe-ui-default'
 
-var groupid = 1, currentIndex = 0, defaultStep = 20, scrollLock = false
+var groupid = 1, currentIndex = 0, totalIndex = 0, defaultStep = 20, scrollLock = false
 
+// 容器DIV
+const photoWallWrapper = document.getElementById('photo-wall')
 // 滚动区域DOM
 const scrollDom = document.getElementById('container')
 // 作为底部标记的DOM
@@ -9,28 +13,59 @@ const markDom = document.getElementById('footer')
 // 加载提示文字
 const loadTip = document.getElementById('load-tip')
 
+// 相册集
+const items = []
+function getThumbBoundsFn(target) {
+  return function(index) { // index是当前点击的图片在相册中的索引值
+    var pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+    var rect = target.getBoundingClientRect()
+    return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
+  }
+}
+var pswpElement = document.querySelectorAll('.pswp')[0]
 function loadMoreItems(step) {
   scrollLock = true //加载过程中锁定滚动加载
   loadTip.style.display = 'block'
-  var photoWallWrapper = document.getElementById('photo-wall')
   // 滚动到底部时调用
   axios.get(`${themeConfig.pictureCdn}/photo-wall/${groupid}/list.json`).then(res => {
     var itemContainer = document.createElement('div')
-    var imgItems = '', index = currentIndex
+    var index = currentIndex
     while(index<currentIndex+step && index<res.data.files.length) {
-      let imgHeight = null
-      if(res.data.files[index].width && res.data.files[index].height) {
-        let wrapperWidth = photoWallWrapper.getBoundingClientRect().width
-        // 列宽240px 列间距20px, 计算每列宽度
-        let columnWidth = (wrapperWidth + 20) / Math.floor((wrapperWidth + 20) / (240 + 20)) - 20
-        // 图片的实际显示高度
-        imgHeight = (columnWidth / res.data.files[index].width) * res.data.files[index].height
-        imgHeight = Math.round(imgHeight * 100) / 100 // 四舍五入保留2位小数
-      }
-      imgItems += `<div class="item" ${imgHeight ? 'style="height:' + imgHeight + 'px"' : ''}>
-          <img class="item-img" src="${themeConfig.pictureCdn}/${res.data.files[index].name}" alt=""/>
-      </div>`
+      let imgHeight = null, imgUrl = `${themeConfig.pictureCdn}/${res.data.files[index].name}`
+      let wrapperWidth = photoWallWrapper.getBoundingClientRect().width
+      // 列宽240px 列间距20px, 计算每列宽度
+      let columnWidth = (wrapperWidth + 20) / Math.floor((wrapperWidth + 20) / (240 + 20)) - 20
+      // 图片的实际显示高度
+      imgHeight = (columnWidth / res.data.files[index].width) * res.data.files[index].height
+      imgHeight = Math.round(imgHeight * 100) / 100 // 四舍五入保留2位小数
+      items.push({
+        msrc: imgUrl, // 缩略图的地址(在动画过程中显示的是缩略图, 这里暂且用相同的地址了)
+        src: imgUrl,
+        w: res.data.files[index].width,
+        h: res.data.files[index].height,
+        title: res.data.files[index].name
+      })
+      let imgItemDiv = document.createElement('div'), imgItem = document.createElement('img')
+      imgItemDiv.classList.add('item')
+      imgItemDiv.style.height = imgHeight+'px'
+      imgItem.classList.add('item-img')
+      imgItem.setAttribute('src', imgUrl)
+      imgItem.addEventListener('click', (function(totalIndex){
+        return function(e) {
+          // slider展开状态
+          if (document.querySelector('.left-col.show')) return
+          var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+            index: totalIndex,
+            bgOpacity: 0.8,
+            getThumbBoundsFn: getThumbBoundsFn(e.target)
+          })
+          gallery.init()
+        }
+      })(totalIndex))
+      imgItemDiv.appendChild(imgItem)
+      itemContainer.appendChild(imgItemDiv)
       index++
+      totalIndex++
     }
     if(index >= res.data.files.length) { // 已到达当前分组列表的末尾
       groupid++
@@ -44,7 +79,7 @@ function loadMoreItems(step) {
       currentIndex = index
     }
     itemContainer.classList.add('item-container')
-    itemContainer.insertAdjacentHTML('beforeend', imgItems)
+    // itemContainer.insertAdjacentHTML('beforeend', imgItems)
     photoWallWrapper.appendChild(itemContainer)
     setTimeout(()=>{
       loadTip.style.display = 'none'

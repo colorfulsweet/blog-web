@@ -685,12 +685,10 @@
 
 %trans {
   transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
 }
 
 %trans8 {
   transition: all 0.8s ease-in;
-}
-
-%paper-bg {
-  background: url('./img/checkered-pattern.png') repeat #5d5d5d;
+  -ms-transition: all 0.8s ease-in;
 }

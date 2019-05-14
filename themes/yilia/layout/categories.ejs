@@ -1,5 +1,5 @@
 <article class="article">
-  <h3>共计 <%= site.categories.length %> 个分类, <%= site.tags.length %> 个标签</h3>
+  <h3 class="category-count">共计 <%= site.categories.length %> 个分类, <%= site.tags.length %> 个标签</h3>
   <% if (site.categories.length){ %>
   <ul class="category-list">
     <% site.categories.sort('name').each(function(item){ %>
@@ -7,19 +7,21 @@
         <li class="category-list-item">
           <a href="<%- config.root %><%- item.path %>" class="category-list-link" title="<%= item.name %>">
             <%= item.name %>
-            <span class="category-list-count">1</span>
+            <span class="category-list-count"><%= item.posts.length %></span>
           </a>
         </li>
       <% } %>
     <% }) %>
   </ul>
   <% } %>
-  <%- tagcloud({
-    min_font: 16, 
-    max_font: 35, 
-    amount: 999, 
-    color: true, 
-    start_color: 'gray', 
-    end_color: 'black',
-  }) %>
+  <div class="tag-cloud">
+    <%- tagcloud({
+      min_font: 16, 
+      max_font: 35, 
+      amount: 999, 
+      color: true, 
+      start_color: 'gray', 
+      end_color: 'black',
+    }) %>
+  </div>
 </article>

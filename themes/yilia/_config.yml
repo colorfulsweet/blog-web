@@ -8,6 +8,9 @@ menu:
     name: archives
     url: /archives/
     # target: _blank
+  categories: # 分类
+    name: categories
+    url: /categories/
   photo_wall: # 照片墙
     name: photo_wall
     url: /photo_wall/

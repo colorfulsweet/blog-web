@@ -1,0 +1,19 @@
+.category-list {
+  text-align: center;
+  padding: 20px;
+  li.category-list-item {
+    display: inline-block;
+    margin: 0 1em .5em 0;
+    padding: 4px;
+    border: 1px solid #d3d3d3;
+    font-size: 1.2rem;
+  }
+}
+.category-count {
+  text-align: center;
+}
+// hexo自带的标签云
+.tag-cloud {
+  text-align: center;
+  padding: 20px;
+}
