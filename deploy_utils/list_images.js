@@ -17,12 +17,12 @@ function readDirSync(imageFolderPath, images, rootPath){
       readDirSync(`${imageFolderPath}/${item}`, images, rootPath)
     }else{
       //读取一个Buffer
-      let buffer = fs.readFileSync(`${imageFolderPath}/${item}`)
-      let fsHash = crypto.createHash('md5')
-      fsHash.update(buffer)
+      // let buffer = fs.readFileSync(`${imageFolderPath}/${item}`)
+      // let fsHash = crypto.createHash('md5')
+      // fsHash.update(buffer)
       images.push({
         name: `${imageFolderPath}/${item}`.replace(rootPath, ''),
-        md5: fsHash.digest('hex')
+        // md5: fsHash.digest('hex')
       })
     }
   })

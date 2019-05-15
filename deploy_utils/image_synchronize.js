@@ -55,11 +55,11 @@ class ImageSynchronizer {
         item.type = 'new'
         return true
       }
-      else if (storageItems[index].eTag !== item.md5) {
-        // 文件名存在, 但是hash值不同, 代表有变化
-        item.type = 'change'
-        return true
-      }
+      // else if (storageItems[index].eTag !== item.md5) {
+      //   // 文件名存在, 但是hash值不同, 代表有变化
+      //   item.type = 'change'
+      //   return true
+      // }
       return false
     });
     // 处理待上传的文件
@@ -85,12 +85,12 @@ class ImageSynchronizer {
     }).then(result => {
       // eTag是上传后远端校验的md5值, 用于和本地进行比对
       let eTag = result.eTag.replace(/"/g,'')
-      if(filesList[index].md5 === eTag) {
+      // if(filesList[index].md5 === eTag) {
         console.log(`${filesList[index].name} 上传成功, md5:${eTag} 类型: ${filesList[index].type}`)
-      } else {
-        console.warn(`${filesList[index].name} 上传出错, md5值不一致`)
-        console.warn(`===> 本地文件: ${filesList[index].md5}, 接口返回: ${eTag}`)
-      }
+      // } else {
+      //   console.warn(`${filesList[index].name} 上传出错, md5值不一致`)
+      //   console.warn(`===> 本地文件: ${filesList[index].md5}, 接口返回: ${eTag}`)
+      // }
       this._uploadObject(filesList, ++index)
     })
   }
