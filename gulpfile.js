@@ -6,7 +6,7 @@ const gulp = require('gulp'),
 
 // 程序执行的传参
 const argv = require('optimist')
-  .demand(['accessKey', 'accessSecret', 'deployPath'])
+  // .demand(['accessKey', 'accessSecret', 'deployPath'])
   .describe('accessKey', '网易云对象存储key')
   .describe('accessSecret', '网易云对象存储secret')
   .describe('deployPath', '静态化后发布的目录')
@@ -21,8 +21,7 @@ gulp.task('generate', async function() {
     await hexo.call('clean')
     await hexo.call('generate', { watch: false })
     return hexo.exit()
-  }
-  catch (err) {
+  } catch (err) {
     return hexo.exit(err)
   }
 })
@@ -54,20 +53,29 @@ gulp.task('compressHtml', () => {
 // 同步图片到对象存储仓库
 gulp.task('syncImages', () => {
   const listImages = require('./deploy_utils/list_images')
-  // 当前本地存在的所有图片
-  const imagesList = listImages(`${process.cwd()}/source/`, 'images/')
-  const ImageSynchronizer = require('./deploy_utils/image_synchronize')
-  const nosSetting = {
-    defaultBucket: 'blog-cdn',
-    endpoint: 'http://nos-eastchina1.126.net',
-    accessKey: argv.accessKey,
-    accessSecret: argv.accessSecret
+  if(!argv.accessKey || !argv.accessSecret) {
+    return Promise.resolve('未获得accessKey以及accessSecret, 跳过图片同步').then(console.log)
   }
-  const imageSynchronizer = new ImageSynchronizer(nosSetting, imagesList, `${process.cwd()}/source/`)
-  return imageSynchronizer.synchronize('images/')
+  // 同步当前本地存在的所有图片
+  return new Promise((resolve)=>{
+    listImages(`${process.cwd()}/source/`, 'images/', resolve)
+  }).then(imagesList => {
+    const ImageSynchronizer = require('./deploy_utils/image_synchronize')
+    const nosSetting = {
+      defaultBucket: 'blog-cdn',
+      endpoint: 'http://nos-eastchina1.126.net',
+      accessKey: argv.accessKey,
+      accessSecret: argv.accessSecret
+    }
+    const imageSynchronizer = new ImageSynchronizer(nosSetting, imagesList, `${process.cwd()}/source/`)
+    return imageSynchronizer.synchronize('images/')
+  })
 })
 
 gulp.task('deploy', () => {
+  if(!argv.deployPath) {
+    return Promise.resolve('未获得deployPath, 跳过发布').then(console.log)
+  }
   const deploy = require('./deploy_utils/deploy')
   return deploy.exec('./public', argv.deployPath, false)
 })
