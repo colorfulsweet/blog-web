@@ -29,7 +29,6 @@
     "gulp": "^4.0.2",
     "gulp-htmlclean": "^2.7.22",
     "gulp-htmlmin": "^5.0.1",
-    "gulp-plumber": "^1.2.1",
     "optimist": "^0.6.1"
   }
 }

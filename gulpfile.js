@@ -1,7 +1,7 @@
 const gulp = require('gulp'),
   htmlmin = require('gulp-htmlmin'),   //html压缩组件
   htmlclean = require('gulp-htmlclean'), //html清理组件
-  plumber = require('gulp-plumber'),  //容错组件（发生错误不跳出任务，并报出错误内容）
+  // plumber = require('gulp-plumber'),  //容错组件（发生错误不跳出任务，并报出错误内容）
   Hexo = require('hexo')
 
 // 程序执行的传参
@@ -44,7 +44,7 @@ gulp.task('compressHtml', () => {
     minifyURLs: true                    //替换页面URL
   }
   return gulp.src('./public/**/*.html')
-    .pipe(plumber())
+    // .pipe(plumber())
     .pipe(htmlclean(cleanOptions))
     .pipe(htmlmin(minOption))
     .pipe(gulp.dest('./public'))
