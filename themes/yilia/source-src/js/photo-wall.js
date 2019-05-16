@@ -31,25 +31,27 @@ function loadMoreItems(step) {
     var itemContainer = document.createElement('div')
     var index = currentIndex
     while(index<currentIndex+step && index<res.data.files.length) {
-      let imgHeight = null, imgUrl = `${themeConfig.pictureCdn}/${res.data.files[index].name}`
+      let imgHeight = null, imgFile = res.data.files[index],
+        imgSrc = `${themeConfig.pictureCdn}/${imgFile.name}`,
+        imgThumbnail = imgFile.thumbnail ? `${themeConfig.pictureCdn}/${imgFile.thumbnail}` : imgSrc
       let wrapperWidth = photoWallWrapper.getBoundingClientRect().width
       // 列宽240px 列间距20px, 计算每列宽度
       let columnWidth = (wrapperWidth + 20) / Math.floor((wrapperWidth + 20) / (240 + 20)) - 20
       // 图片的实际显示高度
-      imgHeight = (columnWidth / res.data.files[index].width) * res.data.files[index].height
+      imgHeight = (columnWidth / imgFile.width) * imgFile.height
       imgHeight = Math.round(imgHeight * 100) / 100 // 四舍五入保留2位小数
       items.push({
-        msrc: imgUrl, // 缩略图的地址(在动画过程中显示的是缩略图, 这里暂且用相同的地址了)
-        src: imgUrl,
-        w: res.data.files[index].width,
-        h: res.data.files[index].height,
-        title: res.data.files[index].name
+        msrc: imgThumbnail, // 缩略图的地址
+        src: imgSrc,
+        w: imgFile.width,
+        h: imgFile.height,
+        title: imgFile.name
       })
       let imgItemDiv = document.createElement('div'), imgItem = document.createElement('img')
       imgItemDiv.classList.add('item')
       imgItemDiv.style.height = imgHeight+'px'
       imgItem.classList.add('item-img')
-      imgItem.setAttribute('src', imgUrl)
+      imgItem.setAttribute('src', imgThumbnail)
       imgItem.addEventListener('click', (function(totalIndex){
         return function(e) {
           // slider展开状态
