@@ -27,6 +27,7 @@ new Vue({
     showTags: false,
     showCategories: false,
     search: null,
+    searchItems: [],
     waifu: {
       tip: null, // 提示语文字
       tipOpacity: 0, // 提示语框透明度
@@ -36,12 +37,6 @@ new Vue({
   methods: {
     stop (event) {
       event.stopPropagation()
-    },
-    chose (name, prefix) {
-      this.search = prefix + name
-    },
-    clearChose () {
-      this.search = null
     },
     openSlider (event, type) {
       event.stopPropagation()
@@ -68,6 +63,24 @@ new Vue({
         waifuTools[name].call(this)
       }
     },
+    addSearchItem(query, type='title') {
+      // 如果已存在相同的查询条件, 则不加入
+      var isExist = Array.prototype.some.call(this.searchItems, searchItem => {
+        return searchItem.query === query && searchItem.type === type
+      })
+      if(!isExist && query) {
+        this.searchItems.push({query, type})
+      }
+      this.search = null
+    },
+    searchKeydown(event) {
+      console.log(event.keyCode)
+      if(event.keyCode == 13){ // 回车键
+        this.addSearchItem(this.search)
+      } else if(event.keyCode == 8) { // 退格键
+        this.searchItems.pop()
+      }
+    },
     showMessage (text, time) {
       if(!text) return
       if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1]
@@ -89,9 +102,10 @@ new Vue({
     }
   },
   watch: {
-    search (newVal, oldVal) {
-      if(newVal) {
-        handleSearch.call(this, newVal.toLowerCase())
+    searchItems (newVal, oldVal) {
+      console.log(newVal)
+      if(newVal && newVal.length) {
+        handleSearch.call(this, newVal)
       } else {
         this.items.forEach(function(item){
           item.isHide = false
@@ -120,33 +134,22 @@ new Vue({
   }
 })
 
-function handleSearch(val) {
-  var type
-  if (val.startsWith('#')) {
-    val = val.substr(1, val.length)
-    type = 'tag'
-  } else if (val.startsWith('$')) {
-    val = val.substr(1, val.length)
-    type = 'category'
-  } else {
-    type = 'title'
-  }
-  this.items.forEach((item) => {
-    switch(type) {
-    case 'title' : 
-      item.isHide = item.title.toLowerCase().indexOf(val) < 0
-      break
-    case 'tag' : 
-      item.isHide = Array.prototype.every.call(item.tags, function(tag){
-        return tag.name.toLowerCase() !== val
-      })
-      break
-    case 'category' : 
-      item.isHide = Array.prototype.every.call(item.categories, function(category){
-        return category.name.toLowerCase() !== val
-      })
-      break
-    }
+function handleSearch(searchItems) {
+  this.items.forEach(articleItem => {
+    articleItem.isHide = !Array.prototype.every.call(searchItems, searchItem => {
+      switch(searchItem.type) {
+        case 'title': 
+          return articleItem.title.toLowerCase().indexOf(searchItem.query.toLowerCase()) !== -1
+        case 'tag' : 
+          return Array.prototype.some.call(articleItem.tags, tag => {
+            return tag.name === searchItem.query
+          })
+        case 'category' : 
+          return Array.prototype.some.call(articleItem.categories, category => {
+            return category.name === searchItem.query
+          })
+      }
+    })
   })
 }
 

@@ -64,6 +64,12 @@ archive_generator:
   daily: false
   order_by: -date
 
+tag_generator:
+  per_page: 20
+
+category_generator:
+  per_page: 20
+
 # Category & Tag
 default_category: uncategorized
 category_map:

@@ -23,9 +23,15 @@
   <div class="tools-wrap">
     <%if(hasInnerArchive){%>
     	<section class="tools-section tools-section-all" v-show="innerArchive">
-        <div class="search-wrap">
-          <input class="search-ipt" v-model="search" type="text" placeholder="<%=__('search') %>…">
-          <i class="icon" :class="search?'icon-close':'icon-search'" @click="clearChose"></i>
+        <div class="search-wrap" @click="$refs.searchIpt.focus()">
+          <span :class="'search-item'" v-for="(searchItem,index) in searchItems" :key="index">
+            <i class="icon icon-book" v-if="searchItem.type === 'category'"></i>
+            <i class="icon icon-price-tags" v-if="searchItem.type === 'tag'"></i>
+            {{searchItem.query}}
+            <i class="icon icon-close" @click="searchItems.splice(index,1)"></i>
+          </span>
+          <input class="search-ipt" ref="searchIpt" v-model="search" @blur="addSearchItem(search)" @keydown="searchKeydown" type="text" placeholder="<%=__('search') %>…">
+          <i class="icon icon-search" @click="addSearchItem(search)"></i>
         </div>
         <div class="widget tagcloud search-tag">
           <div>
@@ -43,7 +49,7 @@
           <ul class="article-tag-list" v-show="showTags">
             <% site.tags.forEach(function(tag, i){ %> 
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" @click="chose('<%-tag.name%>','#')" class="js-tag color<%= tag.name.length % 7 + 1 %>"><%-tag.name%></a>
+                <a href="javascript:void(0)" @click="addSearchItem('<%-tag.name%>','tag')" class="js-tag color<%= tag.name.length % 7 + 1 %>"><%-tag.name%></a>
               </li>
             <% }) %>
             <div class="clearfix"></div>
@@ -51,14 +57,14 @@
           <ul class="article-tag-list" v-show="showCategories">
             <% site.categories.forEach(function(category, i){ %> 
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" @click="chose('<%-category.name%>','$')" class="js-tag color<%= category.name.length % 7 + 1 %>"><%-category.name%></a>
+                <a href="javascript:void(0)" @click="addSearchItem('<%-category.name%>','category')" class="js-tag color<%= category.name.length % 7 + 1 %>"><%-category.name%></a>
               </li>
             <% }) %>
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
-          <li class="search-li" v-for="item in items" v-show="!item.isHide">
+          <li class="search-li" v-for="(item,index) in items" :key="index" v-show="!item.isHide">
             <a :href="item.path|urlformat" class="search-title"><i class="icon-quo-left icon"></i>
               <span v-text="item.title"></span>
             </a>
@@ -68,11 +74,11 @@
             </p>
             <p class="search-category" v-if="item.categories.length">
               <i class="icon-book icon" ></i>
-              <span v-for="category in item.categories" @click="chose(category.name, '$')" v-text="category.name"></span>
+              <span v-for="(category,index) in item.categories" :key="index" @click="addSearchItem(category.name, 'category')" v-text="category.name"></span>
             </p>
             <p class="search-tag" v-if="item.tags.length">
-              <i class="icon-price-tags icon" ></i>
-              <span v-for="tag in item.tags" @click="chose(tag.name, '#')" v-text="tag.name"></span>
+              <i class="icon icon-price-tags" ></i>
+              <span v-for="tag in item.tags" @click="addSearchItem(tag.name, 'tag')" v-text="tag.name"></span>
             </p>
           </li>
         </ul>
