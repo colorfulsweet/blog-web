@@ -2,6 +2,7 @@
 <% var right = '%' %>
 <% var right2 = '>' %>
 
-<% for (let chunk in htmlWebpackPlugin.files.chunks) { %>
-<%= `${left} js('js/${chunk}.${htmlWebpackPlugin.files.chunks[chunk].hash.substr(0,8)}.js') ${right}${right2}` %>
-<%  } %>
+<% for (let index in htmlWebpackPlugin.files.js) { %>
+<% let jsFile = htmlWebpackPlugin.files.js[index] %>
+<%= `${left} js('${jsFile}') ${right}${right2}` %>
+<% } %>
