@@ -248,27 +248,25 @@
   }
 }
 
-
-/*弹性动画*/
-@keyframes leftIn {
-  from {transform: translate3d(0, 0, 0);}
-  to {transform: translate3d(333px, 0, 0);}
-}
-
 %anmCommon {
   animation-duration: .5s;
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
 }
 
-%anmLeftIn {
-  @extend %anmCommon;
-  animation-name: leftIn;
+@keyframes leftIn {
+  from {transform: translate3d(0, 0, 0);}
+  to {transform: translate3d(333px, 0, 0);}
 }
 
 @keyframes leftOut {
   from {transform: translate3d(333px, 0, 0);}
   to {transform: translate3d(0, 0, 0);}
+}
+
+%anmLeftIn {
+  @extend %anmCommon;
+  animation-name: leftIn;
 }
 
 %anmLeftOut {
@@ -281,14 +279,14 @@
   to {transform: translate3d(300px, 0, 0);}
 }
 
-%anmSmallLeftIn {
-  @extend %anmCommon;
-  animation-name: smallLeftIn;
-}
-
 @keyframes smallleftOut {
   from {transform: translate3d(300px, 0, 0);}
   to {transform: translate3d(0, 0, 0);}
+}
+
+%anmSmallLeftIn {
+  @extend %anmCommon;
+  animation-name: smallLeftIn;
 }
 
 %anmSmallLeftOut {

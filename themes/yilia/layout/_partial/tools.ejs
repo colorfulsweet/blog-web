@@ -5,14 +5,8 @@
 %>
 <div class="tools-col" :class="{show:isShow,hide:!isShow}" @click="stop">
   <div class="tools-nav header-menu">
-    <% 
-    var count = 0
-    for(let menu_name in theme.smart_menu) {
-      if(theme.smart_menu[menu_name]) count++
-    }
-    %>
     <ul style="width:70%">
-    <% var divide = 100 / count + '%' 
+    <% var divide = 100 / Object.keys(theme.smart_menu).length + '%' 
     for (let menu_name in theme.smart_menu){ 
       if(theme.smart_menu[menu_name]){ %>
       <li style="width: <%= divide %>" @click="openSlider($event, '<%-menu_name%>')"><a href="javascript:void(0)" :class="{active:<%-menu_name%>}"><%= __(theme.smart_menu[menu_name]) %></a></li>
@@ -27,6 +21,7 @@
           <span :class="'search-item'" v-for="(searchItem,index) in searchItems" :key="index">
             <i class="icon icon-book" v-if="searchItem.type === 'category'"></i>
             <i class="icon icon-price-tags" v-if="searchItem.type === 'tag'"></i>
+            <i class="icon-calendar icon" v-if="searchItem.type === 'date'"></i>
             {{searchItem.query}}
             <i class="icon icon-close" @click="searchItems.splice(index,1)"></i>
           </span>
@@ -68,9 +63,9 @@
             <a :href="item.path|urlformat" class="search-title"><i class="icon-quo-left icon"></i>
               <span v-text="item.title"></span>
             </a>
-            <p class="search-time">
+            <p class="search-time" v-if="item.date">
               <i class="icon-calendar icon"></i>
-              <span v-text="item.date"></span>
+              <span v-text="item.date" @click="addSearchItem(item.date.substr(0,7),'date')"></span>
             </p>
             <p class="search-category" v-if="item.categories.length">
               <i class="icon-book icon" ></i>

@@ -64,6 +64,9 @@ new Vue({
       }
     },
     addSearchItem(query, type='title') {
+      if(query) {
+        query = query.trim()
+      }
       // 如果已存在相同的查询条件, 则不加入
       var isExist = Array.prototype.some.call(this.searchItems, searchItem => {
         return searchItem.query === query && searchItem.type === type
@@ -74,7 +77,6 @@ new Vue({
       this.search = null
     },
     searchKeydown(event) {
-      console.log(event.keyCode)
       if(event.keyCode == 13){ // 回车键
         this.addSearchItem(this.search)
       } else if(event.keyCode == 8 && !this.search) { // 退格键
@@ -97,13 +99,12 @@ new Vue({
     } 
   },
   filters: {
-    urlformat: (str) => {
+    urlformat (str) {
       return (window.themeConfig && window.themeConfig.root) ? window.themeConfig.root + str : '/' + str
     }
   },
   watch: {
     searchItems (newVal, oldVal) {
-      console.log(newVal)
       if(newVal && newVal.length) {
         handleSearch.call(this, newVal)
       } else {
@@ -148,6 +149,8 @@ function handleSearch(searchItems) {
           return Array.prototype.some.call(articleItem.categories, category => {
             return category.name === searchItem.query
           })
+        case 'date' : 
+          return articleItem.date && ( articleItem.date.substr(0,7) === searchItem.query )
       }
     })
   })
