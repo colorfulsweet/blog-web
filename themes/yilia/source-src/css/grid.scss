@@ -40,15 +40,15 @@ html, body, #container {
 	min-height:100%;
 	background:$colorBodyBg;
 	left: 300px;
-	width: auto;
+  width: auto;
 	@extend %trans;
 	&.show {
 		background: none;
 		opacity: .9;
 		@extend %anmLeftIn;
 		.article {
-			@extend %trans;
-			background: rgba(255,255,255,.3);
+      transition: opacity .5s ease-in, background-color .2s ease-in;
+      opacity: 0.6;
 		}
 	}
 	&.hide {

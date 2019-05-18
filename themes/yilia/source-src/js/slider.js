@@ -77,7 +77,7 @@ new Vue({
       console.log(event.keyCode)
       if(event.keyCode == 13){ // 回车键
         this.addSearchItem(this.search)
-      } else if(event.keyCode == 8) { // 退格键
+      } else if(event.keyCode == 8 && !this.search) { // 退格键
         this.searchItems.pop()
       }
     },

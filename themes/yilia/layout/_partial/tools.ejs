@@ -23,14 +23,14 @@
   <div class="tools-wrap">
     <%if(hasInnerArchive){%>
     	<section class="tools-section tools-section-all" v-show="innerArchive">
-        <div class="search-wrap" @click="$refs.searchIpt.focus()">
+        <div class="search-wrap" >
           <span :class="'search-item'" v-for="(searchItem,index) in searchItems" :key="index">
             <i class="icon icon-book" v-if="searchItem.type === 'category'"></i>
             <i class="icon icon-price-tags" v-if="searchItem.type === 'tag'"></i>
             {{searchItem.query}}
             <i class="icon icon-close" @click="searchItems.splice(index,1)"></i>
           </span>
-          <input class="search-ipt" ref="searchIpt" v-model="search" @blur="addSearchItem(search)" @keydown="searchKeydown" type="text" placeholder="<%=__('search') %>…">
+          <input class="search-ipt" v-model="search" @blur="addSearchItem(search)" @keydown="searchKeydown" type="text" placeholder="<%=__('search') %>…">
           <i class="icon icon-search" @click="addSearchItem(search)"></i>
         </div>
         <div class="widget tagcloud search-tag">
