@@ -19,7 +19,7 @@ new Vue({
   el: '#container',
   data: {
     isCtnShow: false,
-    isShow: false,
+    isShow: undefined,
     items: [],
     innerArchive: false,
     friends: false,
@@ -191,6 +191,7 @@ const waifuTools = {
     // 隐藏看板娘
     setTimeout(function() {
       document.querySelector('.waifu').style.display = 'none'
+      localStorage.setItem('hideWaifu', true)
     }, 1300)
   },
   "tools.eye"() {

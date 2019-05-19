@@ -18,8 +18,7 @@ module.exports = function(env, argv) {
       main: './source-src/js/main.js',
       slider: './source-src/js/slider.js',
       mobile: ['babel-polyfill', './source-src/js/mobile.js'],
-      viewer: './source-src/js/viewer.js',
-      waifu: './source-src/js/waifu.js'
+      viewer: './source-src/js/viewer.js'
     },
     output: {
       publicPath: '/',

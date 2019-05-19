@@ -43,12 +43,11 @@ html, body, #container {
   width: auto;
 	@extend %trans;
 	&.show {
-		background: none;
-		opacity: .9;
 		@extend %anmLeftIn;
 		.article {
       transition: opacity .5s ease-in, background-color .2s ease-in;
       opacity: 0.6;
+      pointer-events: none;
 		}
 	}
 	&.hide {
