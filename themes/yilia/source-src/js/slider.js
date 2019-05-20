@@ -196,12 +196,13 @@ const waifuTools = {
   },
   "tools.eye"() {
     // 切换到夜间模式
+    document.querySelector('.mid-col').classList.remove('hide')
     let night = document.querySelector('body').classList.toggle('night')
     localStorage.setItem('night', night)
   },
   "tools.chart"() {
     // 一言
-    axios.get('https://www.colorfulsweet.site/hitokoto?length=40&format=json').then(res => {
+    axios.get('https://www.colorfulsweet.site/api/hitokoto?length=40&format=json').then(res => {
       this.showMessage(res.data.hitokoto + (res.data.from?`　　——${res.data.from}`:''))
     })
   }

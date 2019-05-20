@@ -6,6 +6,38 @@ $articleBg_night: #15202b; // 文章背景色
 $borderColor_night: #38444d; // 边框颜色
 $textColor_night: #d5d5d5; // 文字颜色
 
+@keyframes leftIn_night {
+  from {
+    transform: translate(0, 0);
+    background:$mainBg_night;
+  }
+  to {
+    transform: translate(333px, 0);
+    background: none;
+  }
+}
+
+@keyframes leftOut_night {
+  from {
+    transform: translate(333px, 0);
+    background: none;
+  }
+  to {
+    transform: translate(0, 0);
+    background:$mainBg_night;
+  }
+}
+
+%anmLeftIn_night {
+  @extend %anmCommon;
+  animation-name: leftIn_night;
+}
+
+%anmLeftOut_night {
+  @extend %anmCommon;
+  animation-name: leftOut_night;
+}
+
 body.night {
   background: $mainBg_night;
   // 展开菜单之后的背景
@@ -15,6 +47,12 @@ body.night {
   // 主背景
   .mid-col {
     background: $mainBg_night;
+    &.show {
+      @extend %anmLeftIn_night;
+    }
+    &.hide {
+      @extend %anmLeftOut_night;
+    }
   }
   // 文章区域
   .article{

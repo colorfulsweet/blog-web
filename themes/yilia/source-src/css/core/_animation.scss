@@ -256,22 +256,22 @@
 
 @keyframes leftIn {
   from {
-    transform: translate3d(0, 0, 0);
+    transform: translate(0, 0);
     background:$colorBodyBg;
   }
   to {
-    transform: translate3d(333px, 0, 0);
+    transform: translate(333px, 0);
     background: none;
   }
 }
 
 @keyframes leftOut {
   from {
-    transform: translate3d(333px, 0, 0);
+    transform: translate(333px, 0);
     background: none;
   }
   to {
-    transform: translate3d(0, 0, 0);
+    transform: translate(0, 0);
     background:$colorBodyBg;
   }
 }
@@ -288,22 +288,22 @@
 
 @keyframes smallLeftIn {
   from {
-    transform: translate3d(0, 0, 0);
+    transform: translate(0, 0);
     opacity: 0;
   }
   to {
-    transform: translate3d(300px, 0, 0);
+    transform: translate(300px, 0);
     opacity: 1;
   }
 }
 
 @keyframes smallleftOut {
   from {
-    transform: translate3d(300px, 0, 0);
+    transform: translate(300px, 0);
     opacity: 1;
   }
   to {
-    transform: translate3d(0, 0, 0);
+    transform: translate(0, 0);
     opacity: 0;
   }
 }
