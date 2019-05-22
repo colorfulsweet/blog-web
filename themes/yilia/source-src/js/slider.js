@@ -200,6 +200,9 @@ const waifuTools = {
     let night = document.querySelector('body').classList.toggle('night')
     localStorage.setItem('night', night)
   },
+  "tools.info"() {
+    window.open('https://github.com/xiazeyu/live2d-widget.js')
+  },
   "tools.chart"() {
     // 一言
     axios.get('https://www.colorfulsweet.site/api/hitokoto?length=40&format=json').then(res => {

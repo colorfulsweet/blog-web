@@ -29,7 +29,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				<% for (let navName in theme.subnav){ %>
-					<a class="<%= navName %>" target="_blank" href="<%- url_for(theme.subnav[navName]) %>" @mouseover="linkMouseover('<%=navName %>')" title="<%= navName %>"><i class="icon-<%= navName %>"></i></a>
+					<a class="<%= navName %>" target="_blank" href="<%- url_for(theme.subnav[navName]) %>" @mouseover="linkMouseover('<%=navName %>')" title="<%= navName %>"><i class="icon icon-<%= navName %>"></i></a>
 		    <% } %>
 			</div>
 		</nav>

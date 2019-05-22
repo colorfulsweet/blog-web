@@ -4,7 +4,7 @@
   bottom: 50px;
   z-index: 999;
   font-size: 14px;
-  .icon-plane {
+  .icon-chevron-up {
     color: $colorF;
     text-shadow: 1px 1px 1px #509eb7;
     opacity: 0.7;
@@ -19,7 +19,7 @@
   width: 40px;
   text-align: center;
 }
-.jump-container:hover .icon-back {
+.jump-container:hover .icon-chevron-up {
   background: rgba(36, 193, 246, 0.9);
 }
 
@@ -46,11 +46,10 @@
     left: -2px;
   }
 }
-.mod-side-operation__jump-to-top .icon-back {
+.mod-side-operation__jump-to-top .icon-chevron-up {
   transition: 0.3s;
   color: $colorF;
   background: #ccc;
-  transform: rotate(90deg);
   font-size: 32px;
   line-height: 40px;
   width: 40px;
@@ -69,9 +68,9 @@
   &:hover {
     background: rgba(36, 193, 246, 0.9);
   }
-  .icon-font {
+  .icon {
     font-size: 22px;
-    line-height: 40px;
+    line-height: 45px;
     color: $colorF;
   }
   .tooltip {

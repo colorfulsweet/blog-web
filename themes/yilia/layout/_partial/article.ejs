@@ -15,8 +15,16 @@
       <% } else { %>
         <% if (!page.pageid){ %>
         <div class="post-count">
-          <div class="count-item">总字数 <span><%= wordcount(post.content) %></span></div> | 
-          <div class="count-item">预计阅读时间 <span><%= min2read(post.content) %></span> 分钟</div>
+          <div class="count-item">
+            <i class="icon icon-file-text-o"></i>
+            总字数
+            <span><%= wordcount(post.content) %></span>
+          </div> | 
+          <div class="count-item">
+            <i class="icon icon-clock"></i>
+            预计阅读时间
+            <span><%= min2read(post.content) %></span> 分钟
+          </div>
         </div>
         <% } %>
         <%- post.content %>
@@ -31,7 +39,7 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i><%= theme.reward_wording%><i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quote-left"></i><%= theme.reward_wording%><i class="icon icon-quote-right"></i></p>
                   <div class="reward-box">
                     <% if(theme.alipay) {%>
                     <div class="reward-box-item">
@@ -57,7 +65,7 @@
     <div class="article-info article-info-index">
       <%if(post.top){%>
         <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
+          <i class="icon-thumb-tack"></i>
           <a class="article-tag-list-link color3">置顶</a>
         </div>
       <% } %>
