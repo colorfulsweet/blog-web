@@ -1,8 +1,5 @@
 <nav id="mobile-nav">
   <div class="overlay js-overlay" ></div>
-	<div class="btnctn js-mobile-btnctn">
-    <div class="slider-trigger list" @click="openSlider($event, 'innerArchive')"><i class="icon icon-list"></i></div>
-	</div>
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
@@ -29,7 +26,7 @@
 				<% var divide = 100 / count + '%' %>
 				<% for (let menuName in theme.menu){ %>
 					<li style="width: <%= divide %>"><a href="<%- url_for(theme.menu[menuName].url) %>"><%= __(theme.menu[menuName].name) %></a></li>
-		        <%}%>
+		      <% } %>
 				</ul>
 			</nav>
 		</header>				

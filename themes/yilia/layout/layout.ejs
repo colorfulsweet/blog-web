@@ -6,6 +6,9 @@
       <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
       <%- partial('_partial/live2d') %>
     </div>
+    <div class="btnctn js-mobile-btnctn">
+      <div class="slider-trigger list" @click="openSlider($event, 'innerArchive', true)"><i class="icon icon-list"></i></div>
+    </div>
     <div class="mid-col" :class="{show: isShow,hide: isShow!==undefined && !isShow}">
       <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
       <div id="wrapper" class="body-wrap" v-pre>

@@ -38,7 +38,11 @@ new Vue({
     stop (event) {
       event.stopPropagation()
     },
-    openSlider (event, type) {
+    openSlider (event, type, isMobile) {
+      if(isMobile && this.isShow) {
+        this.hideSlider()
+        return
+      }
       event.stopPropagation()
       this.innerArchive = false
       this.friends = false
