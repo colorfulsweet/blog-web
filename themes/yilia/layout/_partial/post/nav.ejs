@@ -2,20 +2,18 @@
 <nav id="article-nav">
   <% if (post.prev){ %>
     <a href="<%- url_for(post.prev.path) %>" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon icon-arrow-circle-o-left"></i>
       <div class="article-nav-title">
-        <% if (post.prev.title){ %>
-          <%= post.prev.title %>
-        <% } else { %>
-          (no title)
-        <% } %>
+        <i class="icon icon-arrow-circle-o-left"></i>
+        <%= post.prev.title %>
       </div>
     </a>
   <% } %>
   <% if (post.next){ %>
     <a href="<%- url_for(post.next.path) %>" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"><%= post.next.title %></div>
-      <i class="icon icon-arrow-circle-o-right"></i>
+      <div class="article-nav-title">
+        <%= post.next.title %>
+        <i class="icon icon-arrow-circle-o-right"></i>
+      </div>
     </a>
   <% } %>
 </nav>
