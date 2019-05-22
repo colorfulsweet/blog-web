@@ -18,7 +18,9 @@ function init() {
   
   // 避免由于动画带来的fix元素定位失效, 移到动画元素外层
   var sideOpt = document.querySelector('.wrap-side-operation')
-  document.getElementById('container').appendChild(sideOpt)
+  if(sideOpt) {
+    document.getElementById('container').appendChild(sideOpt)
+  }
 }
 
 export default { init }

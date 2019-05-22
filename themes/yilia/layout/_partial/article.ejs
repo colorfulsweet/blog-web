@@ -1,16 +1,19 @@
-<article class="article article-type-<%= post.layout %> <%if(index){%> article-index<%}%>" itemscope itemprop="blogPost">
+<% if (param.postIndex === 0 || !param.index){ %>
+<%- partial('_partial/aside') %>
+<% } %>
+<article class="article article-type-<%= post.layout %> <%if(param.index){%> article-index<%}%>" itemscope itemprop="blogPost">
   <div class="article-inner">
     <% if (post.link || post.title){ %>
       <header class="article-header">
         <%- partial('post/title', {class_name: 'article-title'}) %>
         <% if (!post.noDate){ %>
         <%- partial('post/date', {class_name: 'archive-article-date', 
-          date_format: config.date_format+(post.excerpt && index ? '':' '+config.time_format)}) %>
+          date_format: config.date_format+(post.excerpt && param.index ? '':' '+config.time_format)}) %>
         <% } %>
       </header>
     <% } %>
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
+      <% if (post.excerpt && param.index){ %>
         <%- post.excerpt %>
       <% } else { %>
         <% if (!page.pageid){ %>
@@ -29,7 +32,7 @@
         <% } %>
         <%- post.content %>
       <% } %>
-      <% if ((theme.reward_type === 2 || (theme.reward_type === 1 && post.reward)) && !index){ %>
+      <% if ((theme.reward_type === 2 || (theme.reward_type === 1 && post.reward)) && !param.index){ %>
         <div class="page-reward">
           <a href="javascript:;" class="page-reward-btn tooltip-top">
             <div class="tooltip tooltip-east">
@@ -71,24 +74,23 @@
       <% } %>
       <%- partial('post/tag') %>
       <%- partial('post/category') %>
-      <% if (index){ %>
+      <% if (param.index){ %>
         <p class="article-more-link">
           <a class="article-more-a" href="<%- url_for(post.path) %>"><%= __('show_full_text') %> >></a>
         </p>
       <% } %>
-      <% if (!index && theme.share_jia){ %>
+      <% if (!param.index && theme.share_jia){ %>
         <%- partial('post/share') %>
       <% } %>
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-<% if (!index){ %>
+<% if (!param.index){ %>
   <%- partial('post/nav') %>
 <% } %>
-<%- partial('_partial/aside') %>
 
-<% if (!index && post.comments){ %>
+<% if (!param.index && post.comments){ %>
   <% if (theme.changyan_appid && theme.changyan_conf){ %>
   <%- partial('post/changyan', {
       key: post.slug,
