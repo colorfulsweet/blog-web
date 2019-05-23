@@ -115,4 +115,19 @@ body.night {
   .category-list li.category-list-item {
     border-color: $borderColor_night;
   }
+  // 标签颜色组
+  .tagcloud {
+    @for $index from 1 to length($tagcolorList)+1 {
+      a.color#{$index}{
+        background: darken(nth($tagcolorList,$index), 25%);
+        &::before{
+          border-right-color: darken(nth($tagcolorList,$index), 25%);  
+        }
+      }
+    }
+  }
+  // 滚动条
+  ::-webkit-scrollbar {
+    background-color: $articleBg_night;
+  }
 }

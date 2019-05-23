@@ -1,6 +1,6 @@
 {
   "name": "yilia",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Hexo响应式主题",
   "scripts": {
     "dev": "webpack --progress --mode development",

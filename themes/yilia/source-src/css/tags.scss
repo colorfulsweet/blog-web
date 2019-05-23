@@ -14,7 +14,7 @@
     position:relative;  
     border-radius:0 5px 5px 0; 
     margin: 5px 9px 5px 8px;
-    font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+    font-family: Menlo, Monaco, "Andale Mono", "lucida console";
     &:hover{
       opacity: 0.8;
     }
@@ -39,14 +39,12 @@
       left: 2px;
     }  
   }
-  // 标签背景色
-  $tagcolorlist: #88acdb #ffa07a #f08080 #76becc #918597 #6fc0e4 #bc8f8f;
 
-  @for $index from 1 to length($tagcolorlist)+1 {
+  @for $index from 1 to length($tagcolorList)+1 {
     a.color#{$index}{
-      background: nth($tagcolorlist,$index);
+      background: nth($tagcolorList,$index);
       &::before{
-        border-right-color: nth($tagcolorlist,$index);  
+        border-right-color: nth($tagcolorList,$index);  
       }
     }
   }

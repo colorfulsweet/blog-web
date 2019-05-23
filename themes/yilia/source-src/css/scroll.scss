@@ -2,12 +2,12 @@
 ::-webkit-scrollbar {
 	width: 10px;
 	height: 10px;
+	background-color: $colorBg;
 }
 
 ::-webkit-scrollbar-button {
 	width: 0;
 	height: 0;
-	background-color: $colorBg;
 }
 
 ::-webkit-scrollbar-button:start:increment,::-webkit-scrollbar-button:end:decrement {
