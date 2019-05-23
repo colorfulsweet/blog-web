@@ -20,15 +20,13 @@ html, body, #container {
 #container{
 	position:relative;
 	min-height:100%;
+	background: linear-gradient(200deg,#5aa5c6,#a4854b);
 	.anm-canvas {
 		display: none;
 	}
-	&.show {
-		background: linear-gradient(200deg,#5aa5c6,#a4854b);
-		.anm-canvas {
-			display: block;
-			position: fixed;
-		}
+	&.show .anm-canvas {
+		display: block;
+		position: fixed;
 	}
 }
 .body-wrap{
