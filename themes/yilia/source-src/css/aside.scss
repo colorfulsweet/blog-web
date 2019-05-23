@@ -4,23 +4,25 @@
   bottom: 50px;
   z-index: 999;
   font-size: 14px;
-  .icon-chevron-up {
+  .icon {
     color: $colorF;
     text-shadow: 1px 1px 1px #509eb7;
-    opacity: 0.7;
-    font-size: 52px;
+    font-size: 24px;
     line-height: 40px;
     width: 40px;
     text-align: center;
     display: block;
+    transition: 0.3s;
   }
 }
 .mod-side-operation {
   width: 40px;
   text-align: center;
 }
-.jump-container:hover .icon-chevron-up {
-  background: rgba(36, 193, 246, 0.9);
+.jump-container:hover, .toc-container:hover{
+  .icon {
+    background: rgba(36, 193, 246, 0.9);
+  }
 }
 
 .jump-container, .toc-container {
@@ -28,7 +30,8 @@
   cursor: pointer;
   width: 40px;
   height: 40px;
-  opacity: .8;
+  background: #ccc;
+  opacity: .7;
 }
 .jump-plan-container {
   position: absolute;
@@ -46,33 +49,10 @@
     left: -2px;
   }
 }
-.mod-side-operation__jump-to-top .icon-chevron-up {
-  transition: 0.3s;
-  color: $colorF;
-  background: #ccc;
-  font-size: 32px;
-  line-height: 40px;
-  width: 40px;
-  text-align: center;
-  display: block;
-  &:hover {
-    background: #24c1f6;
-    color: #24c1f6;
-  }
-}
 
 .toc-container.tooltip-left{
-  background: $colorC;
   margin-top: 10px;
   transition: 0.3s;
-  &:hover {
-    background: rgba(36, 193, 246, 0.9);
-  }
-  .icon {
-    font-size: 22px;
-    line-height: 45px;
-    color: $colorF;
-  }
   .tooltip {
     width: 40px;
     height: 40px;
