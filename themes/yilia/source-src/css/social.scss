@@ -49,10 +49,10 @@
       }
     }
     a.github {
-      background: #afb6ca;
-      border:1px solid #afb6ca;
+      background: #767c8d;
+      border:1px solid #767c8d;
       &:hover {
-        border:1px solid #909ab6;
+        border:1px solid #666d80;
       }
     }
     a.facebook {
@@ -83,6 +83,7 @@
         border:1px solid #006b98;
       }
     }
+    /*
     a.acfun {
       background: #fd4c5d;
       border:1px solid #fd4c5d;
@@ -96,7 +97,7 @@
       &:hover {
         border:1px solid #e15280;
       }
-    }
+    }*/
     a.zhihu {
       background: #0078d8;
       border:1px solid #0078d8;
@@ -118,6 +119,7 @@
         border:1px solid #006b98;
       }
     }
+    /*
     a.jianshu {
       background: #ff5722;
       border:1px solid #ff5722;
@@ -138,13 +140,6 @@
       &:hover {
         border:1px solid #34baad;
       }
-    }
-    a.psn {
-      background: #086ef6;
-      border:1px solid #086ef6;
-      &:hover {
-        border:1px solid #086ef6;
-      }
-    }
+    }*/
   }
 }

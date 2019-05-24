@@ -21,6 +21,8 @@ html, body, #container {
 	position:relative;
 	min-height:100%;
 	background: linear-gradient(200deg,#5aa5c6,#a4854b);
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
 	.anm-canvas {
 		display: none;
 	}

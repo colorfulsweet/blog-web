@@ -15,9 +15,12 @@
 			var ulWidth = count > 2 ? '70%' : '50%' %>
 			<nav class="header-nav">
 				<div class="social">
-					<% for (var i in theme.subnav){ %>
-						<a class="<%= i %>" target="_blank" href="<%- url_for(theme.subnav[i]) %>" title="<%= i %>"><i class="icon icon-<%= i %>"></i></a>
-			        <%}%>
+					<% for (let navName in theme.subnav){ %>
+						<a class="<%= navName %>" target="_blank" href="<%- url_for(theme.subnav[navName].url) %>" 
+								title="<%= __(theme.subnav[navName].alt) %>">
+							<i class="icon icon-<%= theme.subnav[navName].icon %>"></i>
+						</a>
+			    <% } %>
 				</div>
 			</nav>
 
