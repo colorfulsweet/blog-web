@@ -20,7 +20,8 @@ html, body, #container {
 #container{
 	position:relative;
 	min-height:100%;
-	background: linear-gradient(200deg,#5aa5c6,#a4854b);
+  background: linear-gradient(200deg,#5aa5c6,#a4854b);
+  scroll-behavior: smooth;
 	-webkit-overflow-scrolling: touch;
 	overflow-scrolling: touch;
 	.anm-canvas {
@@ -32,6 +33,7 @@ html, body, #container {
 	}
 }
 .body-wrap{
+  padding-top: 30px;
   margin-bottom: 80px;
 }
 .mid-col {
