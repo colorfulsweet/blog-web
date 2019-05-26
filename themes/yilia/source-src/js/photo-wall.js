@@ -2,7 +2,7 @@ import axios from 'axios'
 import PhotoSwipe from '../lib/photoswipe/photoswipe'
 import PhotoSwipeUI_Default from '../lib/photoswipe/photoswipe-ui-default'
 
-var groupid = 1, currentIndex = 0, totalIndex = 0, defaultStep = 20, scrollLock = false
+var totalIndex = 0, defaultStep = 20, scrollLock = false
 
 // 容器DIV
 const photoWallWrapper = document.getElementById('photo-wall')
@@ -27,11 +27,10 @@ function loadMoreItems(step) {
   scrollLock = true //加载过程中锁定滚动加载
   loadTip.style.display = 'block'
   // 滚动到底部时调用
-  axios.get(`${themeConfig.pictureCdn}/photo-wall/${groupid}/list.json`).then(res => {
+  axios.get(`${themeConfig.root}api/photos`, {params: {start:totalIndex, limit:step}}).then(res => {
     var itemContainer = document.createElement('div')
-    var index = currentIndex
-    while(index<currentIndex+step && index<res.data.files.length) {
-      let imgHeight = null, imgFile = res.data.files[index],
+    for(let index = 0 ; index<res.data.data.length && totalIndex<res.data.total ; index++,totalIndex++ ) {
+      let imgHeight = null, imgFile = res.data.data[index],
         imgSrc = `${themeConfig.pictureCdn}/${imgFile.name}`,
         imgThumbnail = imgFile.thumbnail ? `${themeConfig.pictureCdn}/${imgFile.thumbnail}` : imgSrc
       let wrapperWidth = photoWallWrapper.getBoundingClientRect().width
@@ -66,33 +65,23 @@ function loadMoreItems(step) {
       })(totalIndex))
       imgItemDiv.appendChild(imgItem)
       itemContainer.appendChild(imgItemDiv)
-      index++
-      totalIndex++
-    }
-    if(index >= res.data.files.length) { // 已到达当前分组列表的末尾
-      groupid++
-      let tempIndex = currentIndex
-      currentIndex = 0
-      if(index<currentIndex+step) { // 如果加载的数据数量不足步长
-        // 则需要再加载下一个分组, 下一个分组需要加载的图片数量是剩余的步长
-        loadMoreItems(tempIndex + step - index) 
-      }
-    } else {
-      currentIndex = index
     }
     itemContainer.classList.add('item-container')
     // itemContainer.insertAdjacentHTML('beforeend', imgItems)
     photoWallWrapper.appendChild(itemContainer)
-    setTimeout(()=>{
-      loadTip.style.display = 'none'
-      scrollLock = false
-    }, 2000)
-  }).catch(res => { // 未加载到文件列表, 代表已经没有更多图片
-    scrollLock = true
-    loadTip.textContent = '没有更多图片啦/(ㄒoㄒ)/~~'
+    if( totalIndex >= res.data.total ) {
+      loadTip.textContent = '没有更多图片啦/(ㄒoㄒ)/~~'
+    } else {
+      setTimeout(()=>{
+        loadTip.style.display = 'none'
+        scrollLock = false
+      }, 2000)
+    }
+  }).catch(res => {
+    scrollLock = false
+    loadTip.textContent = '图片加载失败, 请稍后重试...'
   })
 }
-
 
 //检测是否具备滚动条加载数据块的条件
 function checkScrollSlide(){
