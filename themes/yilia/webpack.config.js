@@ -15,9 +15,9 @@ module.exports = function(env, argv) {
   let isProd = argv.mode === 'production'
   return {
     entry: {
-      main: './source-src/js/main.js',
+      main: ['babel-polyfill', './source-src/js/main.js'],
       slider: './source-src/js/slider.js',
-      mobile: ['babel-polyfill', './source-src/js/mobile.js'],
+      mobile: './source-src/js/mobile.js',
       viewer: './source-src/js/viewer.js'
     },
     output: {
