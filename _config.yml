@@ -95,6 +95,9 @@ theme: yilia
 # 图片存储仓库地址
 picture_cdn: https://blog-cdn.nos-eastchina1.126.net
 
+# ICP备案号
+ICP: 鲁ICP备19028444号
+
 # 站点地图
 sitemap:
   path: sitemap.xml
