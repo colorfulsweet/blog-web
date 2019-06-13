@@ -33,7 +33,8 @@ gulp.task('compressHtml', () => {
     unprotect: /<script [^>]*\btype="text\/x-handlebars-template"[\s\S]+?<\/script>/ig //特殊处理
   }
   const minOption = {
-    collapseWhitespace: true,           //压缩HTML
+    collapseWhitespace: true,           //删除html中的空白
+    conservativeCollapse: true,         //将多个空白折叠为1空白(永远不要完全移除), 必须与 collapseWhitespace=true 一起使用
     collapseBooleanAttributes: true,    //省略布尔属性的值  <input checked="true"/> ==> <input />
     removeEmptyAttributes: true,        //删除所有空属性值    <input id="" /> ==> <input />
     removeScriptTypeAttributes: true,   //删除<script>的type="text/javascript"
@@ -41,7 +42,7 @@ gulp.task('compressHtml', () => {
     removeComments: true,               //清除HTML注释
     minifyJS: true,                     //压缩页面JS
     minifyCSS: true,                    //压缩页面CSS
-    minifyURLs: true                    //替换页面URL
+    minifyURLs: false                   //替换页面URL
   }
   return gulp.src('./public/**/*.html')
     .pipe(plumber())

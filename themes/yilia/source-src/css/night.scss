@@ -87,6 +87,9 @@ body.night {
   }
   #mobile-nav {
     background: none;
+    .overlay {
+      display: none;
+    }
   }
   .overlay {
     background: none;

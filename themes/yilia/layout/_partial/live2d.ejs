@@ -1,7 +1,7 @@
 <div class="waifu" @mouseover="waifu.showTools=true" @mouseout="waifu.showTools=false">
   <div class="waifu-tips" v-text="waifu.tip" v-bind:style="{opacity: waifu.tipOpacity}"></div>
-  <div style="width: 250px;overflow: hidden;">
-    <canvas id="live2d" width="650" height="600" @mouseover="linkMouseover('waifu')" style="width: 325px;height: 300px;"></canvas>
+  <div>
+    <canvas id="live2d" width="520" height="480" @mouseover="linkMouseover('waifu')" style="width: 260px;height: 240px;"></canvas>
   </div>
   <div class="waifu-tool" v-show="waifu.showTools">
     <span class="icon icon-eye" @mouseover="linkMouseover('tools.eye')" @click="toolsClick('tools.eye')"></span>

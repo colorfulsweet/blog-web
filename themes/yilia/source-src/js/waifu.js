@@ -16,7 +16,7 @@ export default {
   init() {
     if(!isMobile && isSupportWebGL()) {
       // 加载live2d模型
-      loadlive2d('live2d', 'https://blog-cdn.nos-eastchina1.126.net/live2D/Kesshouban/model.json')
+      loadlive2d('live2d', window.themeConfig.pictureCdn + '/live2D/Kesshouban/model.json')
       document.querySelector('.waifu').style.display = 'block'
     }
   }

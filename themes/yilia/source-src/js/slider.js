@@ -59,6 +59,7 @@ new Vue({
       }
     },
     linkMouseover(name) {
+      if(name === 'waifu' && waifuTipTimer) return
       this.showMessage(waifuTips.mouseover[name], 3000)
     },
     toolsClick(name) {

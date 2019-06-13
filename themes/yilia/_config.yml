@@ -71,7 +71,7 @@ google_analytics: ''
 favicon: /favicon.ico
 
 #你的头像url
-avatar: https://blog-cdn.nos-eastchina1.126.net/resources/avatar.jpg
+avatar: https://cdn.colorfulsweet.site/resources/avatar.jpg
 
 #是否开启分享
 share_jia: true
