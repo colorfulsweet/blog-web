@@ -34,7 +34,7 @@ gulp.task('compressHtml', () => {
   }
   const minOption = {
     collapseWhitespace: true,           //删除html中的空白
-    conservativeCollapse: true,         //将多个空白折叠为1空白(永远不要完全移除), 必须与 collapseWhitespace=true 一起使用
+    conservativeCollapse: false,        //将多个空白折叠为1空白(永远不要完全移除), 必须与 collapseWhitespace=true 一起使用
     collapseBooleanAttributes: true,    //省略布尔属性的值  <input checked="true"/> ==> <input />
     removeEmptyAttributes: true,        //删除所有空属性值    <input id="" /> ==> <input />
     removeScriptTypeAttributes: true,   //删除<script>的type="text/javascript"
