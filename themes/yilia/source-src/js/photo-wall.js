@@ -27,7 +27,7 @@ function loadMoreItems(step) {
   scrollLock = true //加载过程中锁定滚动加载
   loadTip.style.display = 'block'
   // 滚动到底部时调用
-  axios.get(`${themeConfig.root}api/photos`, {params: {start:totalIndex, limit:step}}).then(res => {
+  axios.get(`${themeConfig.root}api/common/photos`, {params: {start:totalIndex, limit:step}}).then(res => {
     var itemContainer = document.createElement('div')
     for(let index = 0 ; index<res.data.data.length && totalIndex<res.data.total ; index++,totalIndex++ ) {
       let imgHeight = null, imgFile = res.data.data[index],
