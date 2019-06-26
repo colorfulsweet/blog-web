@@ -81,6 +81,7 @@ var str1: string = 'ab'
 var str2: String = 'cd'
 ```
 都可以, 从eslint的默认设置来看, 官方推荐前者
+> 变量类型定义同样可以应用于函数的形参, 语法相同
 
 ##### 数组
 数组类型有两种表示方法
@@ -137,8 +138,6 @@ function test2(): never {
   while(true) {}
 }
 ```
-
-
 #### 类型推断机制
 
 如果声明变量时没有指定类型, 那么编译器就会根据初始化的赋值来推断这个变量的类型
@@ -150,6 +149,53 @@ str = 10 // Error
 ```
 初始化的赋值编译器推断str是string类型, 所以之后给他赋值number类型就会报错
 
+#### 自定义类型
+TS当中可以使用`interface`和`class`来自定义类型
+与其他强类型语言当中的接口与类的定义类似, 前者可以写属性和方法声明, 后者可以实现接口
+class定义的类型可以直接用new关键字来创建对象
+```typescript
+interface Demo {
+  name: string
+  value?: object
+  test(msg: string): void
+}
+let demo = {
+  name: 'sookie',
+  test: function(msg: string): void{
+    console.log(msg)
+  }
+}
+// ? 代表该属性是可选的, 也可以应用于函数的形参
+// 上述方式可以理解为给该接口创建一个实现类(类比Java当中的匿名类)
+// 或者也可以用下面的方式实现一个接口
+class DemoImpl implements Demo{
+  name: 'sookie'
+  test(msg: string): void{
+    console.log(msg)
+  }
+}
+let demo2: Demo = new DemoImpl()
+demo2.test('Hello')
+```
+需要注意的是, 继承接口需要定义函数的实现, 以及属性的值, 带有`?`的可选属性可以不指定
+
+##### 访问控制
+TS有3种访问控制关键字, 分别是`public`, `private`, `protected`
+具体作用和Java一样, 缺省就是public
+
+##### 构造器
+可以对一个类编写一个构造器, 在对象被创建时调用
+```typescript
+class Demo {
+  constructor(private name: string) { }
+  show(): void {
+    console.log(this.name)
+  }
+}
+new Demo('sookie').show()
+```
+构造器参数上添加任意一种访问控制关键字, 都可以直接把该参数设置为对象的属性
+相当于构造器里面写**this.name = name**, 添加之后就可以省略这个赋值
 
 
 ### 写在最后
