@@ -62,12 +62,93 @@ exports.Hello = Hello;
 ```
 就是一个语法的转换过程
 
+### 语法与特性
+ES6提供的语法糖就不提了, 基本每天都在写
+就记录一下TS自己的一套类型体系吧
+
+#### 变量类型
+TS自带一套类型体系, 有一些与JavaScript当中有重叠 (当然JS当中也不能完全称之为类型, 因为都是对象)
+string对应 JS的 String
+number对应 JS的 Number
+object对应 JS的 Object
+boolean对应 JS的 Boolean
+symbol对应 JS的 Symbol
+
+所以定义变量时
+```typescript
+var str1: string = 'ab'
+// 或者
+var str2: String = 'cd'
+```
+都可以, 从eslint的默认设置来看, 官方推荐前者
+
+##### 数组
+数组类型有两种表示方法
+```typescript
+var arr1: string[] = ['ab','cd']
+var arr2: Array<string> = ['ab','cd']
+```
+后一种明显很像Java的泛型写法, 但是eslint默认的语法检查规则推荐前者
+
+##### 枚举
+```typescript
+enum Color1 {Red, Green, Blue}
+let c1: Color1 = Color1.Green
+
+enum Color2 {Black = 10, White = 20}
+let c2: Color2 = Color2.Black
+```
+使用枚举类型可以为一组数值赋予友好的名字
+默认从0开始编号, 也可以手动指定编号
+
+##### 任意值
+我们并不是每次都能知道变量的类型是什么, 或者是引入的一些第三方库, 本身就是JS写的
+没有类型声明
+那么可以用`any`来直接忽略编译阶段的检查
+
+> 类型检查是TS的最大优势, 主要是帮助开发者排除错误的
+any只是一种兼容的做法, 不应该滥用, 否则和写JS还有什么区别
+
+##### 空值
+对于定义变量不算很常用, 有几种表示方法
+```typescript
+// void类型包含 undefined和null
+let n1: void = undefined
+let n2: void = null
+
+// undefined和null也是类型
+let n3: undefined = undefined
+let n4: null = null
+
+// 可以用void表示一个函数无返回值(当然JS当中无返回值就是返回undefined, 这点也正好符合)
+function test(): void {
+  console.log('test')
+}
+```
+
+##### never
+`never`可以用来表示函数的返回值, 表示用不存在的类型
+该函数必须存在无法到达的终点 ( 比如抛出异常或者死循环 )
+```typescript
+function test1(): never {
+  throw new Error()
+}
+function test2(): never {
+  while(true) {}
+}
+```
 
 
+#### 类型推断机制
 
-
-
-
+如果声明变量时没有指定类型, 那么编译器就会根据初始化的赋值来推断这个变量的类型
+对于函数返回值同样适用
+比如
+```typescript
+let str = 'abc'
+str = 10 // Error
+```
+初始化的赋值编译器推断str是string类型, 所以之后给他赋值number类型就会报错
 
 
 
