@@ -125,3 +125,9 @@ jsonContent:
     excerpt: false
     categories: true
     tags: true
+
+# Algolia Search API Key
+algolia:
+  applicationID: 7KLORCVFHK
+  apiKey: 85e4854ff8f8cd0033f89fcdb51582fd
+  indexName: Hexo Blog
