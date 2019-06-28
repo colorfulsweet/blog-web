@@ -1,7 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 
 const minifyHTML = {
@@ -98,7 +98,8 @@ module.exports = function(env, argv) {
         template: './source-src/template/css.html',
         filename: '../layout/_partial/css.ejs'
       }),
-      new CleanPlugin(['source/js/*.js','source/css/*.css','source/fonts/*'],{
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: ['source/js/*.js','source/css/*.css','source/fonts/*'],
         verbose: true,
         dry: false,
       })
