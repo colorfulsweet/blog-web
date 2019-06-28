@@ -99,7 +99,7 @@ module.exports = function(env, argv) {
         filename: '../layout/_partial/css.ejs'
       }),
       new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: ['source/js/*.js','source/css/*.css','source/fonts/*'],
+        cleanOnceBeforeBuildPatterns: ['js/*.js','css/*.css','fonts/*'],
         verbose: true,
         dry: false,
       })
