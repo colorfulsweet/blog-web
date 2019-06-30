@@ -126,5 +126,8 @@ jsonContent:
     categories: true
     tags: true
 
-# 是否同步文章内容以及分词结果
-save_content: false
+# hexo-generator-search
+search:
+  path: search.xml
+  field: post
+  content: true
