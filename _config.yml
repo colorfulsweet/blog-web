@@ -101,7 +101,7 @@ ICP: 鲁ICP备19028444号
 # 站点地图
 sitemap:
   path: sitemap.xml
-  template: ./sitemap_template.xml
+  template: ./templates/sitemap.xml
 baidusitemap:
   path: baidusitemap.xml
 
@@ -125,9 +125,3 @@ jsonContent:
     excerpt: false
     categories: true
     tags: true
-
-# hexo-generator-search
-search:
-  path: search.xml
-  field: post
-  content: true

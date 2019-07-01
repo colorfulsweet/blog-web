@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+{% for post in posts.toArray() %}
+  {% if post.indexing == undefined or post.indexing %}
+  <entry>
+    <title>{{ post.title }}</title>
+    <link href="{{ root + post.path }}"/>
+    <path>{{ post.path }}</path>
+    {% if post.categories and post.categories.length>0 %}
+    <categories>
+      {% for cate in post.categories.toArray() %}
+      <category> {{ cate.name }} </category>
+      {% endfor %}
+    </categories>
+    {% endif %}
+    {% if post.tags and post.tags.length>0 %}
+    <tags>
+      {% for tag in post.tags.toArray() %}
+      <tag> {{ tag.name }} </tag>
+      {% endfor %}
+    </tags>
+    {% endif %}
+    {% if post.date %}
+    <date>{{ +post.date }}</date>
+    {% endif %}
+    <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
+  </entry>
+  {% endif %}
+{% endfor %}
+</search>
