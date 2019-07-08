@@ -269,7 +269,8 @@ label.bui-switch-label {
     }
   }
   .search-result {
-    height: 700px;
+    height: 600px;
+    overflow-y: auto;
     .search-result-item {
       text-align: left;
       border-bottom: 1px dashed $colorC;

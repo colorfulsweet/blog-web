@@ -175,6 +175,18 @@ new Vue({
     try {
       if(night && eval(night)) document.querySelector('body').classList.add('night')
     } catch (e){}
+
+    let hideModal = (function() {
+      let modals = document.querySelectorAll('.page-modal')
+      Array.prototype.forEach.call(modals, modal => {
+        modal.classList.remove('in')
+      })
+      this.$refs.mask.classList.remove('in')
+    }).bind(this)
+    this.$refs.mask.addEventListener('click', hideModal)
+    Array.prototype.forEach.call(document.querySelectorAll('.js-modal-close'), modalClose => {
+      modalClose.addEventListener('click', hideModal)
+    })
   }
 })
 

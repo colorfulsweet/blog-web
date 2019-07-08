@@ -15,15 +15,6 @@ function showWXModal() {
   mask.classList.add('in')
 }
 
-function hideModal() {
-  let modals = document.querySelectorAll('.page-modal')
-  let mask = document.querySelector('.mask')
-  Array.prototype.forEach.call(modals, modal => {
-    modal.classList.remove('in')
-  })
-  mask.classList.remove('in')
-}
-
 function handleClick(type, opts) {
   let url = null
   switch(type) {
@@ -78,10 +69,6 @@ let init = function() {
         sDesc: sTitle
       })
     }
-  })
-  document.querySelector('.mask').addEventListener('click', hideModal)
-  Array.prototype.forEach.call(document.querySelectorAll('.js-modal-close'), modalClose => {
-    modalClose.addEventListener('click', hideModal)
   })
 }
 
