@@ -41,9 +41,9 @@
   }
 }
 .page-modal {
-  //display: none;
+  display: none;
   position: fixed;
-  top: 24%;
+  top: 50%;
   left: 50%;
   z-index: 1001;
   padding: 20px;
@@ -53,21 +53,16 @@
   border-radius: 4px;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
   opacity: 0;
-  transform: translate(-50%, -200%);
+  transform: translate(-50%, -50%);
+  transition: .3s;
   p {
     margin-bottom: 10px; 
   }
-  &.ready {
-    visibility: hidden;
-    display: block;
-    transform: translate(-50%, -100%);
-    transition: .3s;
-  }
 
   &.in {
+    display: block;
     visibility: visible;
     opacity: 1;
-    transform: translate(-50%, 0);
   }
 
   .close {

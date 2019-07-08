@@ -14,7 +14,7 @@ function setScrollZero() {
     em.scrollTop = 0
   })
 }
-var waifuTipTimer = null
+var waifuTipTimer = null, fullTextSearchTimer = null
 new Vue({
   el: '#container',
   data: {
@@ -28,6 +28,12 @@ new Vue({
     showCategories: false,
     search: null,
     searchItems: [],
+    fullTextSearch: {
+      pageNum: 1,
+      limit: 10,
+      words: null
+    },
+    fullTextSearchItems: [],
     waifu: {
       tip: null, // 提示语文字
       tipOpacity: 0, // 提示语框透明度
@@ -81,6 +87,19 @@ new Vue({
       }
       this.search = null
     },
+    openFullTextSearch() {
+      this.hideSlider()
+      this.$refs.fullTextSearch.classList.add('in')
+      this.$refs.mask.classList.add('in')
+    },
+    loadMoreSearchResult() {
+      this.fullTextSearch.pageNum ++
+      axios.get(window.themeConfig.root + 'api/common/search', {params: this.fullTextSearch}).then(res => {
+        let result = res.data
+        this.fullTextSearchItems.hasMore = (result.total > this.fullTextSearch.pageNum * this.fullTextSearch.limit)
+        this.fullTextSearchItems.push(...result.data)
+      })
+    },
     searchKeydown(event) {
       if(event.keyCode == 13){ // 回车键
         this.addSearchItem(this.search)
@@ -117,6 +136,25 @@ new Vue({
           item.isHide = false
         })
       }
+    },
+    fullTextSearch: {
+      deep: true,
+      handler(newVal, oldVal) {
+        if(!newVal.words) {
+          return
+        }
+        if(fullTextSearchTimer) {
+          clearTimeout(fullTextSearchTimer)
+        }
+        fullTextSearchTimer = setTimeout(() => {
+          this.fullTextSearchItems.length = 0
+          axios.get(window.themeConfig.root + 'api/common/search', {params: newVal}).then(res => {
+            let result = res.data
+            this.fullTextSearchItems.hasMore = (result.total > this.fullTextSearch.pageNum * this.fullTextSearch.limit)
+            this.fullTextSearchItems.push(...result.data)
+          })
+        }, 1000)
+      } 
     }
   },
   mounted () {

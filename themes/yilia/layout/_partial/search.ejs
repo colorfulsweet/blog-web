@@ -1,0 +1,20 @@
+<div class="page-modal js-search-box" ref="fullTextSearch" >
+  <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+  <div class="search">
+    <div class="search-input-icon">
+      <i class="icon icon-search"></i>
+    </div>
+    <div class="search-input" >
+      <input placeholder="搜索所有文章" type="text" v-model="fullTextSearch.words" >
+    </div>
+  </div>
+  <div class="search-result">
+    <div class="search-result-item" v-for="(item,index) in fullTextSearchItems" :key="index">
+      <a v-text="item.title" :href="item.href"></a>
+      <div v-html="item.content"></div>
+    </div>
+    <div class="more-item" v-show="fullTextSearchItems.hasMore"  @click="loadMoreSearchResult">
+      <i class="icon icon-chevron-up"></i>
+    </div>
+  </div>
+</div>

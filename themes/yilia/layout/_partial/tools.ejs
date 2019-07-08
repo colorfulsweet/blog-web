@@ -26,7 +26,7 @@
             <i class="icon icon-close" @click="searchItems.splice(index,1)"></i>
           </span>
           <input class="search-ipt" v-model="search" @blur="addSearchItem(search)" @keydown="searchKeydown" type="text" placeholder="<%=__('search') %>…">
-          <i class="icon icon-search" @click="addSearchItem(search)"></i>
+          <i class="icon icon-search" @click="openFullTextSearch"></i>
         </div>
         <div class="widget tagcloud search-tag">
           <div>

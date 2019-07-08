@@ -11,7 +11,7 @@ function showWXModal() {
     })
     qrcodeInit = true
   }
-  wx.classList.add('in', 'ready')
+  wx.classList.add('in')
   mask.classList.add('in')
 }
 
@@ -19,7 +19,7 @@ function hideModal() {
   let modals = document.querySelectorAll('.page-modal')
   let mask = document.querySelector('.mask')
   Array.prototype.forEach.call(modals, modal => {
-    modal.classList.remove('in', 'ready')
+    modal.classList.remove('in')
   })
   mask.classList.remove('in')
 }
