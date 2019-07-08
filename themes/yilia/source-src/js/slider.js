@@ -38,7 +38,8 @@ new Vue({
       tip: null, // 提示语文字
       tipOpacity: 0, // 提示语框透明度
       showTools: false // 显示工具栏
-    }
+    },
+    themeConfig: window.themeConfig
   },
   methods: {
     stop (event) {
@@ -175,7 +176,8 @@ new Vue({
     try {
       if(night && eval(night)) document.querySelector('body').classList.add('night')
     } catch (e){}
-
+  },
+  mounted() {
     let hideModal = (function() {
       let modals = document.querySelectorAll('.page-modal')
       Array.prototype.forEach.call(modals, modal => {

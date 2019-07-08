@@ -10,7 +10,7 @@
   </div>
   <div class="search-result">
     <div class="search-result-item" v-for="(item,index) in fullTextSearchItems" :key="index">
-      <a v-text="item.title" :href="item.href"></a>
+      <a v-text="item.title" :href="themeConfig.root + item.path"></a>
       <div v-html="item.content"></div>
     </div>
     <div class="more-item" v-show="fullTextSearchItems.hasMore"  @click="loadMoreSearchResult">
