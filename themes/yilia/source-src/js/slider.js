@@ -169,15 +169,7 @@ new Vue({
     document.addEventListener('copy', () => {
       this.showMessage('你都复制了些什么呀，转载要记得加上出处哦')
     })
-  },
-  created() {
-    // 夜间模式
-    let night = localStorage.getItem('night')
-    try {
-      if(night && eval(night)) document.querySelector('body').classList.add('night')
-    } catch (e){}
-  },
-  mounted() {
+    // 隐藏模态框
     let hideModal = (function() {
       let modals = document.querySelectorAll('.page-modal')
       Array.prototype.forEach.call(modals, modal => {
@@ -189,6 +181,13 @@ new Vue({
     Array.prototype.forEach.call(document.querySelectorAll('.js-modal-close'), modalClose => {
       modalClose.addEventListener('click', hideModal)
     })
+  },
+  created() {
+    // 夜间模式
+    let night = localStorage.getItem('night')
+    try {
+      if(night && eval(night)) document.querySelector('body').classList.add('night')
+    } catch (e){}
   }
 })
 
