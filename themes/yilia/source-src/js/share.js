@@ -1,16 +1,7 @@
 import QRious from 'qrious'
 
-function generate(url, opts) {
-  var url = url.replace(/<%-sUrl%>/g, encodeURIComponent(opts.sUrl))
-    .replace(/<%-sTitle%>/g, opts.sTitle)
-    .replace(/<%-sDesc%>/g, opts.sDesc)
-    .replace(/<%-sPic%>/g, encodeURIComponent(opts.sPic))
-
-  window.open(url)
-}
-
 var qrcodeInit = false
-function showWX() {
+function showWXModal() {
   let wx = document.querySelector('.js-wx-box')
   let mask = document.querySelector('.mask')
   if(!qrcodeInit) {
@@ -24,30 +15,45 @@ function showWX() {
   mask.classList.add('in')
 }
 
-function hideWX() {
-  let wx = document.querySelector('.js-wx-box')
+function hideModal() {
+  let modals = document.querySelectorAll('.page-modal')
   let mask = document.querySelector('.mask')
-  wx.classList.remove('in', 'ready')
+  Array.prototype.forEach.call(modals, modal => {
+    modal.classList.remove('in', 'ready')
+  })
   mask.classList.remove('in')
 }
 
 function handleClick(type, opts) {
-  if (type === 'weibo') {
-    generate('http://service.weibo.com/share/share.php?url=<%-sUrl%>&title=<%-sTitle%>&pic=<%-sPic%>', opts)
-  } else if (type === 'qq') {
-    generate('http://connect.qq.com/widget/shareqq/index.html?url=<%-sUrl%>&title=<%-sTitle%>&source=<%-sDesc%>', opts)
-  } else if (type === 'douban') {
-    generate('https://www.douban.com/share/service?image=<%-sPic%>&href=<%-sUrl%>&name=<%-sTitle%>&text=<%-sDesc%>', opts)
-  } else if (type === 'qzone') {
-    generate('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<%-sUrl%>&title=<%-sTitle%>&pics=<%-sPic%>&summary=<%-sDesc%>', opts)
-  } else if (type === 'facebook') {
-    generate('https://www.facebook.com/sharer/sharer.php?u=<%-sUrl%>', opts)
-  } else if (type === 'twitter') {
-    generate('https://twitter.com/intent/tweet?text=<%-sTitle%>&url=<%-sUrl%>&via=<%-config.url%>', opts)
-  } else if (type === 'google') {
-    generate('https://plus.google.com/share?url=<%-sUrl%>', opts)
-  } else if (type === 'weixin') {
-    showWX()
+  let url = null
+  switch(type) {
+    case 'weibo' :
+      url = `http://service.weibo.com/share/share.php?url=${opts.sUrl}&title=${opts.sTitle}&pic=${opts.sPic}`
+      break
+    case 'qq' :
+      url = `http://connect.qq.com/widget/shareqq/index.html?url=${opts.sUrl}&title=${opts.sTitle}&source=${opts.sDesc}`
+      break
+    case 'douban' :
+      url = `https://www.douban.com/share/service?image=${opts.sPic}&href=${opts.sUrl}&name=${opts.sTitle}&text=${opts.sDesc}`
+      break
+    case 'qzone' :
+      url = `http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${opts.sUrl}&title=${opts.sTitle}&pics=${opts.sPic}&summary=${opts.sDesc}`
+      break
+    case 'facebook' :
+      url = `https://www.facebook.com/sharer/sharer.php?u=${opts.sUrl}`
+      break
+    case 'twitter' :
+      url = `https://twitter.com/intent/tweet?text=${opts.sTitle}&url=${opts.sUrl}&via=${themeConfig.baseUrl}`
+      break
+    case 'google' :
+      url = `https://plus.google.com/share?url=${opts.sUrl}`
+      break
+    case 'weixin' :
+      showWXModal()
+      break
+  }
+  if(url) {
+    window.open(url)
   }
 }
 
@@ -66,15 +72,17 @@ let init = function() {
     $em.onclick = (e) => {
       let type = $em.getAttribute('data-type')
       handleClick(type, {
-        sUrl: sUrl,
-        sPic: sPic,
+        sUrl: encodeURIComponent(sUrl),
+        sPic: encodeURIComponent(sPic),
         sTitle: sTitle,
         sDesc: sTitle
       })
     }
   })
-  document.querySelector('.mask').addEventListener('click', hideWX)
-  document.querySelector('.js-modal-close').addEventListener('click', hideWX)
+  document.querySelector('.mask').addEventListener('click', hideModal)
+  Array.prototype.forEach.call(document.querySelectorAll('.js-modal-close'), modalClose => {
+    modalClose.addEventListener('click', hideModal)
+  })
 }
 
 export default { init }
