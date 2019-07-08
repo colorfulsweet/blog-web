@@ -245,13 +245,12 @@ label.bui-switch-label {
   }
 }
 
-.js-search-box {
+#search-panel {
+  width: 500px;
+  top: 10%;
+  transform: translate(-50%,0);
   .search {
     border-bottom: 1px solid #ccc;
-    background: #f5f5f5;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    width: 500px;
     display: flex;
     line-height: 40px;
     .search-input-icon {
@@ -269,9 +268,9 @@ label.bui-switch-label {
     }
   }
   .search-result {
-    height: 600px;
-    width: 500px;
+    max-height: 600px;
     overflow-y: auto;
+    position: relative;
     .search-result-item {
       text-align: left;
       border-bottom: 1px dashed $colorC;
@@ -280,10 +279,16 @@ label.bui-switch-label {
         border-bottom-color: $colorA;
       }
     }
+    .tip {
+      text-align: center;
+    }
     .more-item {
       cursor: pointer;
-      text-align: center;
-      transform: rotate(180deg)
-    } 
+      transform: rotate(180deg) translateY(60px);
+      background: linear-gradient(-180deg,$colorBg 10%,rgba(255, 255, 255, 0) 100%);
+      position: absolute;
+      height: 70px;
+      width: 100%;
+    }
   }
 }

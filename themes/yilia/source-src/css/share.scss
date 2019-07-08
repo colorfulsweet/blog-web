@@ -61,7 +61,6 @@
 
   &.in {
     display: block;
-    visibility: visible;
     opacity: 1;
   }
 
@@ -79,7 +78,7 @@
 }
 
 .mask {
-  visibility: hidden;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -93,7 +92,7 @@
   pointer-events: none;
   transition: .3s ease-in-out;
   &.in {
-    visibility: visible;
+    display: block;
     pointer-events: auto;
     opacity: .3;
   }

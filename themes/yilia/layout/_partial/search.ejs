@@ -1,20 +1,25 @@
-<div class="page-modal js-search-box" ref="fullTextSearch" >
-  <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-  <div class="search">
-    <div class="search-input-icon">
-      <i class="icon icon-search"></i>
+<div class="page-modal" id="search-panel" ref="fullTextSearch" >
+  <div class="search-container">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <div class="search">
+      <div class="search-input-icon">
+        <i class="icon icon-search"></i>
+      </div>
+      <div class="search-input" >
+        <input placeholder="搜索所有文章" type="text" v-model="fullTextSearchWords" >
+      </div>
     </div>
-    <div class="search-input" >
-      <input placeholder="搜索所有文章" type="text" v-model="fullTextSearch.words" >
-    </div>
-  </div>
-  <div class="search-result">
-    <div class="search-result-item" v-for="(item,index) in fullTextSearchItems" :key="index">
-      <a v-text="item.title" :href="themeConfig.root + item.path"></a>
-      <div v-html="item.content"></div>
-    </div>
-    <div class="more-item" v-show="fullTextSearchItems.hasMore"  @click="loadMoreSearchResult">
-      <i class="icon icon-chevron-up"></i>
+    <div class="search-result">
+      
+      <div class="search-result-item" v-for="(item,index) in fullTextSearchItems" :key="index">
+        <a v-text="item.title" :href="themeConfig.root + item.path"></a>
+        <div v-html="item.content"></div>
+      </div>
+      <div class="more-item tip" v-show="fullTextSearchItems.hasMore"  @click="loadSearchResult">
+        <i class="icon icon-chevron-up"></i>
+      </div>
+      <div class="tip" v-show="fullTextSearchItems.isLoading || fullTextSearchTip" 
+        v-text="fullTextSearchTip || '正在搜索...'"></div>
     </div>
   </div>
 </div>

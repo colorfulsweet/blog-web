@@ -31,9 +31,10 @@ new Vue({
     fullTextSearch: {
       pageNum: 1,
       limit: 10,
-      words: null
     },
+    fullTextSearchWords: null,
     fullTextSearchItems: [],
+    fullTextSearchTip: undefined,
     waifu: {
       tip: null, // 提示语文字
       tipOpacity: 0, // 提示语框透明度
@@ -93,12 +94,26 @@ new Vue({
       this.$refs.fullTextSearch.classList.add('in')
       this.$refs.mask.classList.add('in')
     },
-    loadMoreSearchResult() {
+    loadSearchResult() {
       this.fullTextSearch.pageNum ++
-      axios.get(window.themeConfig.root + 'api/common/search', {params: this.fullTextSearch}).then(res => {
+      this.fullTextSearchItems.isLoading = true
+      this.fullTextSearchTip = undefined
+      let params = Object.assign({}, this.fullTextSearch)
+      params.words = this.fullTextSearchWords
+      axios.get(/*window.themeConfig.root + 'api/common/search'*/ 'http://localhost:3301/common/search', {params}).then(res => {
+        this.fullTextSearchItems.isLoading = false
+        fullTextSearchTimer = null
         let result = res.data
+        if(!Array.isArray(result.data) || !result.data.length) {
+          this.fullTextSearchTip = '未搜索到匹配文章'
+        } else {
+          this.fullTextSearchItems.push(...result.data)
+        }
         this.fullTextSearchItems.hasMore = (result.total > this.fullTextSearch.pageNum * this.fullTextSearch.limit)
-        this.fullTextSearchItems.push(...result.data)
+      }).catch(err => {
+        this.fullTextSearchTip = '加载失败, 请刷新重试'
+        this.fullTextSearchItems.isLoading = false
+        throw err
       })
     },
     searchKeydown(event) {
@@ -138,31 +153,29 @@ new Vue({
         })
       }
     },
-    fullTextSearch: {
-      deep: true,
-      handler(newVal, oldVal) {
-        if(!newVal.words) {
-          return
-        }
-        if(fullTextSearchTimer) {
-          clearTimeout(fullTextSearchTimer)
-        }
-        fullTextSearchTimer = setTimeout(() => {
-          this.fullTextSearchItems.length = 0
-          axios.get(window.themeConfig.root + 'api/common/search', {params: newVal}).then(res => {
-            let result = res.data
-            this.fullTextSearchItems.hasMore = (result.total > this.fullTextSearch.pageNum * this.fullTextSearch.limit)
-            this.fullTextSearchItems.push(...result.data)
-          })
-        }, 1000)
-      } 
+    fullTextSearchWords (newVal, oldVal) {
+      this.fullTextSearchItems.hasMore = false
+      this.fullTextSearchItems.isLoading = false
+      this.fullTextSearchTip = undefined
+      this.fullTextSearchItems.splice(0, this.fullTextSearchItems.length)
+      if(fullTextSearchTimer) {
+        clearTimeout(fullTextSearchTimer)
+        fullTextSearchTimer = null
+      }
+      if(!newVal) {
+        return
+      }
+      this.fullTextSearch.pageNum = 0
+      fullTextSearchTimer = setTimeout(() => {
+        this.fullTextSearchItems.splice(0, this.fullTextSearchItems.length)
+        this.loadSearchResult()
+      }, 500)
     }
   },
   mounted () {
-    axios.get(window.themeConfig.root + 'content.json?t=' + (+ new Date()))
-    .then((res)=>{
+    axios.get(window.themeConfig.root + 'content.json').then((res)=>{
       this.items = res.data
-    }).catch((err) => {
+    }).catch(err => {
       console.warn('加载文章列表失败')
     })
     this.showMessage(welcomeMessage(), 6000)
@@ -238,28 +251,28 @@ function welcomeMessage() {
 }
 
 const waifuTools = {
-  "tools.photo"() {
+  'tools.photo'() {
     // 生成canvas快照
     window.Live2D.captureName = 'Kesshouban.png'
     window.Live2D.captureFrame = true
   },
-  "tools.close"() {
+  'tools.close'() {
     // 隐藏看板娘
     setTimeout(function() {
       document.querySelector('.waifu').style.display = 'none'
       localStorage.setItem('hideWaifu', true)
     }, 1300)
   },
-  "tools.eye"() {
+  'tools.eye'() {
     // 切换到夜间模式
     document.querySelector('.mid-col').classList.remove('hide')
     let night = document.querySelector('body').classList.toggle('night')
     localStorage.setItem('night', night)
   },
-  "tools.info"() {
+  'tools.info'() {
     window.open('https://github.com/xiazeyu/live2d-widget.js')
   },
-  "tools.chart"() {
+  'tools.chart'() {
     // 一言
     axios.get(`${window.themeConfig.root}api/common/hitokoto?length=40&format=json`).then(res => {
       this.showMessage(res.data.hitokoto + (res.data.from?`　　——${res.data.from}`:''))
