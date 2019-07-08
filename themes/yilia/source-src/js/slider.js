@@ -100,7 +100,7 @@ new Vue({
       this.fullTextSearchTip = undefined
       let params = Object.assign({}, this.fullTextSearch)
       params.words = this.fullTextSearchWords
-      axios.get(/*window.themeConfig.root + 'api/common/search'*/ 'http://localhost:3301/common/search', {params}).then(res => {
+      axios.get(window.themeConfig.root + 'api/common/search', {params}).then(res => {
         this.fullTextSearchItems.isLoading = false
         fullTextSearchTimer = null
         let result = res.data
