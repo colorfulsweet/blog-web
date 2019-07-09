@@ -166,10 +166,7 @@ new Vue({
         return
       }
       this.fullTextSearch.pageNum = 0
-      fullTextSearchTimer = setTimeout(() => {
-        this.fullTextSearchItems.splice(0, this.fullTextSearchItems.length)
-        this.loadSearchResult()
-      }, 500)
+      fullTextSearchTimer = setTimeout(this.loadSearchResult.bind(this), 500)
     }
   },
   mounted () {

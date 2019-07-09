@@ -104,6 +104,7 @@ module.exports = function(env, argv) {
         dry: false,
       })
     ],
+    mode: argv.mode,
     watch: !isProd
   }
 }
