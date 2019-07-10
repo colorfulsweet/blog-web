@@ -114,7 +114,7 @@ const vm = new Vue({
         } else {
           this.fullTextSearchItems.push(...result.data)
         }
-        this.fullTextSearchItems.hasMore = (result.total > this.fullTextSearch.pageNum * this.fullTextSearch.limit)
+        this.fullTextSearch.hasMore = (result.total > this.fullTextSearch.pageNum * this.fullTextSearch.limit)
       }).catch(err => {
         this.fullTextSearch.tip = '加载失败, 请刷新重试'
         this.fullTextSearch.isLoading = false
@@ -159,7 +159,7 @@ const vm = new Vue({
       }
     },
     fullTextSearchWords (newVal, oldVal) {
-      this.fullTextSearchItems.hasMore = false
+      this.fullTextSearch.hasMore = false
       this.fullTextSearchItems.isLoading = false
       this.fullTextSearch.tip = undefined
       this.fullTextSearchItems.splice(0, this.fullTextSearchItems.length)
