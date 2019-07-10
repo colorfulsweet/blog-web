@@ -10,16 +10,15 @@
       </div>
     </div>
     <div class="search-result">
-      
       <div class="search-result-item" v-for="(item,index) in fullTextSearchItems" :key="index">
         <a v-text="item.title" :href="themeConfig.root + item.path"></a>
         <div v-html="item.content"></div>
       </div>
-      <div class="more-item tip" v-show="fullTextSearchItems.hasMore"  @click="loadSearchResult">
+      <div class="more-item tip" v-show="fullTextSearch.hasMore"  @click="loadSearchResult">
         <i class="icon icon-chevron-up"></i>
       </div>
-      <div class="tip" v-show="fullTextSearchItems.isLoading || fullTextSearchTip" 
-        v-text="fullTextSearchTip || '正在搜索...'"></div>
+      <div class="tip" v-show="fullTextSearch.isLoading || fullTextSearch.tip" 
+        v-text="fullTextSearch.tip || '正在搜索...'"></div>
     </div>
   </div>
 </div>

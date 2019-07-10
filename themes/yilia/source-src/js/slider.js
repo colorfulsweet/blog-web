@@ -15,7 +15,7 @@ function setScrollZero() {
   })
 }
 var waifuTipTimer = null, fullTextSearchTimer = null
-new Vue({
+const vm = new Vue({
   el: '#container',
   data: {
     isCtnShow: false,
@@ -31,10 +31,12 @@ new Vue({
     fullTextSearch: {
       pageNum: 1,
       limit: 10,
+      isLoading: false,
+      tip: undefined,
+      hasMore: false
     },
     fullTextSearchWords: null,
     fullTextSearchItems: [],
-    fullTextSearchTip: undefined,
     waifu: {
       tip: null, // 提示语文字
       tipOpacity: 0, // 提示语框透明度
@@ -96,23 +98,26 @@ new Vue({
     },
     loadSearchResult() {
       this.fullTextSearch.pageNum ++
-      this.fullTextSearchItems.isLoading = true
-      this.fullTextSearchTip = undefined
-      let params = Object.assign({}, this.fullTextSearch)
-      params.words = this.fullTextSearchWords
+      this.fullTextSearch.isLoading = true
+      this.fullTextSearch.tip = undefined
+      let params = {
+        pageNum: this.fullTextSearch.pageNum,
+        limit: this.fullTextSearch.limit,
+        words: this.fullTextSearchWords
+      }
       axios.get(window.themeConfig.root + 'api/common/search', {params}).then(res => {
-        this.fullTextSearchItems.isLoading = false
+        this.fullTextSearch.isLoading = false
         fullTextSearchTimer = null
         let result = res.data
         if(!Array.isArray(result.data) || !result.data.length) {
-          this.fullTextSearchTip = '未搜索到匹配文章'
+          this.fullTextSearch.tip = '未搜索到匹配文章'
         } else {
           this.fullTextSearchItems.push(...result.data)
         }
         this.fullTextSearchItems.hasMore = (result.total > this.fullTextSearch.pageNum * this.fullTextSearch.limit)
       }).catch(err => {
-        this.fullTextSearchTip = '加载失败, 请刷新重试'
-        this.fullTextSearchItems.isLoading = false
+        this.fullTextSearch.tip = '加载失败, 请刷新重试'
+        this.fullTextSearch.isLoading = false
         throw err
       })
     },
@@ -156,7 +161,7 @@ new Vue({
     fullTextSearchWords (newVal, oldVal) {
       this.fullTextSearchItems.hasMore = false
       this.fullTextSearchItems.isLoading = false
-      this.fullTextSearchTip = undefined
+      this.fullTextSearch.tip = undefined
       this.fullTextSearchItems.splice(0, this.fullTextSearchItems.length)
       if(fullTextSearchTimer) {
         clearTimeout(fullTextSearchTimer)
@@ -274,6 +279,10 @@ const waifuTools = {
     axios.get(`${window.themeConfig.root}api/common/hitokoto?length=40&format=json`).then(res => {
       this.showMessage(res.data.hitokoto + (res.data.from?`　　——${res.data.from}`:''))
     })
+  },
+  'tools.search'() {
+    // 打开全文检索Modal
+    vm.openFullTextSearch()
   }
 }
 
