@@ -11,9 +11,9 @@ const searchTmplSrc = path.join(__dirname, '../templates/articles.xml')
 
 hexo.extend.generator.register('xml', function(locals){
   const searchTmpl = nunjucks.compile(fs.readFileSync(searchTmplSrc, 'utf8'), env)
-  const posts = locals.posts.sort('-date');
+  const posts = locals.posts.sort('-date').toArray().slice(0, 10)
   const xmlData = searchTmpl.render({
-    posts: posts,
+    posts,
     root: this.config.root
   })
   return {

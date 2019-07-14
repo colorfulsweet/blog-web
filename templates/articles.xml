@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search> 
-{% for post in posts.toArray() %}
+{% for post in posts %}
   {% if post.indexing == undefined or post.indexing %}
   <entry>
     <title>{{ post.title }}</title>
@@ -9,14 +9,14 @@
     {% if post.categories and post.categories.length>0 %}
     <categories>
       {% for cate in post.categories.toArray() %}
-      <category> {{ cate.name }} </category>
+      <category>{{ cate.name }}</category>
       {% endfor %}
     </categories>
     {% endif %}
     {% if post.tags and post.tags.length>0 %}
     <tags>
       {% for tag in post.tags.toArray() %}
-      <tag> {{ tag.name }} </tag>
+      <tag>{{ tag.name }}</tag>
       {% endfor %}
     </tags>
     {% endif %}

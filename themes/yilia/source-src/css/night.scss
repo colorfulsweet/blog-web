@@ -133,4 +133,19 @@ body.night {
   ::-webkit-scrollbar {
     background-color: $articleBg_night;
   }
+  .page-modal {
+    background: $mainBg_night;
+    color: $textColor_night;
+    .close {
+      color: $textColor_night;
+    }
+  }
+  #search-panel {
+    .search-input > input[type=text] {
+      color: $textColor_night;
+    }
+    .more-item {
+      background: linear-gradient(-180deg,$articleBg_night 10%,rgba(255, 255, 255, 0) 100%);
+    }
+  }
 }
