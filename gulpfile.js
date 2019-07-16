@@ -58,8 +58,9 @@ gulp.task('syncImages', () => {
     return Promise.resolve('未获得accessKey以及accessSecret, 跳过图片同步').then(console.log)
   }
   // 同步当前本地存在的所有图片
+  const rootPath = `${process.cwd()}/`
   return new Promise(resolve => {
-    listImages(`${process.cwd()}/`, 'images/', resolve)
+    listImages(rootPath, 'images/', resolve)
   }).then(imagesList => {
     const ImageSynchronizer = require('./deploy_utils/image_synchronize')
     const nosSetting = {
@@ -68,7 +69,7 @@ gulp.task('syncImages', () => {
       accessKey: argv.accessKey,
       accessSecret: argv.accessSecret
     }
-    const imageSynchronizer = new ImageSynchronizer(nosSetting, imagesList, `${process.cwd()}/source/`)
+    const imageSynchronizer = new ImageSynchronizer(nosSetting, imagesList, rootPath)
     return imageSynchronizer.synchronize('images/')
   })
 })
