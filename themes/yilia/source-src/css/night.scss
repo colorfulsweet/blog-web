@@ -62,8 +62,19 @@ body.night {
     .article-title { // 主标题
       color: $colorF;
     }
-    .article-entry blockquote{ // 引用
-      background: #2c2c2c;
+    .article-entry {
+      table { // 表格
+        border-color: $borderColor_night;
+        th,td {
+          border-color: $borderColor_night;
+        }
+        thead tr { // 表头
+          background: $mainBg_night;
+        }
+      }
+      blockquote{ // 引用
+        background: #2c2c2c;
+      }
     }
     h1,h2,h3,h4,h5,h6 { // 章节标题
       color: $colorC;

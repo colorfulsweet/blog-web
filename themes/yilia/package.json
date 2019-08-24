@@ -44,6 +44,7 @@
     "badjs-report": "^1.2.2",
     "es6-promise": "^4.0.5",
     "leancloud-storage": "^3.7.3",
-    "qrious": "^4.0.2"
+    "qrious": "^4.0.2",
+    "scrollreveal": "^4.0.5"
   }
 }

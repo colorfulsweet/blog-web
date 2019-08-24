@@ -19,6 +19,28 @@ Util.addLoadEvent(function() {
       PhotoWall.default.init()
     })
   }
+  if(window.themeConfig.animate && window.themeConfig.isHome) {
+    // 文章列表页动画效果
+    let animateTypes = [{ // 右侧移入
+      distance: '50px', 
+      origin: 'right'
+    },{ // 放大
+      scale: 0.8
+    },{ // 缩小
+      scale: 1.2
+    },{ // 绕X轴旋转
+      rotate: { x: 30 }
+    },{ // 绕Y轴旋转
+      rotate: { y: 30 }
+    }]
+    import(/* webpackChunkName: "scrollreveal" */ 'scrollreveal').then(ScrollReveal => {
+      let index = Math.floor(Math.random() * animateTypes.length)
+      ScrollReveal.default().reveal('.article-index', Object.assign({
+        delay: 200,
+        container: document.querySelector('#container')
+      }, animateTypes[index]))
+    })
+  }
 })
 
 const commentConfig = require('../config/comment.json')

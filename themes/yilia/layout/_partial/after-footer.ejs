@@ -7,6 +7,7 @@ window.themeConfig = {
   isCategory: <%=is_category()%>, // 是否为分类页面
   pageid: <%-page.pageid ? `"${page.pageid}"` : 'undefined'%>, // 页面标识, 用于个性化页面开发
   toc_hide_index: <%=theme.toc_hide_index%>, // 目录序号
+  animate: <%=theme.animate%>, // 是否显示文章列表页动画效果
   root: '<%=config.root%>', // 资源根路径
   baseUrl: '<%=config.url%>',
   pictureCdn: '<%=config.picture_cdn%>' // 图片存储仓库地址

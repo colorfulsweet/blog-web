@@ -1,7 +1,8 @@
 <% if (param.postIndex === 0 || !param.index){ %>
 <%- partial('_partial/aside') %>
 <% } %>
-<article class="article article-type-<%= post.layout %> <%if(param.index){%> article-index<%}%>" itemscope itemprop="blogPost">
+<div class="article-outer">
+<article class="article article-type-<%= post.layout %> <%if(param.index){%>article-index<%}%>" itemscope itemprop="blogPost">
   <div class="article-inner">
     <% if (post.link || post.title){ %>
       <header class="article-header">
@@ -86,6 +87,7 @@
     </div>
   </div>
 </article>
+</div>
 <% if (!param.index){ %>
   <%- partial('post/nav') %>
 <% } %>

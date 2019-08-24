@@ -2,23 +2,13 @@
 	position: relative;
 }
 
-@keyframes cd-bounce-1 {
-  0% {
-    opacity: 0;
-    transform: scale(1);
-  }
-  60% {
-    opacity: 1;
-    transform: scale(1.01);
-  }
-  100% {
-    transform: scale(1);
-  }
+.article-outer {
+  perspective: 500px;
+  margin: 0 30px 30px;
+  position: relative;
 }
 
 .article {
-  margin: 0 30px 30px;
-  position: relative;
   border-width: 1px;
   border-style: solid;
   border-color: #fff #ddd;
