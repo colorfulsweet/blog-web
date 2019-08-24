@@ -71,6 +71,9 @@ body.night {
         thead tr { // 表头
           background: $mainBg_night;
         }
+        tbody tr:hover { // 表格行指向
+          background: lighten($mainBg_night, 10%);
+        }
       }
       blockquote{ // 引用
         background: #2c2c2c;
