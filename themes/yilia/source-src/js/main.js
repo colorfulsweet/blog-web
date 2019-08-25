@@ -43,8 +43,7 @@ Util.addLoadEvent(function() {
   }
 })
 
-const commentConfig = require('../config/comment.json')
-if(window.themeConfig.isPost && commentConfig.valine.enable) {
+if(window.themeConfig.isPost && window.themeConfig.comment) {
   // 文章详情页面, 并且启用了评论, 则加载评论相关代码
   import(/* webpackChunkName: "comment" */ './comment')
 }
