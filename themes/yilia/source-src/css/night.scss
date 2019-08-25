@@ -105,9 +105,6 @@ body.night {
       display: none;
     }
   }
-  .overlay {
-    background: none;
-  }
   // 头像 看板娘 图标 -> 降低亮度滤镜
   .profilepic, .waifu, #header .header-nav .social a {
     filter: brightness(30%);

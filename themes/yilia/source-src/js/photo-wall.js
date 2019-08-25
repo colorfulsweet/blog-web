@@ -92,11 +92,8 @@ function checkScrollSlide(){
 }
 
 function init() {
-  var _onscroll = scrollDom.onscroll
   var timer = null
-  scrollDom.onscroll = function () {
-    // 保留已有的滚动事件回调函数并在新的回调函数中进行调用
-    typeof _onscroll === 'function' && _onscroll.apply(this, arguments)
+  scrollDom.addEventListener('scroll', function(){
     if(scrollLock) return
     if(timer) clearTimeout(timer)
     timer = setTimeout(()=>{
@@ -105,7 +102,7 @@ function init() {
       }
       timer = null
     }, 200)
-  }
+  })
   loadMoreItems(defaultStep)
 }
 export default { init } 

@@ -1,13 +1,12 @@
 var backTop = function (domE, ctn, distance) {
   if (!domE) return
-  var timer = null
-  var _onscroll = ctn.onscroll
-  ctn.onscroll = throttle(function () { // 滚动到一定高度才显示"回到顶部"按钮
-    typeof _onscroll === 'function' && _onscroll.apply(this, arguments)
-    toggleDomE()
-  }, 100)
+  ctn.addEventListener('scroll', function(){
+    // 滚动到一定高度才显示"回到顶部"按钮
+    throttle(toggleDomE, 200)(domE, ctn, distance)
+  })
   if(!window.getComputedStyle || window.getComputedStyle(ctn).scrollBehavior === undefined) {
     // 浏览器不支持scroll-behavior属性
+    let timer = null
     domE.querySelector('a[href="#top"]').addEventListener('click', function (event) {
       event.preventDefault()
       timer = setInterval(function () { //设置一个计时器
@@ -26,16 +25,15 @@ var backTop = function (domE, ctn, distance) {
     })
   }
 
-  function toggleDomE() {
-    domE.style.display = (ctn.scrollTop || document.documentElement.scrollTop || document.body.scrollTop) > distance  ? 'block' : 'none'
+  function toggleDomE(targetDom, containerDom, distance) {
+    targetDom.style.display = (containerDom.scrollTop || document.documentElement.scrollTop || document.body.scrollTop) > distance  ? 'block' : 'none'
   }
   function throttle(func, wait) {
     var timer = null
-    return function () {
-      var self = this, args = arguments
+    return function (...args) {
       if (timer) clearTimeout(timer)
-      timer = setTimeout(function () {
-        return typeof func === 'function' && func.apply(self, args)
+      timer = setTimeout(() => {
+        return typeof func === 'function' && func.apply(this, args)
       }, wait)
     }
   }

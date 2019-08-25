@@ -8,22 +8,23 @@ const Util = (function(){
   var t = /&quot;|&lt;|&gt;|&amp;|&nbsp;|&apos;|&#(\d+);|&#(\d+)/g
     , o = /['<> "&]/g
     , u = {
-    "&quot;": '"',
-    "&lt;": "<",
-    "&gt;": ">",
-    "&amp;": "&",
-    "&nbsp;": " "
-  }
+      "&quot;": '"',
+      "&lt;": "<",
+      "&gt;": ">",
+      "&amp;": "&",
+      "&nbsp;": " "
+    }
     , c = /\u00a0/g
     , a = /<br\s*\/?>/gi
     , i = /\r?\n/g
     , f = /\s/g
     , p = {}
-  for (var s in u)
-    p[u[s]] = s;
-  return u["&apos;"] = "'",
-  p["'"] = "&#39;",
-  {
+  for (let s in u) {
+    p[u[s]] = s
+  }
+  u["&apos;"] = "'"
+  p["'"] = "&#39;"
+  return {
     encode: function(e) {
       return e ? ("" + e).replace(o, n).replace(i, "<br/>").replace(f, "&nbsp;") : ""
     },
@@ -67,21 +68,9 @@ const Util = (function(){
         return e.encode(r)
       return r
     },
-    loadScript: function(path) {
-      var $script = document.createElement('script')
-      document.getElementsByTagName('body')[0].appendChild($script)
-      $script.setAttribute('src', path)
-    },
     addLoadEvent: function(func){
-      var oldonload = window.onload
-      if (typeof window.onload !== "function") {
-        window.onload = func
-      } else {
-        window.onload = function() {
-          oldonload()
-          func()
-        }
-      }
+      if(typeof func !== 'function') return
+      document.addEventListener("DOMContentLoaded", func)
     }
   }
 })()

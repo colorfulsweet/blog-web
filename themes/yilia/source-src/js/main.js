@@ -27,17 +27,17 @@ Util.addLoadEvent(function() {
     },{ // 放大
       scale: 0.8
     },{ // 缩小
-      scale: 1.2
+      scale: 1.1
     },{ // 绕X轴旋转
       rotate: { x: 30 }
     },{ // 绕Y轴旋转
-      rotate: { y: 30 }
+      rotate: { y: 20 }
     }]
     import(/* webpackChunkName: "scrollreveal" */ 'scrollreveal').then(ScrollReveal => {
       let index = Math.floor(Math.random() * animateTypes.length)
       ScrollReveal.default().reveal('.article-index', Object.assign({
         delay: 200,
-        container: document.querySelector('#container')
+        container: document.getElementById('container')
       }, animateTypes[index]))
     })
   }

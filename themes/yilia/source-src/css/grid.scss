@@ -27,10 +27,13 @@ html, body, #container {
 	.anm-canvas {
 		display: none;
 	}
-	&.show .anm-canvas {
-		display: block;
-		position: fixed;
-	}
+  &.show {
+    overflow-y: hidden;
+    .anm-canvas {
+      display: block;
+      position: fixed;
+    }
+  }
 }
 .body-wrap{
   padding-top: 30px;
