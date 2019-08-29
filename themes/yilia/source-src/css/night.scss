@@ -41,22 +41,12 @@ $textColor_night: #d5d5d5; // 文字颜色
 body.night {
   background: $mainBg_night;
   // 展开菜单之后的背景
-  #container {
-    background: none;
-  }
-  // 主背景
-  .mid-col {
-    background: $mainBg_night;
-    &.show {
-      @extend %anmLeftIn_night;
-    }
-    &.hide {
-      @extend %anmLeftOut_night;
-    }
+  #container, #container.show {
+    background-color: $mainBg_night;
   }
   // 文章区域
   .article{
-    background: $articleBg_night;
+    background: #{$articleBg_night}cc;
     border-color: $borderColor_night;
     color: $textColor_night;
     .article-title { // 主标题

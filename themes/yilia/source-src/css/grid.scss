@@ -20,20 +20,18 @@ html, body, #container {
 #container{
 	position:relative;
 	min-height:100%;
-  background: linear-gradient(200deg,#5aa5c6,#a4854b);
   scroll-behavior: smooth;
 	-webkit-overflow-scrolling: touch;
+	background: $colorBodyBg url(http://photo.colorfulsweet.site/2019/08/29/4f8a91881d2a4.png) no-repeat;
+	background-size: contain;
+	background-position: right;
 	overflow-scrolling: touch;
-	.anm-canvas {
-		display: none;
-	}
   &.show {
-    overflow-y: hidden;
-    .anm-canvas {
-      display: block;
-      position: fixed;
-    }
+		overflow-y: hidden;
   }
+}
+body:not(.night) #container.show {
+	background: linear-gradient(200deg,#5aa5c6,#a4854b);
 }
 .body-wrap{
   padding-top: 30px;
@@ -43,15 +41,14 @@ html, body, #container {
 	position:absolute;
 	right:0;
 	min-height:100%;
-	background:$colorBodyBg;
 	left: 300px;
   width: auto;
-	@extend %trans;
 	&.show {
     @extend %anmLeftIn;
 		.article {
-      transition: opacity .3s ease-in, background-color .3s ease-in;
-      opacity: 0.6 !important;
+			@extend %trans;
+      // transition: opacity .3s ease-in, background-color .3s ease-in;
+      opacity: 0.5 !important;
       pointer-events: none;
 		}
 	}

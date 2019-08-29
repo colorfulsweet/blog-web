@@ -257,22 +257,18 @@
 @keyframes leftIn {
   from {
     transform: translate(0, 0);
-    background:$colorBodyBg;
   }
   to {
     transform: translate(333px, 0);
-    background: none;
   }
 }
 
 @keyframes leftOut {
   from {
     transform: translate(333px, 0);
-    background: none;
   }
   to {
     transform: translate(0, 0);
-    background:$colorBodyBg;
   }
 }
 

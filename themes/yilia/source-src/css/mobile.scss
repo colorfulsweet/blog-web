@@ -2,6 +2,9 @@
   padding-top: 0;
   margin-bottom: 0;
 }
+#container {
+  background: $colorBodyBg;
+}
 .left-col {
   display: none;
 }
@@ -117,6 +120,7 @@
   padding: 10px;
   border: 0;
   font-size: 16px;
+  background: #{$colorBg};
   .article-more-link {
     margin: 0;
   }

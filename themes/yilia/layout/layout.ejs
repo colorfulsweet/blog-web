@@ -3,8 +3,7 @@
 <%- partial('_partial/head') %>
 <body>
   <div id="container" :class="{show:isCtnShow}" @click="hideSlider">
-    <canvas id="anm-canvas" class="anm-canvas"></canvas>
-    <div class="left-col" :class="{show:isShow}">
+    <div class="left-col" >
       <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
       <%- partial('_partial/live2d') %>
     </div>
@@ -21,9 +20,6 @@
       <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
       <div id="wrapper" class="body-wrap" v-pre>
         <div class="menu-l">
-          <div class="canvas-wrap">
-            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" class="anm-canvas"></canvas>
-          </div>
           <div id="js-content" class="content-ll">
             <%- body %>
           </div>

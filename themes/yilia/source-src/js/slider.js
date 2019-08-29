@@ -1,12 +1,6 @@
-// 动画
-import Anm from './anm'
-// 浏览器判断
-import Browser from './browser'
-
 import axios from 'axios'
 import Vue from '../lib/vue/vue.min'
 import waifuTips from '../config/waifu-tip.json'
-const isMobile = (Browser.versions.mobile && window.screen.width < 800)
 
 function setScrollZero() {
   let $sct = document.querySelectorAll('.tools-section')
@@ -284,8 +278,4 @@ const waifuTools = {
     // 打开全文检索Modal
     vm.openFullTextSearch()
   }
-}
-
-if (!isMobile) {
-  Anm.init()
 }
