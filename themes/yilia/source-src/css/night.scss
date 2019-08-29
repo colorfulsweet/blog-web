@@ -46,7 +46,7 @@ body.night {
   }
   // 文章区域
   .article{
-    background: #{$articleBg_night}cc;
+    background: adjust-color($articleBg_night, $alpha: -0.2);
     border-color: $borderColor_night;
     color: $textColor_night;
     .article-title { // 主标题

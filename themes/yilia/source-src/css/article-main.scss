@@ -12,7 +12,7 @@
   border-width: 1px;
   border-style: solid;
   border-color: #fff #ddd;
-  background: #{$colorBg}cc;
+  background: adjust-color($colorBg, $alpha: -0.2);
   @extend %trans;
   img{
     max-width: 100%;
