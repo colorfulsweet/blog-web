@@ -1,6 +1,7 @@
 .left-col {
-  background: $colorBg url(./img/left_bg.jpg) no-repeat;
-  background-size: cover;
+  background: $colorBg url(./img/left_bg.png) no-repeat;
+	background-size: cover;
+	background-position: top;
 	width: 300px;
 	position:fixed;
 	opacity:1;
