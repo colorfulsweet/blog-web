@@ -174,9 +174,8 @@ const vm = new Vue({
     }).catch(err => {
       console.warn('加载文章列表失败')
     })
-    let _this = this
     welcomeMessage().then(msg => {
-      _this.showMessage(msg, 6000)
+      this.showMessage(msg, 6000)
     })
     document.addEventListener('copy', () => {
       this.showMessage('你都复制了些什么呀，转载要记得加上出处哦')
@@ -246,7 +245,6 @@ async function welcomeMessage() {
     if(!text) {
       text = textTimes[textTimes.length-1].text
     }
-    this.showMessage(res.data.hitokoto + (res.data.from?`　　——${res.data.from}`:''))
     return text
   })
 }
