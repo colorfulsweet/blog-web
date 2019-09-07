@@ -10,7 +10,7 @@ window.AV = require('leancloud-storage')
 
 import(/* webpackChunkName: "valine" */ '../lib/Valine.min').then(({default: Valine }) => {
   // 从接口获取评论配置
-  axios.get(`${window.themeConfig.root}api/common/valineConfig`).then(res => {
+  axios.get(`${window.themeConfig.root}api/common/config/valine_config`).then(res => {
     let config = res.data
     config.path = window.location.pathname
     // config.av = AV

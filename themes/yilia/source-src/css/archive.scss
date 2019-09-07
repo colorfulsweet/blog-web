@@ -3,7 +3,7 @@
   margin: 0 30px;
   padding-right: 60px;
   border-bottom: 1px solid #eee;
-  background: $colorBg;
+  background: adjust-color($colorBg, $alpha: -0.2);
   @extend %trans;
   &:first-child{
     margin-top: 30px;

@@ -174,7 +174,9 @@ const vm = new Vue({
     }).catch(err => {
       console.warn('加载文章列表失败')
     })
-    this.showMessage(welcomeMessage(), 6000)
+    welcomeMessage().then(msg => {
+      this.showMessage(msg, 6000)
+    })
     document.addEventListener('copy', () => {
       this.showMessage('你都复制了些什么呀，转载要记得加上出处哦')
     })
@@ -221,29 +223,31 @@ function handleSearch(searchItems) {
   })
 }
 
-function welcomeMessage() {
+async function welcomeMessage() {
   let now = new Date().getHours()
-  let text
-  if (now > 23 || now <= 5) {
-    text = '你是夜猫子呀？这么晚还不睡觉，明天起的来嘛'
-  } else if (now > 5 && now <= 7) {
-    text = '早上好！一日之计在于晨，美好的一天就要开始了'
-  } else if (now > 7 && now <= 11) {
-    text = '上午好！工作顺利嘛，不要久坐，多起来走动走动哦！'
-  } else if (now > 11 && now <= 14) {
-    text = '中午了，工作了一个上午，现在是午餐时间！'
-  } else if (now > 14 && now <= 17) {
-    text = '午后很容易犯困呢，今天的运动目标完成了吗？'
-  } else if (now > 17 && now <= 19) {
-    text = '傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红~'
-  } else if (now > 19 && now <= 21) {
-    text = '晚上好，今天过得怎么样？'
-  } else if (now > 21 && now <= 23) {
-    text = '已经这么晚了呀，早点休息吧，晚安~'
-  } else {
-    text = '嗨~ 快来逗我玩吧！'
-  }
-  return text
+  return axios.get(`${window.themeConfig.root}api/common/config/waifu_tip`).then(res => {
+    let textTimes = res.data
+    let text = null
+    Array.prototype.sort.call(textTimes, (item1, item2) => {
+      if(item1.start>item2.start) {
+        return 1
+      } else if(item1.start<item2.start) {
+        return -1
+      } else {
+        return 0
+      }
+    })
+    Array.prototype.forEach.call(textTimes, textTime => {
+      if(now > textTime.start && now <= textTime.end) {
+        text = textTime.text
+      }
+    })
+    if(!text) {
+      text = textTimes[textTimes.length-1].text
+    }
+    this.showMessage(res.data.hitokoto + (res.data.from?`　　——${res.data.from}`:''))
+    return text
+  })
 }
 
 const waifuTools = {
@@ -253,10 +257,10 @@ const waifuTools = {
     window.Live2D.captureFrame = true
   },
   'tools.close'() {
-    // 隐藏看板娘
+    // 移除看板娘
     setTimeout(function() {
-      document.querySelector('.waifu').style.display = 'none'
-      localStorage.setItem('hideWaifu', true)
+      let waifuDiv = document.querySelector('.waifu')
+      waifuDiv.parentNode.removeChild(waifuDiv)
     }, 1300)
   },
   'tools.eye'() {

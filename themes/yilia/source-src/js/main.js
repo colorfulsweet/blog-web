@@ -48,12 +48,10 @@ if(window.themeConfig.isPost && window.themeConfig.comment) {
   import(/* webpackChunkName: "comment" */ './comment')
 }
 
-var hideWaifu = localStorage.getItem('hideWaifu')
-if(!hideWaifu || !eval(hideWaifu)) {
-  import(/* webpackChunkName: "waifu" */ './waifu').then(waifuInit => {
-    waifuInit.default.init()
-  })
-}
+// 初始化看板娘
+import(/* webpackChunkName: "waifu" */ './waifu').then(waifuInit => {
+  waifuInit.default.init()
+})
 
 // 控制台
 console.log(

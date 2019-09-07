@@ -76,7 +76,7 @@ body.night {
   }
   // 归档列表
   .archives-wrap {
-    background: $articleBg_night;
+    background: adjust-color($articleBg_night, $alpha: -0.2);
     border-bottom-color: $borderColor_night;
     .archive-article {
       border-color: $borderColor_night;
