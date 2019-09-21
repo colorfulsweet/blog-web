@@ -22,7 +22,7 @@ html, body, #container {
 	min-height:100%;
   scroll-behavior: smooth;
 	-webkit-overflow-scrolling: touch;
-	background: $colorBodyBg url(/api/common/randomBg) no-repeat;
+	background: $colorBodyBg url(/api/common/randomBg?label=background) no-repeat;
 	background-size: contain;
 	background-position: right;
 	// overflow-scrolling: touch;

@@ -1,5 +1,5 @@
 .left-col {
-  background: $colorBg url(./img/left_bg.png) no-repeat;
+  background: $colorBg url(/api/common/randomBg?label=banner) no-repeat;
 	background-size: cover;
 	background-position: top;
 	width: 300px;
