@@ -106,5 +106,42 @@ self.onmessage = function(event) {
 
 ### 可能的错误
 + 如果文档不允许启动worker，则会引发`SecurityError`
-+ 如果脚本之一的MIME类型为 text/csv, image/*, video/*,或 audio/*, 则会引发`NetworkError`。它应该始终是 text/javascript。
++ 如果脚本之一的MIME类型为 text/csv, image/\*, video/\*,或 audio/\*, 则会引发`NetworkError`。它应该始终是 text/javascript。
 + 如果url无法解析，则引发`SyntaxError`。
+
+### 在webpack中使用
+需要引入`work-loader`这个加载器
+```javascript
+let MyWorker = require('worker-loader!./test.js')
+// 引入的这个对象可以直接当做Worker对象来用
+let wk = new MyWorker()
+wk.postMessage('test')
+```
+或者在webpack的配置文件当中添加规则
+```javascript
+{
+module: {
+  rules: [
+    {
+      // 匹配 *.worker.js
+      test: /\.worker\.js$/,
+      use: {
+        loader: 'worker-loader',
+        options: {
+          name: '[name]:[hash:8].js',
+          // inline: true,
+          // fallback: false
+          // publicPath: '/scripts/workers/'
+        }
+      }
+    }
+  ]
+}
+}
+```
+
+#### 同源策略
+Web Worker严格遵守同源策略，如果webpack的静态资源与应用代码不是同源的，那么很有可能就被浏览器给墙掉了，而且这种场景也经常发生。
+对于Web Worker遇到这种情况，有两种解决方案
+1. 通过设置worker-loader的选项参数`inline`把worker内联成blob数据格式，而不再是通过下载脚本文件的方式来使用worker
+2. 通过设置worker-loader的选项参数`publicPath`来重写掉worker脚本的下载url，当然脚本也要存放到同样的位置
