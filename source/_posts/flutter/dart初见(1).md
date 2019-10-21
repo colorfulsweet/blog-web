@@ -4,7 +4,7 @@ date: 2019-09-28 12:08:40
 tags: 
   - dart
 categories: 
-  - dart
+  - flutter
 ---
 
 Flutter是谷歌推出的跨平台移动端开发框架
