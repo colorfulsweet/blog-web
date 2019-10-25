@@ -48,5 +48,5 @@ function readDirSync(imageFolderPath, images, rootPath, callback, count={fileCou
 }
 
 module.exports = function (rootPath, imageFloder, callback) {
-  readDirSync(path.resolve(rootPath, imageFloder), [], rootPath, callback)
+  readDirSync(path.resolve(rootPath, imageFloder).replace(/\\/g,'/'), [], rootPath, callback)
 }

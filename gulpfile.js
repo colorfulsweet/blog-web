@@ -58,7 +58,7 @@ gulp.task('syncImages', () => {
     return Promise.resolve('未获得accessKey以及accessSecret, 跳过图片同步').then(console.log)
   }
   // 同步当前本地存在的所有图片
-  const rootPath = `${process.cwd()}/`
+  const rootPath = `${process.cwd()}/`.replace(/\\/g, '/')
   return new Promise(resolve => {
     listImages(rootPath, 'images/', resolve)
   }).then(imagesList => {
