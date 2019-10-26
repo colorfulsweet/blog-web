@@ -131,3 +131,19 @@ Text(
   )
 )
 ```
+
+#### 容器组件
+就是`Container`类以及它的一些子类
+可以简单理解为div，通常用来方便控制布局
+```dart
+Container(
+  child: Text(
+    '这是一段文字',
+    style: TextStyle(fontSize: 40),
+  ),
+  alignment: Alignment.bottomLeft, // 底部居左对齐
+  color: Color.fromARGB(255, 50, 50, 50), //内部文字的颜色
+  margin: EdgeInsets.fromLTRB(10, 20, 10, 30), // 左 上 右 下 
+)
+```
+属性也都很容易理解，可以设置容器的宽高，内外边距等等
