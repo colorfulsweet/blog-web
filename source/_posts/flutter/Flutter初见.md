@@ -147,3 +147,111 @@ Container(
 )
 ```
 属性也都很容易理解，可以设置容器的宽高，内外边距等等
+
+**decoration**属性可以用来修饰容器
+比如边框、背景色等
+```dart
+Container(
+  width: 500,
+  height: 300,
+  padding: EdgeInsets.all(20), // 内边距
+  decoration: BoxDecoration( // 容器修饰
+    // 边框
+    border: Border.fromBorderSide(BorderSide(color:Colors.amber, width:5)),
+    // 背景过渡色
+    gradient: LinearGradient(
+      colors: [Colors.blueAccent, Colors.pinkAccent]
+    )
+  ),
+  child: Text('Hello'),
+),
+```
+
+#### 图片组件
+`Image`是图片组件
+显示图片的方式有4种
++ **Image.asset** - 加载资源图片，资源图片需要打包在APP当中
++ **Image.network** - 网络资源图片
++ **Image.file** - 设备本地的图片，比如相机拍照后的图片预览
++ **Image.memory** - 加载内存中的图片，Uint8List
+
+```dart
+Image.network(
+  'https://www.colorfulsweet.site/api/common/randomBg?id=5d79b8606867833591833ae4', // 图片地址
+  scale: 1.5, // 缩放(值越大图片显示越小)
+  fit: BoxFit.fitHeight, // fit属性指定控制图片拉伸适应容器的方式, 这里是按高度适应
+),
+```
+
+##### 图片混合模式
+可以给图片混合上一种颜色，类似于添加滤镜
+```dart
+Image.network(
+  'https://www.colorfulsweet.site/api/common/randomBg?id=5d79b8606867833591833ae4',
+  color: Colors.lightGreen, // 混合的颜色
+  colorBlendMode: BlendMode.lighten, // 混合的模式
+  repeat: ImageRepeat.repeat, // 平铺充满容器
+),
+```
+#### 列表组件
+就是`ListView`组件
+通常用于数据列表的展示
+```dart
+ListView(children: <Widget>[
+    ListTile(
+      leading: Icon(Icons.access_time),
+      title: Text('这是第一条'),
+    ),
+    ListTile(
+      leading: Icon(Icons.android),
+      title: Text('这是第二条'),
+    )
+  ],
+),
+```
+ListView其中的children是一个Widget数组
+其中可以是任意的组件，纵向列表通常使用`ListTile`(列表瓦片)来作为列表成员
+其中的leading和title都可以是任意组件，可以利用各种组件的组合来构造出漂亮的列表
+![ListView](/images/flutter/ListView.png)
+
+
+ListView有属性`scrollDirection`，表示列表元素的排列方向，默认是纵向的
+如果设置为 **Axis.horizontal** 可以实现横向的列表
+
+### 自定义组件
+当页面结构很复杂的时候，如果我们把原生组件都堆积在一起
+就会产生非常多的嵌套结构，造成代码难以维护
+所以就很有必要创建自定义的组件，进行封装和重用
+```dart
+class MyList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(child:
+      ListView(
+        scrollDirection: Axis.horizontal,
+        children: <Widget>[
+        Container(
+          width: 150,
+          color: Colors.pinkAccent,
+        ),
+        Container(
+          width: 150,
+          color: Colors.blue,
+        ),
+        Container(
+          width: 150,
+          color: Colors.lightGreen,
+        ),
+        Container(
+          width: 150,
+          color: Colors.amber,
+        ),
+        ],
+      ),
+      height: 100,
+    );
+  }
+}
+```
+封装的组件就是这样一个继承`StatelessWidget`的类
+可以放在任意一个需要使用Widget的地方
