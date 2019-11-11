@@ -116,3 +116,14 @@ post的调用方式如下
 ```dart
 http.Response res = await http.post(url, body: params);
 ```
+
+#### JSON解析
+需要引入`dart:convert`模块
+
+```dart
+import 'dart:convert';
+
+var data = json.decode(jsonStr);
+print(data['total']);
+```
+JSON的序列化使用`json.encode`即可
