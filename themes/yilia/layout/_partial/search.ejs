@@ -11,7 +11,7 @@
     </div>
     <div class="search-result">
       <div class="search-result-item" v-for="(item,index) in fullTextSearchItems" :key="index">
-        <a v-text="item.title" :href="themeConfig.root + item.path"></a>
+        <a v-text="item.title" :href="themeConfig.root + item.path.join('/')"></a>
         <div v-html="item.content"></div>
       </div>
       <div class="more-item tip" v-show="fullTextSearch.hasMore"  @click="loadSearchResult">
