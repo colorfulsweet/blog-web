@@ -2,7 +2,7 @@ const nunjucks = require('nunjucks')
 const path = require('path')
 const fs = require('fs')
 
-const env = new nunjucks.Environment()
+const env = new nunjucks.configure({ autoescape: false })
 env.addFilter('noControlChars', function(str) {
 	return str && str.replace(/[\x00-\x1F\x7F]/g, '')
 })

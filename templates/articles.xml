@@ -23,6 +23,7 @@
     {% if post.date %}
     <date>{{ +post.date }}</date>
     {% endif %}
+    <md type="html"><![CDATA[{{post._content}}]]></md>
     <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
   </entry>
   {% endif %}

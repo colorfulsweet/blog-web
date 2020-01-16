@@ -30,9 +30,7 @@ search:
     <link href="/文章URL地址/"/>
     <url>/文章URL地址/</url>
     <content type="html">
-    <![CDATA[
     <p>这里是文章内容</p>
-    ]]>
     </content>
     <categories>
       <category>分类1</category>
