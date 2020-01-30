@@ -26,11 +26,11 @@ fileInput.addEventListener('change', function() {
   var file = fileInput.files[0];
   var reader = new FileReader();
   var fileBase64 = null;
-  reader.onload = function() {
+  reader.onload = function(e) {
     fileBase64 = e.target.result; //base64编码
   }
   reader.readAsDataURL(file);
-}
+})
 ```
 这里获取到的`fileBase64`就是文件的base64编码
 如果这个文件是一个图片 , 我们当然可以借助它来实现所选图片的预览
