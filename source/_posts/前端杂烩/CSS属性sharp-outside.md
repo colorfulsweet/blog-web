@@ -39,7 +39,7 @@ categories:
   shape-outside: circle(50% at 20px 30px);
 }
 ```
-![circle](/images/前端杂烩/sharp-outside/circle.png)
+![circle](/images/前端杂烩/shape-outside/circle.png)
 
 + `ellipse([<shape-radius>{2}]? [at <position>]?)` - 椭圆形
 这个函数与circle非常类似，差别就是shape-radius如果指定，需要指定两个值，分别表示X轴方向的半径和Y轴方向的半径
@@ -59,7 +59,7 @@ fill-rule有`nonzero | evenodd`两个值，用于指定确定点在内部和外�
   shape-outside: polygon(10px 10px, 20px 20px, 30px 30px);
 }
 ```
-![polygon](/images/前端杂烩/sharp-outside/polygon.png)
+![polygon](/images/前端杂烩/shape-outside/polygon.png)
 
 #### 使用图片形状
 通常使用PNG图片，因为这种图片允许透明像素，如果是JPG这种只能是矩形的，也就没有什么意义了
@@ -69,7 +69,7 @@ fill-rule有`nonzero | evenodd`两个值，用于指定确定点在内部和外�
   shape-outside: url(/example/demo.png);
 }
 ```
-![url](/images/前端杂烩/sharp-outside/url.png)
+![url](/images/前端杂烩/shape-outside/url.png)
 实际使用的是该图片的轮廓，这个属性并不会使图片显示出来，如果要看到图片，还需要配合background属性
 
 
@@ -106,4 +106,4 @@ fill-rule有`nonzero | evenodd`两个值，用于指定确定点在内部和外�
 }
 
 ```
-![circle-inner](/images/前端杂烩/sharp-outside/circle-inner.png)
+![circle-inner](/images/前端杂烩/shape-outside/circle-inner.png)
