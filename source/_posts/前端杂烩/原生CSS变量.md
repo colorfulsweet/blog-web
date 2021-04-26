@@ -1,6 +1,7 @@
 ---
 title: 原生CSS变量
 date: 2020-10-23 15:10:46
+updateDate: 2021-04-26 11:51:23
 tags: 
   - 前端
   - css
@@ -87,3 +88,38 @@ let value2 = getComputedStyle(box).getPropertyValue('--text-color')
   width: calc(var(--box-width) * 1px);
 }
 ```
+
+
+
+### 区分于编程语言中的变量
+原生CSS的变量，将其称为**自定义属性**更为合理
+因为它和编程语言中的变量有很大不同
+比如
+
+#### important
+```css
+.box1 {
+  --text-color: red !important;
+  color: var(--text-color);
+  color: blue;
+}
+.box2 {
+  --text-color: red !important;
+  --text-color: blue;
+  color: var(--text-color);
+}
+```
+如果在变量上加`!important`，是作用在这个变量(自定义属性)上，而不属于变量的值
+所以上述代码实际效果是box1是blue，box2是red
+
+#### 属性的覆盖
+```css
+.box {
+  --s: 10px;
+  margin: var(--s);
+  --s: 20px;
+  padding: var(--s);
+}
+```
+上述代码的实际效果，margin和padding都会是20px
+因为后一次自定义属性的定义覆盖了第一次，与常规编程语言中的变量先定义后使用的逻辑不同
