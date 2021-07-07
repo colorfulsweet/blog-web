@@ -1,8 +1,9 @@
 const gulp = require('gulp'),
-  htmlmin = require('gulp-htmlmin'),   //html压缩组件
-  htmlclean = require('gulp-htmlclean'), //html清理组件
-  plumber = require('gulp-plumber'),  //容错组件（发生错误不跳出任务，并报出错误内容）
-  Hexo = require('hexo')
+  htmlmin = require('gulp-htmlmin'),   // html压缩组件
+  htmlclean = require('gulp-htmlclean'), // html清理组件
+  plumber = require('gulp-plumber'),  // 容错组件（发生错误不跳出任务，并报出错误内容）
+  Hexo = require('hexo'),
+  log = require('fancy-log') // gulp的日志输出
 
 // 程序执行的传参
 const argv = require('optimist')
@@ -55,7 +56,7 @@ gulp.task('compressHtml', () => {
 gulp.task('syncImages', () => {
   const listImages = require('./deploy_utils/list_images')
   if(!argv.accessKey || !argv.accessSecret) {
-    return Promise.resolve('未获得accessKey以及accessSecret, 跳过图片同步').then(console.log)
+    return Promise.resolve('未获得accessKey以及accessSecret, 跳过图片同步').then(log)
   }
   // 同步当前本地存在的所有图片
   const rootPath = `${process.cwd()}/`.replace(/\\/g, '/')
@@ -76,7 +77,7 @@ gulp.task('syncImages', () => {
 
 gulp.task('deploy', () => {
   if(!argv.deployPath) {
-    return Promise.resolve('未获得deployPath, 跳过发布').then(console.log)
+    return Promise.resolve('未获得deployPath, 跳过发布').then(log)
   }
   const deploy = require('./deploy_utils/deploy')
   return deploy.exec('./public', argv.deployPath, false)
