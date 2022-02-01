@@ -177,7 +177,7 @@ Container(
 
 ```dart
 Image.network(
-  'https://www.colorfulsweet.site/api/common/randomBg?id=5d79b8606867833591833ae4', // 图片地址
+  'https://www.colorfulsweet.site/api/v1/common/randomBg?id=5d79b8606867833591833ae4', // 图片地址
   scale: 1.5, // 缩放(值越大图片显示越小)
   fit: BoxFit.fitHeight, // fit属性指定控制图片拉伸适应容器的方式, 这里是按高度适应
 ),
@@ -187,7 +187,7 @@ Image.network(
 可以给图片混合上一种颜色，类似于添加滤镜
 ```dart
 Image.network(
-  'https://www.colorfulsweet.site/api/common/randomBg?id=5d79b8606867833591833ae4',
+  'https://www.colorfulsweet.site/api/v1/common/randomBg?id=5d79b8606867833591833ae4',
   color: Colors.lightGreen, // 混合的颜色
   colorBlendMode: BlendMode.lighten, // 混合的模式
   repeat: ImageRepeat.repeat, // 平铺充满容器

@@ -99,7 +99,7 @@ const vm = new Vue({
         limit: this.fullTextSearch.limit,
         words: this.fullTextSearchWords
       }
-      axios.get(window.themeConfig.root + 'api/common/search', {params}).then(res => {
+      axios.get(window.themeConfig.root + 'api/v1/common/search', {params}).then(res => {
         this.fullTextSearch.isLoading = false
         fullTextSearchTimer = null
         let result = res.data
@@ -225,7 +225,7 @@ function handleSearch(searchItems) {
 
 async function welcomeMessage() {
   let now = new Date().getHours()
-  return axios.get(`${window.themeConfig.root}api/common/config/waifu_tip`).then(res => {
+  return axios.get(`${window.themeConfig.root}api/v1/common/config/waifu_tip`).then(res => {
     let textTimes = res.data
     let text = null
     Array.prototype.sort.call(textTimes, (item1, item2) => {
@@ -273,7 +273,7 @@ const waifuTools = {
   },
   'tools.chart'() {
     // 一言
-    axios.get(`${window.themeConfig.root}api/common/hitokoto?length=40&format=json`).then(res => {
+    axios.get(`${window.themeConfig.root}api/v1/common/hitokoto?length=40&format=json`).then(res => {
       this.showMessage(res.data.hitokoto + (res.data.from?`　　——${res.data.from}`:''))
     })
   },
