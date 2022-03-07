@@ -31,7 +31,7 @@ module.exports = function(env, argv) {
     },
     output: {
       publicPath: '/',
-      path: __dirname+'/source',
+      path: __dirname + '/source',
       filename: isProd ? 'js/[name].[chunkhash].js' : 'js/[name].js'
     },
     module: {
@@ -56,23 +56,21 @@ module.exports = function(env, argv) {
           use: {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
+              name: '[name].[contenthash:6].[ext]',
               outputPath: 'images',
               esModule: false  // 不使用es6的模块语法
             }
-          },
-          type: 'javascript/auto' // 默认使用自定义的
+          }
         },{
           test: /\.(svg|eot|ttf|woff2?|otf)$/,
           use: {
             loader: 'file-loader',
             options: {
-              name: '[name].[fullhash:6].[ext]',
+              name: '[name].[contenthash:6].[ext]',
               outputPath: 'fonts',
               esModule: false  // 不使用es6的模块语法
             }
-          },
-          type: 'javascript/auto' // 默认使用自定义的
+          }
         }
       ]
     },
@@ -91,7 +89,7 @@ module.exports = function(env, argv) {
         dry: false,
       }),
       new MiniCssExtractPlugin({
-        filename: 'css/[name].[fullhash:6].css'
+        filename: 'css/[name].[contenthash:6].css'
       })
     ],
     mode: argv.mode,
