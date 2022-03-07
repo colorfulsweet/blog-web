@@ -1,5 +1,5 @@
 import axios from 'axios'
-import * as Vue from 'vue'
+import Vue from 'vue/dist/vue.esm'
 import waifuTips from '../config/waifu-tip.json'
 
 function setScrollZero() {
