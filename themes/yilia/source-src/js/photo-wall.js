@@ -1,6 +1,6 @@
 import axios from 'axios'
-import PhotoSwipe from '../lib/photoswipe/photoswipe'
-import PhotoSwipeUI_Default from '../lib/photoswipe/photoswipe-ui-default'
+import PhotoSwipe from 'photoswipe'
+import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default'
 
 var totalIndex = 0, defaultStep = 20, scrollLock = false
 

@@ -1,19 +1,28 @@
+const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 
-const minifyHTML = {
-  collapseInlineTagWhitespace: true,
-  collapseWhitespace: true,
-  minifyJS:true
+const htmlPluginConfig = {
+  inject: false,
+  cache: false,
+  minify: {
+    collapseInlineTagWhitespace: true,
+    collapseWhitespace: true,
+    minifyJS:true
+  }
 }
 
 module.exports = function(env, argv) {
   // 是否是生产环境
   let isProd = argv.mode === 'production'
   return {
+    optimization: {
+      minimizer: [new TerserPlugin({
+        extractComments: false,
+      })]
+    },
     entry: {
       main: ['babel-polyfill', './source-src/js/main.js'],
       slider: './source-src/js/slider.js',
@@ -26,82 +35,63 @@ module.exports = function(env, argv) {
       filename: isProd ? 'js/[name].[chunkhash].js' : 'js/[name].js'
     },
     module: {
-      rules: [
-        {
+      rules: [{
           test: /\.js$/,
           use: {
-            loader: 'babel-loader', 
-            options:{cacheDirectory: true}
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-class-properties'],
+            },
           },
           exclude: /node_modules/
         },{
           test: /\.(scss|sass)$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loader',
-            'sass-loader'
-          ]
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
         },{
           test: /\.css$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loader'
-          ]
+          use: [MiniCssExtractPlugin.loader, 'css-loader']
         },{
           test: /\.(png|jpe?g|gif|ico)$/,
           use: {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              limit: 1000,
-              publicPath: '../',
-              name: 'images/[name].[ext]'
+              name: '[name].[ext]',
+              outputPath: 'images',
+              esModule: false  // 不使用es6的模块语法
             }
-          }
+          },
+          type: 'javascript/auto' // 默认使用自定义的
         },{
           test: /\.(svg|eot|ttf|woff2?|otf)$/,
           use: {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              limit: 1000,
-              publicPath: '../',
-              name: 'fonts/[name].[hash:6].[ext]'
+              name: '[name].[fullhash:6].[ext]',
+              outputPath: 'fonts',
+              esModule: false  // 不使用es6的模块语法
             }
-          }
+          },
+          type: 'javascript/auto' // 默认使用自定义的
         }
       ]
     },
     plugins: [
-      new MiniCssExtractPlugin({
-        filename: isProd ? 'css/[name].[contenthash].css' : 'css/[name].css',
-        chunkFilename: '[id].css'
-      }),
-      new OptimizeCssAssetsPlugin({
-        assetNameRegExp: /viewer\..*?\.css$/g,
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
-        },
-        canPrint: true
-      }),
-      new HtmlWebpackPlugin({
-        inject: false,
-        cache: false,
-        minify: minifyHTML,
+      new HtmlWebpackPlugin(Object.assign({
         template: './source-src/template/script.html',
         filename: '../layout/_partial/script.ejs'
-      }),
-      new HtmlWebpackPlugin({
-        inject: false,
-        cache: false,
-        minify: minifyHTML,
+      }, htmlPluginConfig)),
+      new HtmlWebpackPlugin(Object.assign({
         template: './source-src/template/css.html',
         filename: '../layout/_partial/css.ejs'
-      }),
+      }, htmlPluginConfig)),
       new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: ['js/*.js','css/*.css','fonts/*'],
+        cleanOnceBeforeBuildPatterns: ['js/*','css/*','fonts/*','images/*'],
         verbose: true,
         dry: false,
+      }),
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].[fullhash:6].css'
       })
     ],
     mode: argv.mode,
