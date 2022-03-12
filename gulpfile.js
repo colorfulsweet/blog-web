@@ -7,9 +7,6 @@ const gulp = require('gulp'),
 
 // 程序执行的传参
 const argv = require('optimist')
-  // .demand(['accessKey', 'accessSecret', 'deployPath'])
-  .describe('accessKey', '网易云对象存储key')
-  .describe('accessSecret', '网易云对象存储secret')
   .describe('deployPath', '静态化后发布的目录')
   .argv
 
