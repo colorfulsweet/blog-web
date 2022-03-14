@@ -39,8 +39,7 @@ $textColor_night: #d5d5d5; // 文字颜色
 }
 
 body.night {
-  background-color: $mainBg_night;
-  background-image: none !important;
+  background: $mainBg_night;
   // 展开菜单之后的背景
   #container, #container.show {
     background-color: $mainBg_night;
@@ -89,6 +88,7 @@ body.night {
   // 左侧栏
   .left-col {
     background: $articleBg_night;
+    background-image: none !important;
   }
   #mobile-nav {
     background: none;
