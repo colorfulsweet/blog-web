@@ -166,6 +166,56 @@ toRefs的作用就是把一个响应式对象, 转化为普通对象, 但是同�
 这也会导致它变得十分冗长
 但是它本身作为一个函数, 其中定义的都是这个函数当中的局部变量
 这就提供了一种拆分的可能 (在vue2当中, 要对组件内的功能进行拆分, 可以使用mixin)
+```javascript
+import { ref } from 'vue'
+
+const obj = ref({count:1, name:"123"})
+const valueChange = () => {
+  obj.value.count = obj.value.count + 1
+  obj.value.name = "456"
+}
+
+export default {obj, valueChange}
+```
+在组件当中直接这样使用即可
+```javascript
+import demo from './demo'
+export default {
+  name: 'App',
+  setup() {
+    return{ ...demo }
+  },
+}
+```
+### script setup
+如果采用了setup, 其他的选项其实已经基本不再需要, 所以vue3支持以一种更加扁平化的方式来编写代码
+也就是在script标签上添加setup属性
+
+```html
+<script setup>
+import { ref } from 'vue'
+import HelloWorld from './components/HelloWorld.vue'
+
+const obj = ref({count:1, name:"123"})
+const valueChange = () => {
+  obj.value.count = obj.value.count + 1
+  obj.value.name = "456"
+}
+</script>
+```
+此时script当中的所有代码, 就相当于之前setup当中的内容, 引入的组件也不再需要进行声明了, 直接使用即可
+
+#### 属性与事件的声明
+如果采用了`script setup`这种形式, 会发现没有办法像上面那样从setup函数的入参上获取props和context了
+这种情况下我们可以使用`defineProps`和`defineEmits`
+```html
+<script setup>
+const props = defineProps({msg: String})
+const emits = defineEmits(['change', 'visible'])
+
+emits('visible', '456')
+</script>
+```
 
 
 ## 关于sass
