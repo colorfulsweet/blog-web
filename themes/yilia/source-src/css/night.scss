@@ -39,7 +39,8 @@ $textColor_night: #d5d5d5; // 文字颜色
 }
 
 body.night {
-  background: $mainBg_night;
+  background-color: $mainBg_night;
+  background-image: none !important;
   // 展开菜单之后的背景
   #container, #container.show {
     background-color: $mainBg_night;

@@ -2,8 +2,8 @@
 <html>
 <%- partial('_partial/head') %>
 <body>
-  <div id="container" :class="{show:isCtnShow}" style="background-image: url(/api/v1/common/randomBg?label=background);" @click="hideSlider">
-    <div class="left-col" style="background-image: url(/api/v1/common/randomBg?label=banner);" >
+  <div id="container" :class="{show:isCtnShow}" style="background-image: url('/api/v1/common/randomBg?label=background');" @click="hideSlider">
+    <div class="left-col" style="background-image: url('/api/v1/common/randomBg?label=banner');" >
       <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
       <%- partial('_partial/live2d') %>
     </div>
