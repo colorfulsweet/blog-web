@@ -49,15 +49,22 @@ gulp.task('compressHtml', () => {
     .pipe(gulp.dest('./public'))
 })
 
+// 拷贝图片
+gulp.task('copyImage', () => {
+  const deploy = require('./deploy_utils/deploy')
+  return deploy.exec('./images', './public/images')
+})
+
+// 发布
 gulp.task('deploy', () => {
   if(!argv.deployPath) {
     return Promise.resolve('未获得deployPath, 跳过发布').then(log)
   }
   const deploy = require('./deploy_utils/deploy')
-  return deploy.exec('./public', argv.deployPath, false)
+  return deploy.exec('./public', argv.deployPath, true)
 })
 
 // 默认任务
 gulp.task('default', 
-	gulp.series('generate', 'compressHtml', 'deploy') // 串行执行任务
+	gulp.series('generate', 'compressHtml', 'copyImage', 'deploy') // 串行执行任务
 )
