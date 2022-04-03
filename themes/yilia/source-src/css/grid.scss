@@ -31,7 +31,7 @@ html, body, #container {
   }
 }
 body:not(.night) #container.show {
-	background: linear-gradient(200deg,#5aa5c6,#a4854b);
+	background-image: linear-gradient(200deg,#5aa5c6,#a4854b) !important;
 }
 .body-wrap{
   padding-top: 30px;
