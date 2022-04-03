@@ -21,7 +21,7 @@ Three.js是基于原生WebGL封装运行的三维引擎，在所有WebGL引擎�
     <title>Three.js DEMO</title>
     <style>
       body { margin: 0; }
-			canvas { width: 100%; height: 100% }
+      canvas { width: 100%; height: 100% }
     </style>
   </head>
   <body>

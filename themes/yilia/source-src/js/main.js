@@ -1,7 +1,6 @@
 // 样式
 import '../css/main.scss'
-// 图片查看器 -> 改为单独分块打包
-// import Viewer from './viewer'
+import '../css/font-awsome.css'
 // 分享
 import Share from './share'
 // 边缘
