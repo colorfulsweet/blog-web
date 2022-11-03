@@ -228,4 +228,4 @@ module.exports = {
 
 ---
 至此终于宣告完工, 打包可以正常运作
-附: [webpack.config.js文件](https://github.com/sookie2010/hexo_blog/blob/master/themes/yilia/webpack.config.js)
+附: [webpack.config.js文件](https://github.com/colorfulsweet/blog-web/blob/master/themes/yilia/webpack.config.js)

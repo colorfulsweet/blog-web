@@ -3,8 +3,8 @@
 </p>
 
 <p style="text-align:center">
-<img src="https://img.shields.io/github/repo-size/sookie2010/hexo_blog.svg" alt="Size" />
-<img src=https://img.shields.io/github/package-json/v/sookie2010/hexo_blog.svg alt="Version" />
+<img src="https://img.shields.io/github/repo-size/colorfulsweet/blog-web.svg" alt="Size" />
+<img src="https://img.shields.io/github/package-json/v/colorfulsweet/blog-web.svg" alt="Version" />
 <a target="_blank" href="https://www.colorfulsweet.site">
 <img src="https://img.shields.io/badge/blog-colorfulsweet-green.svg" alt="我的博客" />
 </a>

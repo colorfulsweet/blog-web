@@ -17,8 +17,8 @@ npm install hexo-deployer-git --save-dev
 ```
 #### 创建github仓库
 仓库的名字必须是`[github用户名].github.io`
-比如我的github用户名是sookie2010
-那么就应该创建名为 **sookie2010.github.io** 的仓库
+比如我的github用户名是colorfulsweet
+那么就应该创建名为 **colorfulsweet.github.io** 的仓库
 
 #### 添加配置项
 在`_config.yml`当中配置
@@ -28,8 +28,8 @@ deploy:
   repo: git@github.com:[github用户名]/[github用户名].github.io.git
   branch: master
 ```
-比如我的github用户名是sookie2010
-那么repo就是 ` git@github.com:sookie2010/sookie2010.github.io.git`
+比如我的github用户名是colorfulsweet
+那么repo就是 ` git@github.com:colorfulsweet/colorfulsweet.github.io.git`
 
 #### 静态化与发布
 ```bash
