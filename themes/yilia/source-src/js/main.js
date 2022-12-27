@@ -42,11 +42,6 @@ Util.addLoadEvent(function() {
   }
 })
 
-if(window.themeConfig.isPost && window.themeConfig.comment) {
-  // 文章详情页面, 并且启用了评论, 则加载评论相关代码
-  import(/* webpackChunkName: "comment" */ './comment')
-}
-
 // 初始化看板娘
 import(/* webpackChunkName: "waifu" */ './waifu').then(waifuInit => {
   waifuInit.default.init()

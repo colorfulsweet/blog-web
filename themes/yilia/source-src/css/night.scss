@@ -100,10 +100,6 @@ body.night {
   .profilepic, .waifu, #header .header-nav .social a {
     filter: brightness(30%);
   }
-  // 评论
-  #comments {
-    background: none;
-  }
   // 文章信息栏
   .article-info-index.article-info {
     border-top-color: $borderColor_night;
