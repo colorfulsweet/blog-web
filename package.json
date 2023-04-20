@@ -29,7 +29,7 @@
     "gulp-htmlclean": "^2.7.22",
     "gulp-htmlmin": "^5.0.1",
     "gulp-plumber": "^1.2.1",
-    "nunjucks": "^3.2.3",
+    "nunjucks": "^3.2.4",
     "optimist": "^0.6.1"
   }
 }
