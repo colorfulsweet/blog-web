@@ -70,9 +70,6 @@ top: true
 # 站点图标
 favicon: /favicon.ico
 
-#头像url
-avatar: https://cdn.colorfulsweet.site/resources/avatar.jpg
-
 #是否开启分享
 share_enable: true
 

@@ -94,7 +94,7 @@ pagination_dir: page
 theme: yilia
 
 # 图片存储仓库地址
-picture_cdn: https://cdn.colorfulsweet.site
+picture_cdn: https://nas.colorfulsweet.site:9003
 
 # ICP备案号
 ICP: 鲁ICP备19028444号
