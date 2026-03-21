@@ -46,8 +46,8 @@ module.exports = function(env, argv) {
           },
           exclude: /node_modules/
         },{
-          test: /\.(scss|sass)$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+          test: /\.less$/,
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
         },{
           test: /\.css$/,
           use: [MiniCssExtractPlugin.loader, 'css-loader']

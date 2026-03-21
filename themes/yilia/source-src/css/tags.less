@@ -1,0 +1,120 @@
+// tags.less
+// 标签颜色组：将 @for 循环手动展开
+// @tagColors: #88acdb, #ffa07a, #ca5757, #76becc, #7e608d, #6fc0e4, #bc8f8f
+
+#header .tagcloud a {
+  color: #fff;
+}
+.tagcloud {
+  a.js-tag {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 10px;
+    color: @colorF;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 5px 0px 10px;
+    position: relative;
+    border-radius: 0 5px 5px 0;
+    margin: 5px 9px 5px 8px;
+    font-family: Menlo, Monaco, "Andale Mono", "lucida console";
+    &:hover {
+      opacity: 0.8;
+    }
+    &::before {
+      content: " ";
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      top: 0;
+      left: -18px;
+      border: 9px solid transparent;
+    }
+    &::after {
+      content: " ";
+      width: 4px;
+      height: 4px;
+      background-color: @colorF;
+      border-radius: 4px;
+      box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, .3);
+      position: absolute;
+      top: 7px;
+      left: 2px;
+    }
+  }
+
+  // 手动展开 @for $index from 1 to 8 的 7 个标签颜色
+  a.color1 {
+    background: #88acdb;
+    &::before { border-right-color: #88acdb; }
+  }
+  a.color2 {
+    background: #ffa07a;
+    &::before { border-right-color: #ffa07a; }
+  }
+  a.color3 {
+    background: #ca5757;
+    &::before { border-right-color: #ca5757; }
+  }
+  a.color4 {
+    background: #76becc;
+    &::before { border-right-color: #76becc; }
+  }
+  a.color5 {
+    background: #7e608d;
+    &::before { border-right-color: #7e608d; }
+  }
+  a.color6 {
+    background: #6fc0e4;
+    &::before { border-right-color: #6fc0e4; }
+  }
+  a.color7 {
+    background: #bc8f8f;
+    &::before { border-right-color: #bc8f8f; }
+  }
+}
+
+
+.article-tag-list {
+  .article-tag-list-item {
+    float: left;
+  }
+}
+.article-pop-out {
+  float: left;
+  .icon-thumb-tack {
+    color: @color9;
+    float: left;
+    margin-right: 10px;
+    margin-top: 6px;
+  }
+}
+.article-tag, .article-category {
+  float: left;
+  .article-tag-list {
+    float: left;
+  }
+  .icon {
+    color: @color9;
+    float: left;
+    margin-right: 10px;
+    margin-top: 8px;
+  }
+}
+.article-pop-out {
+  float: left;
+}
+
+.archive-article-date {
+  color: @color9;
+  margin-right: @articlePadding;
+  float: right;
+  transition: color 0.3s;
+  &:hover {
+    color: #b5b5b5;
+  }
+  .icon {
+    margin: 5px 5px 5px 0;
+  }
+}

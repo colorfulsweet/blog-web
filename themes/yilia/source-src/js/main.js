@@ -1,5 +1,5 @@
 // 样式
-import '../css/main.scss'
+import '../css/main.less'
 import '../css/font-awsome.css'
 // 分享
 import Share from './share'

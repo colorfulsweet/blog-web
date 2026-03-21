@@ -1,0 +1,183 @@
+/*
+* 夜间模式配色
+*/
+@mainBg_night: #1f2e3c;
+@articleBg_night: #15202b;
+@borderColor_night: #38444d;
+@textColor_night: #d5d5d5;
+
+@keyframes leftIn_night {
+  from {
+    transform: translate(0, 0);
+    background: @mainBg_night;
+  }
+  to {
+    transform: translate(333px, 0);
+    background: none;
+  }
+}
+
+@keyframes leftOut_night {
+  from {
+    transform: translate(333px, 0);
+    background: none;
+  }
+  to {
+    transform: translate(0, 0);
+    background: @mainBg_night;
+  }
+}
+
+.anmLeftIn_night() {
+  .anmCommon();
+  animation-name: leftIn_night;
+}
+
+.anmLeftOut_night() {
+  .anmCommon();
+  animation-name: leftOut_night;
+}
+
+body.night {
+  background: @mainBg_night;
+  // 展开菜单之后的背景
+  #container, #container.show {
+    background-color: @mainBg_night;
+  }
+  // 文章区域
+  .article {
+    background: fade(@articleBg_night, 80%);
+    border-color: @borderColor_night;
+    color: @textColor_night;
+    .article-title {
+      color: @colorF;
+    }
+    .article-entry {
+      table {
+        border-color: @borderColor_night;
+        th, td {
+          border-color: @borderColor_night;
+        }
+        thead tr {
+          background: @mainBg_night;
+        }
+        tbody tr:hover {
+          background: lighten(@mainBg_night, 10%);
+        }
+      }
+      blockquote {
+        background: #2c2c2c;
+      }
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: @colorC;
+      border-bottom-color: @borderColor_night;
+    }
+  }
+  // 归档列表
+  .archives-wrap {
+    background: fade(@articleBg_night, 80%);
+    border-bottom-color: @borderColor_night;
+    .archive-article {
+      border-color: @borderColor_night;
+    }
+    a.archive-article-title {
+      color: @textColor_night;
+    }
+  }
+  // 左侧栏
+  .left-col {
+    background-color: @articleBg_night;
+    background-image: none !important;
+  }
+  #mobile-nav {
+    background: none;
+    .overlay {
+      display: none;
+    }
+  }
+  // 头像 看板娘 图标 -> 降低亮度滤镜
+  .profilepic, .waifu, #header .header-nav .social a {
+    filter: brightness(30%);
+  }
+  // 文章信息栏
+  .article-info-index.article-info {
+    border-top-color: @borderColor_night;
+  }
+  #footer {
+    color: @textColor_night;
+  }
+  // 高亮关键字
+  .article-entry p code, .article-entry li code {
+    background: @mainBg_night;
+    color: #bf7676;
+  }
+  // 分类列表
+  .category-list li.category-list-item {
+    border-color: @borderColor_night;
+  }
+  // 标签颜色组 (unrolled from @for loop, darken(color, 25%))
+  .tagcloud {
+    a.color1 {
+      background: darken(#88acdb, 25%);
+      &::before {
+        border-right-color: darken(#88acdb, 25%);
+      }
+    }
+    a.color2 {
+      background: darken(#ffa07a, 25%);
+      &::before {
+        border-right-color: darken(#ffa07a, 25%);
+      }
+    }
+    a.color3 {
+      background: darken(#ca5757, 25%);
+      &::before {
+        border-right-color: darken(#ca5757, 25%);
+      }
+    }
+    a.color4 {
+      background: darken(#76becc, 25%);
+      &::before {
+        border-right-color: darken(#76becc, 25%);
+      }
+    }
+    a.color5 {
+      background: darken(#7e608d, 25%);
+      &::before {
+        border-right-color: darken(#7e608d, 25%);
+      }
+    }
+    a.color6 {
+      background: darken(#6fc0e4, 25%);
+      &::before {
+        border-right-color: darken(#6fc0e4, 25%);
+      }
+    }
+    a.color7 {
+      background: darken(#bc8f8f, 25%);
+      &::before {
+        border-right-color: darken(#bc8f8f, 25%);
+      }
+    }
+  }
+  // 滚动条
+  ::-webkit-scrollbar {
+    background-color: @articleBg_night;
+  }
+  .page-modal {
+    background: @mainBg_night;
+    color: @textColor_night;
+    .close {
+      color: @textColor_night;
+    }
+  }
+  #search-panel {
+    .search-input > input[type=text] {
+      color: @textColor_night;
+    }
+    .more-item {
+      background: linear-gradient(-180deg, @articleBg_night 10%, rgba(255, 255, 255, 0) 100%);
+    }
+  }
+}

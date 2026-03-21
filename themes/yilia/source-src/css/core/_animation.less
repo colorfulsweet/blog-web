@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// animate less
+// 提供动画 mixin 及基础 placeholder 类
+//-----------------------------------------------------
+
+// animation-basic 基础动画属性
+.animation-basic() {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+// 公共动画基础属性
+//-----------------------------------------------------
+.anmCommon() {
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes leftIn {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(333px, 0);
+  }
+}
+
+@keyframes leftOut {
+  from {
+    transform: translate(333px, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+.anmLeftIn() {
+  .anmCommon();
+  animation-name: leftIn;
+}
+
+.anmLeftOut() {
+  .anmCommon();
+  animation-name: leftOut;
+}
+
+@keyframes smallLeftIn {
+  from {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(300px, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes smallleftOut {
+  from {
+    transform: translate(300px, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+}
+
+.anmSmallLeftIn() {
+  .anmCommon();
+  animation-name: smallLeftIn;
+}
+
+.anmSmallLeftOut() {
+  .anmCommon();
+  animation-name: smallleftOut;
+}
+
+// 头像旋转动画
+@keyframes profilepic {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.picRotate() {
+  animation: profilepic 5s linear infinite;
+}

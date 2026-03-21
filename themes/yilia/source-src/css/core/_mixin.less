@@ -1,0 +1,409 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// mixin less
+// 包括常用的 mixin 及辅助样式
+// LESS 中用 .name() 定义 mixin（不会输出到 CSS），用 .name() 调用
+//-----------------------------------------------------
+
+
+// Center-align a block level element
+//-----------------------------------------------------
+.center-block() {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// clearfix
+//-----------------------------------------------------
+.clearfix() {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+// Hide only visually, but have it available for screenreaders
+//-----------------------------------------------------
+.hidden-clip() {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+// ellipsis
+//-----------------------------------------------------
+.ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// ellipsis lines (only old webkit flex box)
+//-----------------------------------------------------
+.ellipsis-lines(@lines: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @lines;
+  -webkit-box-orient: vertical;
+}
+
+// word-break
+//-----------------------------------------------------
+.word-break() {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+// disabled
+//-----------------------------------------------------
+.disabled(@disabledText: @colorDisabled-text; @disabledBg: @colorDisabled-bg; @disabledBorder: false) {
+  background-color: @disabledBg !important;
+  color: @disabledText !important;
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
+// image replace text
+//-----------------------------------------------------
+.ir() {
+  font: 0/0 a;
+  text-shadow: none;
+  border: 0 none;
+  color: transparent;
+}
+
+// fixed top or bottom
+//-----------------------------------------------------
+.fixed(@pos: 0) {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: @pos;
+}
+
+.fixed-bottom() {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+// justify 左右对齐
+//-----------------------------------------------------
+.justify() {
+  display: flex;
+  justify-content: space-between;
+}
+
+// retina border 0.5px 实现 (ios9)
+//-----------------------------------------------------
+.retina-one-px() {
+  @supports (border-width: 0.5px) {
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), screen and (-webkit-min-device-pixel-ratio: 3) {
+      border-width: 0.5px;
+    }
+  }
+}
+
+// retina border via linear-gradient
+//-----------------------------------------------------
+.retina-one-px-bg(@direction: top; @color: @colorBorder) {
+  background-repeat: no-repeat;
+}
+
+// retina border via transform
+//-----------------------------------------------------
+.retina-one-px-border(@direction: top; @color: @colorBorder) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  right: 0;
+  height: 0;
+  transform: scaleY(0.5);
+  border-top: 1px solid @color;
+}
+
+.retina-one-px-border-bottom(@color: @colorBorder) {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  box-sizing: border-box;
+  transform: scaleY(0.5);
+  border-top: 1px solid @color;
+}
+
+.retina-one-px-border-all(@color: @colorBorder) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 200%;
+  height: 200%;
+  transform-origin: left top;
+  transform: scale(0.5);
+  border: 1px solid @color;
+}
+
+// border top & bottom placeholder
+//-----------------------------------------------------
+.border-tb() {
+  position: relative;
+  &::before {
+    content: "";
+    .retina-one-px-border();
+    z-index: 1;
+  }
+  &::after {
+    content: "";
+    .retina-one-px-border-bottom();
+  }
+}
+
+// border all placeholder
+//-----------------------------------------------------
+.border-all() {
+  position: relative;
+  &::before {
+    content: "";
+    .retina-one-px-border-all();
+    z-index: -1;
+  }
+}
+
+// equal-table
+//-----------------------------------------------------
+.equal-table(@child: ~"li") {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  @{child} {
+    display: table-cell;
+  }
+}
+
+// equal-flex
+//-----------------------------------------------------
+.equal-flex(@child: ~"li") {
+  display: flex;
+  @{child} {
+    flex: 1;
+    width: 1%;
+  }
+}
+
+// flex center
+//-----------------------------------------------------
+.center-flex() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// translate center
+//-----------------------------------------------------
+.center-translate() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+// triangle 三角箭头
+//-----------------------------------------------------
+.triangle-basic() {
+  content: "";
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.triangle(@direction: top; @borderWidth: 6px; @borderColor: @colorC) {
+  .triangle-basic();
+}
+
+// v-arrow 方向箭头
+//-----------------------------------------------------
+.v-arrow(@direction: right; @borderWidth: 2px; @size: 10px) {
+  display: inline-block;
+  vertical-align: middle;
+  width: @size;
+  height: @size;
+  border-top: @borderWidth solid currentColor;
+  border-right: @borderWidth solid currentColor;
+  transform: rotate(45deg);
+}
+
+// btn-size
+//-----------------------------------------------------
+.btn-size(@padding: 1em; @height: @barHeight; @radius: 3px) {
+  padding: 0 @padding;
+  line-height: (@height - 2px);
+  border-radius: @radius;
+}
+
+// btn-color (simplified)
+//-----------------------------------------------------
+.btn-color(@btnColorText: #333; @btnColorBg: #666; @btnColorBorder: false) {
+  color: @btnColorText;
+  background-color: @btnColorBg;
+  &:hover, &:active {
+    background-color: darken(@btnColorBg, 5%);
+  }
+}
+
+// function: tint - 为颜色添加白色
+//-----------------------------------------------------
+.tint(@color; @percent) {
+  // Use mix(white, @color, @percent) equivalent
+  // In LESS: mix(white, @color, @percent)
+}
+
+// function: shade - 为颜色添加黑色
+//-----------------------------------------------------
+.shade(@color; @percent) {
+  // In LESS: mix(black, @color, @percent)
+}
+
+
+// 下面是常用 placeholder 转为 LESS mixin
+//-----------------------------------------------------
+
+// shadow
+.shadow() {
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, .75);
+}
+
+// trans
+.trans() {
+  transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+}
+
+// trans8
+.trans8() {
+  transition: all 0.8s ease-in;
+  -ms-transition: all 0.8s ease-in;
+}
+
+// display-flex
+.display-flex() {
+  display: flex;
+}
+
+// transition-all
+.transition-all() {
+  transition: all 0.3s ease-in-out;
+}
+
+// translate3d
+.translate3d() {
+  transform: translate3d(0, 0, 0);
+}
+
+// btn-basic 按钮基本样式
+.btn-basic() {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  user-select: none;
+  padding: 0 1em;
+  white-space: nowrap;
+}
+
+// bar-line
+.bar-line() {
+  line-height: (@barHeight - 10px);
+  padding: 5px 10px;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  &:active,
+  &:hover {
+    background-color: darken(@colorF, 3%);
+  }
+  &:not(:first-of-type)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    right: 0;
+    height: 0;
+    transform: scaleY(0.5);
+    border-top: 1px solid @colorBorder;
+    z-index: 1;
+  }
+}
+
+// item-v-right 右侧箭头
+.item-v-right() {
+  &::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    color: @colorC;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -1px;
+    transform: rotate(45deg) translate(0, -50%);
+    box-sizing: border-box;
+  }
+}
+
+// gap-item 间隔列表
+.gap-item() {
+  position: relative;
+  background: #fff;
+  margin: 10px 0;
+  &:active,
+  &:hover {
+    background-color: darken(@colorF, 3%);
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    right: 0;
+    height: 0;
+    transform: scaleY(0.5);
+    border-top: 1px solid @colorBorder;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0;
+    box-sizing: border-box;
+    transform: scaleY(0.5);
+    border-top: 1px solid @colorBorder;
+  }
+}
+
+// triangle-basic
+.triangle-basic-class() {
+  content: "";
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}

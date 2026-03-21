@@ -5,7 +5,7 @@
   z-index: 999;
   font-size: 14px;
   .icon {
-    color: $colorF;
+    color: @colorF;
     text-shadow: 1px 1px 1px #509eb7;
     font-size: 24px;
     line-height: 40px;
@@ -19,7 +19,7 @@
   width: 40px;
   text-align: center;
 }
-.jump-container:hover, .toc-container:hover{
+.jump-container:hover, .toc-container:hover {
   .icon {
     background: rgba(36, 193, 246, 0.9);
   }
@@ -50,7 +50,7 @@
   }
 }
 
-.toc-container.tooltip-left{
+.toc-container.tooltip-left {
   margin-top: 10px;
   transition: 0.3s;
   .tooltip {
@@ -72,7 +72,7 @@
     transform-origin: 100% 100%;
     transform: translate3d(0, -10px, 0) rotate3d(1, 1, 1, -30deg);
     a {
-      color: $colorF;
+      color: @colorF;
     }
     &::after {
       top: initial;

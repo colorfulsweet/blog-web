@@ -17,15 +17,15 @@
   /* Trigger item */
 
   @keyframes pulse {
-    from { transform: scale3d(0.5,0.5,1); }
-    to { transform: scale3d(1,1,1); }
+    from { transform: scale3d(0.5, 0.5, 1); }
+    to { transform: scale3d(1, 1, 1); }
   }
 
   /* Tooltip */
 
   .tooltip-content {
     position: absolute;
-    background: rgba(36,193,246,0.9);
+    background: rgba(36, 193, 246, 0.9);
     z-index: 9999;
     width: 200px;
     bottom: 50%;
@@ -44,18 +44,18 @@
   .tooltip-west .tooltip-content {
     left: 3.5em;
     transform-origin: -2em 50%;
-    transform: translate3d(0,50%,0) rotate3d(1,1,1,30deg);
+    transform: translate3d(0, 50%, 0) rotate3d(1, 1, 1, 30deg);
   }
 
   .tooltip-east .tooltip-content {
     right: 3.5em;
     transform-origin: calc(100% + 2em) 50%;
-    transform: translate3d(0,50%,0) rotate3d(1,1,1,-30deg);
+    transform: translate3d(0, 50%, 0) rotate3d(1, 1, 1, -30deg);
   }
 
   .tooltip:hover .tooltip-content {
     opacity: 1;
-    transform: translate3d(0,50%,0) rotate3d(0,0,0,0);
+    transform: translate3d(0, 50%, 0) rotate3d(0, 0, 0, 0);
     pointer-events: auto;
   }
 
@@ -83,17 +83,17 @@
 
   .tooltip-west .tooltip-content::before,
   .tooltip-west .tooltip-content::after {
-    right: 99%; /* because of FF, otherwise we have a gap */
+    right: 99%;
   }
 
   .tooltip-east .tooltip-content::before,
   .tooltip-east .tooltip-content::after {
-    left: 99%; /* because of FF, otherwise we have a gap */
+    left: 99%;
   }
 
   .tooltip-east .tooltip-content::after {
-    transform: scale3d(-1,1,1);
-  }  
+    transform: scale3d(-1, 1, 1);
+  }
 }
 
 .tooltip-top {
@@ -157,25 +157,25 @@
   .tooltip-text {
     border-bottom: 10px solid #4d4d4d;
     overflow: hidden;
-    transform: scale3d(0,1,1);
+    transform: scale3d(0, 1, 1);
     transition: transform 0.3s ease-in;
   }
 
   .tooltip:hover .tooltip-text {
     transition-delay: 0s;
-    transform: scale3d(1,1,1);
+    transform: scale3d(1, 1, 1);
   }
 
   .tooltip-inner {
-    background: rgba(36,193,246,0.9);
+    background: rgba(36, 193, 246, 0.9);
     padding: 40px;
-    transform: translate3d(0,100%,0);
+    transform: translate3d(0, 100%, 0);
     transition: transform 0.3s ease-in;
   }
 
   .tooltip:hover .tooltip-inner {
     transition-delay: 0.3s;
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
   }
 
   /* Arrow */

@@ -5,11 +5,11 @@
     display: inline-block;
     margin: 0 1em .5em 0;
     padding: 4px;
-    border: 1px solid $colorBorder;
+    border: 1px solid @colorBorder;
     font-size: 1.2rem;
-    @extend %trans;
+    .trans();
     &:hover {
-      background:rgba(204, 204, 204, 0.3);
+      background: rgba(204, 204, 204, 0.3);
     }
   }
 }
@@ -39,7 +39,7 @@
       right: 0;
       bottom: 0;
       height: 2px;
-      background: $colorLink;
+      background: @colorLink;
       transition: width .3s ease;
     }
   }
