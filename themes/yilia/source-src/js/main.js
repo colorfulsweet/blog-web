@@ -1,6 +1,5 @@
 // 样式
 import '../css/main.less'
-import '../css/font-awsome.css'
 // 分享
 import Share from './share'
 // 边缘
