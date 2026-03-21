@@ -271,7 +271,7 @@ const waifuTools = {
   },
   'tools.chart'() {
     // 一言
-    http.get('/api/v2/common/hitokoto?length=40&format=json').then(res => {
+    http.get('/api/v2/common/hitokoto', { params: {format: 'json'} }).then(res => {
       this.showMessage(res.hitokoto + (res.from?`　　——${res.from}`:''))
     })
   },
