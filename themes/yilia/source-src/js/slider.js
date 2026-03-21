@@ -1,4 +1,4 @@
-import axios from 'axios'
+import http from './request'
 import Vue from 'vue/dist/vue.esm'
 import waifuTips from '../config/waifu-tip.json'
 
@@ -99,16 +99,15 @@ const vm = new Vue({
         limit: this.fullTextSearch.limit,
         words: this.fullTextSearchWords
       }
-      axios.get(window.themeConfig.root + 'api/v2/common/search', {params}).then(res => {
+      http.get('/api/v2/common/search', {params}).then(res => {
         this.fullTextSearch.isLoading = false
         fullTextSearchTimer = null
-        let result = res.data
-        if(!Array.isArray(result.data) || !result.data.length) {
+        if(!Array.isArray(res.list) || !res.list.length) {
           this.fullTextSearch.tip = '未搜索到匹配文章'
         } else {
-          this.fullTextSearchItems.push(...result.data)
+          this.fullTextSearchItems.push(...res.list)
         }
-        this.fullTextSearch.hasMore = (result.total > this.fullTextSearch.pageNum * this.fullTextSearch.limit)
+        this.fullTextSearch.hasMore = (res.total > this.fullTextSearch.pageNum * this.fullTextSearch.limit)
       }).catch(err => {
         this.fullTextSearch.tip = '加载失败, 请刷新重试'
         this.fullTextSearch.isLoading = false
@@ -169,8 +168,8 @@ const vm = new Vue({
     }
   },
   mounted () {
-    axios.get(window.themeConfig.root + 'content.json').then((res)=>{
-      this.items = res.data
+    fetch(window.themeConfig.root + 'content.json').then(res => res.json()).then(resJson=>{
+      this.items = resJson
     }).catch(err => {
       console.warn('加载文章列表失败')
     })
@@ -225,8 +224,7 @@ function handleSearch(searchItems) {
 
 async function welcomeMessage() {
   let now = new Date().getHours()
-  return axios.get(`${window.themeConfig.root}api/v2/common/config/waifu_tip`).then(res => {
-    let textTimes = res.data
+  return http.get('/api/v2/common/config/waifu_tip').then(textTimes => {
     let text = null
     Array.prototype.sort.call(textTimes, (item1, item2) => {
       if(item1.start>item2.start) {
@@ -273,8 +271,8 @@ const waifuTools = {
   },
   'tools.chart'() {
     // 一言
-    axios.get(`${window.themeConfig.root}api/v2/common/hitokoto?length=40&format=json`).then(res => {
-      this.showMessage(res.data.hitokoto + (res.data.from?`　　——${res.data.from}`:''))
+    http.get('/api/v2/common/hitokoto?length=40&format=json').then(res => {
+      this.showMessage(res.hitokoto + (res.from?`　　——${res.from}`:''))
     })
   },
   'tools.search'() {

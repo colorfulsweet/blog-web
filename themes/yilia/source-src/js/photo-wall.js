@@ -1,4 +1,4 @@
-import axios from 'axios'
+import http from './request'
 import PhotoSwipe from 'photoswipe'
 import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default'
 
@@ -27,10 +27,10 @@ function loadMoreItems(step) {
   scrollLock = true //加载过程中锁定滚动加载
   loadTip.style.display = 'block'
   // 滚动到底部时调用
-  axios.get(`${themeConfig.root}api/v2/common/photos`, {params: {start:totalIndex, limit:step}}).then(res => {
+  http.get('/api/v2/common/photos', {params: {start:totalIndex, limit:step}}).then(res => {
     var itemContainer = document.createElement('div')
-    for(let index = 0 ; index<res.data.data.length && totalIndex<res.data.total ; index++,totalIndex++ ) {
-      let imgHeight = null, imgFile = res.data.data[index],
+    for(let index = 0 ; index<res.list.length && totalIndex<res.total ; index++,totalIndex++ ) {
+      let imgHeight = null, imgFile = res.list[index],
         imgSrc = `${themeConfig.pictureCdn}/${imgFile.name}`,
         imgThumbnail = imgFile.thumbnail ? `${themeConfig.pictureCdn}/${imgFile.thumbnail}` : imgSrc
       let wrapperWidth = photoWallWrapper.getBoundingClientRect().width
@@ -69,7 +69,7 @@ function loadMoreItems(step) {
     itemContainer.classList.add('item-container')
     // itemContainer.insertAdjacentHTML('beforeend', imgItems)
     photoWallWrapper.appendChild(itemContainer)
-    if( totalIndex >= res.data.total ) {
+    if( totalIndex >= res.total ) {
       loadTip.textContent = '没有更多图片啦/(ㄒoㄒ)/~~'
     } else {
       setTimeout(()=>{
