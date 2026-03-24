@@ -94,8 +94,8 @@ const vm = createApp({
     },
     openFullTextSearch() {
       this.hideSlider()
-      this.$refs.fullTextSearch.classList.add('in')
-      this.$refs.mask.classList.add('in')
+      document.getElementById('search-panel').classList.add('in')
+      document.querySelector('.js-mask').classList.add('in')
     },
     loadSearchResult() {
       this.fullTextSearch.pageNum++
@@ -177,14 +177,15 @@ const vm = createApp({
     document.addEventListener('copy', () => {
       this.showMessage('你都复制了些什么呀，转载要记得加上出处哦')
     })
+    const maskEl = document.querySelector('.js-mask')
     const hideModal = () => {
       document.querySelectorAll('.page-modal').forEach(modal => {
         modal.classList.remove('in')
       })
-      this.$refs.mask.classList.remove('in')
+      maskEl.classList.remove('in')
     }
     // 隐藏模态框
-    this.$refs.mask.addEventListener('click', hideModal)
+    maskEl.addEventListener('click', hideModal)
     document.querySelectorAll('.js-modal-close').forEach(modalClose => {
       modalClose.addEventListener('click', hideModal)
     })
