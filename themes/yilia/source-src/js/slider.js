@@ -1,49 +1,56 @@
 import http from './request'
-import Vue from 'vue/dist/vue.esm'
+import { createApp } from 'vue'
 import waifuTips from '../config/waifu-tip.json'
 
 function setScrollZero() {
-  let $sct = document.querySelectorAll('.tools-section')
-  Array.prototype.forEach.call($sct, (em) => {
+  document.querySelectorAll('.tools-section').forEach(em => {
     em.scrollTop = 0
   })
 }
+
+function urlformat(str) {
+  return (window.themeConfig && window.themeConfig.root) ? window.themeConfig.root + str : '/' + str
+}
+
 var waifuTipTimer = null, fullTextSearchTimer = null
-const vm = new Vue({
-  el: '#container',
-  data: {
-    isCtnShow: false,
-    isShow: undefined,
-    items: [],
-    innerArchive: false,
-    friends: false,
-    aboutme: false,
-    showTags: false,
-    showCategories: false,
-    search: null,
-    searchItems: [],
-    fullTextSearch: {
-      pageNum: 1,
-      limit: 10,
-      isLoading: false,
-      tip: undefined,
-      hasMore: false
-    },
-    fullTextSearchWords: null,
-    fullTextSearchItems: [],
-    waifu: {
-      tip: null, // 提示语文字
-      tipOpacity: 0, // 提示语框透明度
-      showTools: false // 显示工具栏
-    },
-    themeConfig: window.themeConfig
+
+const vm = createApp({
+  data() {
+    return {
+      isCtnShow: false,
+      isShow: undefined,
+      items: [],
+      innerArchive: false,
+      friends: false,
+      aboutme: false,
+      showTags: false,
+      showCategories: false,
+      search: null,
+      searchItems: [],
+      fullTextSearch: {
+        pageNum: 1,
+        limit: 10,
+        isLoading: false,
+        tip: undefined,
+        hasMore: false
+      },
+      fullTextSearchWords: null,
+      fullTextSearchItems: [],
+      waifu: {
+        tip: null, // 提示语文字
+        tipOpacity: 0, // 提示语框透明度
+        showTools: false // 显示工具栏
+      },
+      themeConfig: window.themeConfig
+    }
   },
   methods: {
-    stop (event) {
+    urlformat,
+    stop(event) {
       event.stopPropagation()
     },
-    openSlider (event, type, isMobile) {
-      if(isMobile && this.isShow) {
+    openSlider(event, type, isMobile) {
+      if (isMobile && this.isShow) {
         this.hideSlider()
         return
       }
@@ -56,32 +63,32 @@ const vm = new Vue({
       this.isCtnShow = true
       setScrollZero()
     },
-    hideSlider () {
+    hideSlider() {
       if (this.isShow) {
         this.isShow = false
-        setTimeout(() => {this.isCtnShow = false}, 300)
+        setTimeout(() => { this.isCtnShow = false }, 300)
       }
     },
     linkMouseover(name) {
-      if(name === 'waifu' && waifuTipTimer) return
+      if (name === 'waifu' && waifuTipTimer) return
       this.showMessage(waifuTips.mouseover[name], 3000)
     },
     toolsClick(name) {
       this.showMessage(waifuTips.click[name])
-      if(name in waifuTools) {
+      if (name in waifuTools) {
         waifuTools[name].call(this)
       }
     },
-    addSearchItem(query, type='title') {
-      if(query) {
+    addSearchItem(query, type = 'title') {
+      if (query) {
         query = query.trim()
       }
       // 如果已存在相同的查询条件, 则不加入
-      var isExist = Array.prototype.some.call(this.searchItems, searchItem => {
+      const isExist = this.searchItems.some(searchItem => {
         return searchItem.query === query && searchItem.type === type
       })
-      if(!isExist && query) {
-        this.searchItems.push({query, type})
+      if (!isExist && query) {
+        this.searchItems.push({ query, type })
       }
       this.search = null
     },
@@ -91,18 +98,18 @@ const vm = new Vue({
       this.$refs.mask.classList.add('in')
     },
     loadSearchResult() {
-      this.fullTextSearch.pageNum ++
+      this.fullTextSearch.pageNum++
       this.fullTextSearch.isLoading = true
       this.fullTextSearch.tip = undefined
-      let params = {
+      const params = {
         pageNum: this.fullTextSearch.pageNum,
         limit: this.fullTextSearch.limit,
         words: this.fullTextSearchWords
       }
-      http.get('/api/v2/common/search', {params}).then(res => {
+      http.get('/api/v2/common/search', { params }).then(res => {
         this.fullTextSearch.isLoading = false
         fullTextSearchTimer = null
-        if(!Array.isArray(res.list) || !res.list.length) {
+        if (!Array.isArray(res.list) || !res.list.length) {
           this.fullTextSearch.tip = '未搜索到匹配文章'
         } else {
           this.fullTextSearchItems.push(...res.list)
@@ -115,62 +122,53 @@ const vm = new Vue({
       })
     },
     searchKeydown(event) {
-      if(event.keyCode == 13){ // 回车键
+      if (event.keyCode == 13) { // 回车键
         this.addSearchItem(this.search)
-      } else if(event.keyCode == 8 && !this.search) { // 退格键
+      } else if (event.keyCode == 8 && !this.search) { // 退格键
         this.searchItems.pop()
       }
     },
-    showMessage (text, time) {
-      if(!text) return
-      if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1]
+    showMessage(text, time) {
+      if (!text) return
+      if (Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1) - 1]
       this.waifu.tip = text
       this.waifu.tipOpacity = 1
-      if(waifuTipTimer) {
+      if (waifuTipTimer) {
         clearTimeout(waifuTipTimer)
         waifuTipTimer = null
       }
-      waifuTipTimer = setTimeout(()=>{
+      waifuTipTimer = setTimeout(() => {
         this.waifu.tipOpacity = 0
         waifuTipTimer = null
       }, time || 5000)
-    } 
-  },
-  filters: {
-    urlformat (str) {
-      return (window.themeConfig && window.themeConfig.root) ? window.themeConfig.root + str : '/' + str
     }
   },
   watch: {
-    searchItems (newVal, oldVal) {
-      if(newVal && newVal.length) {
+    searchItems(newVal) {
+      if (newVal && newVal.length) {
         handleSearch.call(this, newVal)
       } else {
-        this.items.forEach(function(item){
-          item.isHide = false
-        })
+        this.items.forEach(item => { item.isHide = false })
       }
     },
-    fullTextSearchWords (newVal, oldVal) {
+    fullTextSearchWords(newVal) {
       this.fullTextSearch.hasMore = false
       this.fullTextSearchItems.isLoading = false
       this.fullTextSearch.tip = undefined
       this.fullTextSearchItems.splice(0, this.fullTextSearchItems.length)
-      if(fullTextSearchTimer) {
+      if (fullTextSearchTimer) {
         clearTimeout(fullTextSearchTimer)
         fullTextSearchTimer = null
       }
-      if(!newVal) {
-        return
-      }
+      if (!newVal) return
       this.fullTextSearch.pageNum = 0
       fullTextSearchTimer = setTimeout(this.loadSearchResult.bind(this), 500)
     }
   },
-  mounted () {
-    fetch(window.themeConfig.root + 'content.json').then(res => res.json()).then(resJson=>{
+  mounted() {
+    fetch(window.themeConfig.root + 'content.json').then(res => res.json()).then(resJson => {
       this.items = resJson
-    }).catch(err => {
+    }).catch(() => {
       console.warn('加载文章列表失败')
     })
     welcomeMessage().then(msg => {
@@ -179,44 +177,39 @@ const vm = new Vue({
     document.addEventListener('copy', () => {
       this.showMessage('你都复制了些什么呀，转载要记得加上出处哦')
     })
-    // 隐藏模态框
-    let hideModal = (function() {
-      let modals = document.querySelectorAll('.page-modal')
-      Array.prototype.forEach.call(modals, modal => {
+    const hideModal = () => {
+      document.querySelectorAll('.page-modal').forEach(modal => {
         modal.classList.remove('in')
       })
       this.$refs.mask.classList.remove('in')
-    }).bind(this)
+    }
+    // 隐藏模态框
     this.$refs.mask.addEventListener('click', hideModal)
-    Array.prototype.forEach.call(document.querySelectorAll('.js-modal-close'), modalClose => {
+    document.querySelectorAll('.js-modal-close').forEach(modalClose => {
       modalClose.addEventListener('click', hideModal)
     })
   },
   created() {
     // 夜间模式
-    let night = localStorage.getItem('night')
-    try {
-      if(night && eval(night)) document.querySelector('body').classList.add('night')
-    } catch (e){}
+    const night = localStorage.getItem('night')
+    if (night === 'true') {
+      document.querySelector('body').classList.add('night')
+    }
   }
-})
+}).mount('#container')
 
 function handleSearch(searchItems) {
   this.items.forEach(articleItem => {
-    articleItem.isHide = !Array.prototype.every.call(searchItems, searchItem => {
-      switch(searchItem.type) {
-        case 'title': 
+    articleItem.isHide = !searchItems.every(searchItem => {
+      switch (searchItem.type) {
+        case 'title':
           return articleItem.title.toLowerCase().indexOf(searchItem.query.toLowerCase()) !== -1
-        case 'tag' : 
-          return Array.prototype.some.call(articleItem.tags, tag => {
-            return tag.name === searchItem.query
-          })
-        case 'category' : 
-          return Array.prototype.some.call(articleItem.categories, category => {
-            return category.name === searchItem.query
-          })
-        case 'date' : 
-          return articleItem.date && ( articleItem.date.substr(0,7) === searchItem.query )
+        case 'tag':
+          return articleItem.tags.some(tag => tag.name === searchItem.query)
+        case 'category':
+          return articleItem.categories.some(category => category.name === searchItem.query)
+        case 'date':
+          return articleItem.date && (articleItem.date.substr(0, 7) === searchItem.query)
       }
     })
   })
@@ -226,22 +219,14 @@ async function welcomeMessage() {
   let now = new Date().getHours()
   return http.get('/api/v2/common/config/waifu_tip').then(textTimes => {
     let text = null
-    Array.prototype.sort.call(textTimes, (item1, item2) => {
-      if(item1.start>item2.start) {
-        return 1
-      } else if(item1.start<item2.start) {
-        return -1
-      } else {
-        return 0
-      }
-    })
-    Array.prototype.forEach.call(textTimes, textTime => {
-      if(now > textTime.start && now <= textTime.end) {
+    textTimes.sort((a, b) => a.start - b.start)
+    textTimes.forEach(textTime => {
+      if (now > textTime.start && now <= textTime.end) {
         text = textTime.text
       }
     })
-    if(!text) {
-      text = textTimes[textTimes.length-1].text
+    if (!text) {
+      text = textTimes[textTimes.length - 1].text
     }
     return text
   })
@@ -271,8 +256,8 @@ const waifuTools = {
   },
   'tools.chart'() {
     // 一言
-    http.get('/api/v2/common/hitokoto', { params: {format: 'json'} }).then(res => {
-      this.showMessage(res.hitokoto + (res.from?`　　——${res.from}`:''))
+    http.get('/api/v2/common/hitokoto', { params: { format: 'json' } }).then(res => {
+      this.showMessage(res.hitokoto + (res.from ? `　　——${res.from}` : ''))
     })
   },
   'tools.search'() {
