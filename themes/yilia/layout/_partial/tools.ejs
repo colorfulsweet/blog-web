@@ -60,7 +60,7 @@
         </div>
         <ul class="search-ul">
           <li class="search-li" v-for="(item,index) in items" :key="index" v-show="!item.isHide">
-            <a :href="urlformat(item.path)" class="search-title"><i class="icon icon-quote-left"></i>
+            <a :href="item.path|urlformat" class="search-title"><i class="icon icon-quote-left"></i>
               <span v-text="item.title"></span>
             </a>
             <p class="search-time" v-if="item.date">
