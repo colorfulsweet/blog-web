@@ -24,7 +24,7 @@ module.exports = function(env, argv) {
       })]
     },
     entry: {
-      main: ['babel-polyfill', './source-src/js/main.js'],
+      main: './source-src/js/main.js',
       slider: './source-src/js/slider.js',
       mobile: './source-src/js/mobile.js',
       viewer: './source-src/js/viewer.js'
@@ -37,39 +37,25 @@ module.exports = function(env, argv) {
     module: {
       rules: [{
           test: /\.js$/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-              plugins: ['@babel/plugin-proposal-class-properties'],
-            },
-          },
+          use: 'babel-loader',
           exclude: /node_modules/
         },{
           test: /\.less$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'less-loader']
         },{
           test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader']
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
         },{
           test: /\.(png|jpe?g|gif|ico)$/,
-          use: {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[contenthash:6].[ext]',
-              outputPath: 'images',
-              esModule: false  // 不使用es6的模块语法
-            }
+          type: 'asset/resource',
+          generator: {
+            filename: 'images/[name].[contenthash:6][ext]'
           }
         },{
           test: /\.(svg|eot|ttf|woff2?|otf)$/,
-          use: {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[contenthash:6].[ext]',
-              outputPath: 'fonts',
-              esModule: false  // 不使用es6的模块语法
-            }
+          type: 'asset/resource',
+          generator: {
+            filename: 'fonts/[name].[contenthash:6][ext]'
           }
         }
       ]
