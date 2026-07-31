@@ -1,14 +1,12 @@
 const gulp = require('gulp'),
-  htmlmin = require('gulp-htmlmin'),   // html压缩组件
+  htmlmin = require('gulp-html-minifier-terser'), // html压缩组件
   htmlclean = require('gulp-htmlclean'), // html清理组件
   plumber = require('gulp-plumber'),  // 容错组件（发生错误不跳出任务，并报出错误内容）
   Hexo = require('hexo'),
   log = require('fancy-log') // gulp的日志输出
 
 // 程序执行的传参
-const argv = require('optimist')
-  .describe('deployPath', '静态化后发布的目录')
-  .argv
+const argv = require('minimist')(process.argv.slice(2))
 
 const hexo = new Hexo(process.cwd(), {})
 
@@ -20,7 +18,8 @@ gulp.task('generate', async function() {
     await hexo.call('generate', { watch: false })
     return hexo.exit()
   } catch (err) {
-    return hexo.exit(err)
+    await hexo.exit(err)
+    throw err  // 让 gulp series 感知到失败并终止后续任务
   }
 })
 

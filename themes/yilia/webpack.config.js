@@ -1,7 +1,6 @@
 const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 
 const htmlPluginConfig = {
@@ -32,7 +31,8 @@ module.exports = function(env, argv) {
     output: {
       publicPath: '/',
       path: __dirname + '/source',
-      filename: isProd ? 'js/[name].[chunkhash].js' : 'js/[name].js'
+      filename: isProd ? 'js/[name].[chunkhash].js' : 'js/[name].js',
+      clean: isProd ? { keep: (asset) => !/^(js|css|fonts|images)\//.test(asset) } : false
     },
     module: {
       rules: [{
@@ -69,11 +69,6 @@ module.exports = function(env, argv) {
         template: './source-src/template/css.html',
         filename: '../layout/_partial/css.ejs'
       }, htmlPluginConfig)),
-      new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: ['js/*','css/*','fonts/*','images/*'],
-        verbose: true,
-        dry: false,
-      }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].[contenthash:6].css'
       })
